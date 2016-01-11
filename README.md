@@ -5,7 +5,7 @@ Math 317: Linear Algebra, Spring 2016
 **Email:** [williamdemeo at gmail](mailto:williamdemeo@gmail.com?subject=MATH
 317: (insert an informative subject))  
 **Office:** Carver 466.  
-**Office hours:** Mon Tue Thu 2:10--3pm.
+**Office hours:** Mon Tue Thu 2:10--3pm.  
 **Lecture time and location:** Mon Tue Thu Fri 1:10--2pm, Carver 0132.
 
 --------------------
@@ -134,13 +134,12 @@ There will be two midterm exams each worth 20%, and a final exam worth 30% of th
 **DATE:** Friday, February 19.  
   
 + **MIDTERM EXAM 2** (focus on Chapters 3 and 4)  
-**DATE:** Friday, April 1.  
+**DATE:** Monday, April 4.  
 
-+ **FINAL EXAM** on Chapters 1--6.  
-**DATE:** Monday, December 14, 2015.  
-**TIME:** 9:45--11:45am.   
++ **FINAL EXAM** (focus on Chapters 1--6 and Section 7.1)  
+**DATE:** Monday, May 2, 2016.  
+**TIME:** 12--2pm.   
 **LOCATION:** Carver 0132.
-
 
 The final exam will be cumulative, that is, it will cover everything we have
 learned during the semester.
@@ -206,9 +205,9 @@ Grading Policy
 --------------
 The breakdown of the final course grade is as follows:  
 
-+ Final exam: 30 points  
++ Final exam: 35 points  
 + Mid-term exams: 40 points (20 each)  
-+ Homework: 30 points total  
++ Homework: 25 points total  
 
 At the end of the semester, letter grades will be assigned roughly according to
 the following table. However, the scale may be shifted,
@@ -233,17 +232,22 @@ Attendance
 Students are expected to attend all classes.
 A grade penalty will be exacted if you have an excessive number of absences
 (whether excused or unexcused).
-Specifically, you are permitted (but strongly discouraged from taking) seven
-absences in total. Each absence in addition
-to that may result in the deduction of points from your final grade.
+Specifically, you are permitted (but strongly discouraged from taking) **seven**
+absences in total, and you must
+<a href="mailto:williamdemeo@gmail.com?subject=MATH 317:
+(fill in subject here)&amp;body=Dear Dr. DeMeo, (your message) Sincerely, (your full name)">email
+the instructor</a>
+if/when you must miss a class.
+Each additional absence, and any absence not mentioned to the instructor,
+may result in the deduction of points from your final grade.
 
 Occasionally attendance will be recorded by passing around a sign-in
-sheet on which you will print and sign your own name. (If another student asks
+sheet on which you will print and sign your own name. If another student asks
 you to sign in for them, don't do it! Forging another student's signature
 constitutes a violation of the student code of conduct and will be referred to
-the ISU Office of Judicial Affairs.)
+the ISU Office of Judicial Affairs.
 
-If you plan to leave before class is over, the correct procedure is to mention
+**Important:** If you plan to leave before class is over, the correct procedure is to mention
 this to the professor before the start of class. It is impolite and disruptive
 to your classmates to leave, or even pack up your belongings, before the lecture
 is over.
