@@ -59,5 +59,5 @@ When you are finished, print off a hardcopy of your pdf file and submit in at th
   - [detexify](http://detexify.kirelabs.org/classify.html) If you can draw the symbol with your mouse, try [detexify](http://detexify.kirelabs.org/classify.html)!
 
 
-[tex]:https://github.com/williamdemeo/Math317-Fall2015/tree/master/homework/tex
-[pdf]:https://github.com/williamdemeo/Math317-Fall2015/tree/master/homework/pdf
+[tex]:https://github.com/williamdemeo/Math317-Spring2016/tree/master/homework/tex
+[pdf]:https://github.com/williamdemeo/Math317-Spring2016/tree/master/homework/pdf
