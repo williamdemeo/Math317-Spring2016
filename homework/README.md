@@ -7,7 +7,7 @@ The subdirectories here are
 
 ### Typing your homework solutions
 
-*Students are strongly encouraged (but not required) to type homework solutions.*
+*Students are strongly encouraged to type homework solutions.*
 
 However, if you decide you don't want to type your solutions, then you must
 print out the pdf file (use the "extra-space" version, when available) and write your final
