@@ -156,8 +156,10 @@ Homework
 Solving lots of problems is the best way to prepare yourself to do well on the
 tests, and ultimately to do well in the course.
 
-The **homework will account for 30% of the course grade** and will be
+The **homework will account for 25% of the course grade** and will be
 assigned once per week, typically due each Friday **at the beginning of class.**
+You must submit a hard copy of your homework.  Electronic documents
+(e.g., email attachments) are not acceptable.
 
 Homework submitted at the end of class on the due date will be penalized
 10%. **Homework submitted after then end of class on the due date will not be
