@@ -22,21 +22,24 @@ The subdirectories here are
 tests, and ultimately to do well in the course!*
 
 Homework will be assigned roughly once per week and will typically
-be due on Friday **at the beginning of class.** 
+be due on Friday at the beginning of class.
 The last homework assignment will be due during the last week
 of the semester, also known as "dead week."  
 
-(For solutions to homework problems, please visit the resources tab of our Piazza page.)
+Solutions to most homework exercises will be made available
+soon after the due date. Check the "Resources" section of our Piazza page 
 
 ### Submission instructions
 
-You must submit a *hard copy* of your homework at the beginning of
-class on the due. Except under extenuating circumstances, electronic documents
-(e.g., email attachments) are not accepted.  
+You must submit a *hard copy* of your homework at the **beginning** of
+class on the due date. Homework submitted at the **end** of class on the
+due date will be subject to a **10% penalty**.  Homework submitted after then end of
+class on the due date will not be accepted or graded.  
 
-Homework submitted at the end of class on the due date will be penalized
-10%. **Homework submitted after then end of class on the due date will not be
-accepted or graded.**  
+You must turn in a hard copy of your work.
+Except under extenuating circumstances,
+**electronic homework submissions are not acceptable.**
+Do not submit homework via email.
 
 ### Grading
 
