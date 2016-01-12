@@ -34,8 +34,8 @@ in advance to let me know when you plan to visit.
 - [Overview, Prerequisites, Outcomes](#overview-prerequisites-outcomes)
 - [Textbook Information](#textbook-information)
 - [Exams](#exams)
-- [Quizzes](#quizzes)
 - [Homework](#homework)
+- [Computer Lab](#computer-lab)
 - [Make-up Policy](#make-up-policy)
 - [Grading Policy](#grading-policy)
 - [Attendance](#attendance)
@@ -128,7 +128,7 @@ excuse for failing to submit homework on time.*
 
 Exams
 -----
-There will be two midterm exams each worth 20%, and a final exam worth 35% of the course grade.
+There will be two midterm exams each worth 20%, and a final exam worth 30% of the course grade.
 
 + **MIDTERM EXAM 1** (focus on Chapters 1 and 2)  
 **DATE:** Friday, February 19 (subject to change)  
@@ -172,6 +172,33 @@ will be dropped and not counted toward the final course grade.
 The last homework assignment will be due during the last week
 of the semester, also known as "dead week."  
 
+Computer Lab
+------------
+Four of the Friday class meetings will be held in the Computer Lab on the
+fourth floor of Carver in Room 449.  Specifically, we will meet in the
+computer lab (instead of our usual classroom) on the following dates:
+
+**January 29, February 12, March 25, April 15**
+
+The Computer Lab component is worth 5% of the final course grade.
+
+Students are required to show up for each computer lab, login to a
+computer, and setup (or sign-in to) an account on the Math Department's
+Sage server.  Doing this each time earns the student one percentage point
+(per lab). Students can then earn one additional point (per lab) by completing
+that day's lab assignment *during that day's lab period* (from 1:10 to 2pm).
+Lab assignments must be completed on the day they are assigned.
+**No late lab assignments will be accepted.**
+
+Thus, there is a total of 8 Computer Lab points available over the course of 
+the semester.  Since the computer lab component accounts for just 5% of the course
+grade, this means there is a possibility of earning 3 extra credit points by
+completing all of the Computer Lab assignments.  On the other hand, if a student
+merely shows up to each Computer Lab session and signs on to their account,
+but does not complete any of the computer assignments, then that student will earn
+4 out of 5 for this component of the course grade.
+
+
 Make-up Policy
 --------------
 **No late homework will be accepted for any reason.**  If you fail
@@ -207,9 +234,10 @@ Grading Policy
 --------------
 The breakdown of the final course grade is as follows:  
 
-+ Final exam: 35 points  
++ Final exam: 30 points  
 + Mid-term exams: 40 points (20 each)  
 + Homework: 25 points total  
++ Computer Lab: 5 points total  
 
 At the end of the semester, letter grades will be assigned roughly according to
 the following table. However, the scale may be shifted,
