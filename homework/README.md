@@ -31,15 +31,17 @@ soon after the due date. Check the "Resources" section of our Piazza page
 
 ### Submission instructions
 
-You must submit a *hard copy* of your homework at the **beginning** of
-class on the due date. Homework submitted at the **end** of class on the
-due date will be subject to a **10% penalty**.  Homework submitted after then end of
+You must submit a *hard copy* of your homework at the **beginning of
+class** on the due date. Homework submitted at the end of class on the
+due date will incur a **10% penalty**.  Homework submitted after then end of
 class on the due date will not be accepted or graded.  
 
 You must turn in a hard copy of your work.
 Except under extenuating circumstances,
-**electronic homework submissions are not acceptable.**
-Do not submit homework via email.
+
+**electronic homework submissions are not acceptable**
+
+so please do not submit homework via email.
 
 ### Grading
 
