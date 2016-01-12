@@ -176,15 +176,15 @@ Computer Lab
 ------------
 Four of the Friday class meetings will be held in the Computer Lab on the
 fourth floor of Carver in Room 449.  Specifically, we will meet in the
-computer lab (instead of our usual classroom) on the following dates:
+Computer Lab (instead of our usual classroom) on the following dates:
 
 **January 29, February 12, March 25, April 15**
 
 The Computer Lab component is worth 5% of the final course grade.
 
 Students are required to show up for each computer lab, login to a
-computer, and setup (or sign-in to) an account on the Math Department's
-Sage server.  Doing this each time earns the student one percentage point
+computer, and register for (or sign-in to) an account on the Math Department's
+Sage server.  Doing so earns the student one percentage point
 (per lab). Students can then earn one additional point (per lab) by completing
 that day's lab assignment *during that day's lab period* (from 1:10 to 2pm).
 Lab assignments must be completed on the day they are assigned.
@@ -196,7 +196,7 @@ grade, this means there is a possibility of earning 3 extra credit points by
 completing all of the Computer Lab assignments.  On the other hand, if a student
 merely shows up to each Computer Lab session and signs on to their account,
 but does not complete any of the computer assignments, then that student will earn
-4 out of 5 for this component of the course grade.
+4 out of 5% for this component of the course grade.
 
 
 Make-up Policy
