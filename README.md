@@ -5,8 +5,8 @@ Math 317: Linear Algebra, Spring 2016
 **Email:** [williamdemeo at gmail](mailto:williamdemeo@gmail.com?subject=MATH
 317: (insert an informative subject))  
 **Office:** Carver 466.  
-**Office hours:** Mon Tue Thu 2:10--3pm.  
-**Lecture time and location:** Mon Tue Thu Fri 1:10--2pm, Carver 0132.
+**Office hours:** Mon, Tue, Thu 2:10--3pm.  
+**Lecture time and location:** Mon, Tue, Thu, Fri 1:10--2pm, Carver 0132.
 
 --------------------
 
@@ -74,7 +74,7 @@ please keep track of your grades and refer to the
 
 Class Meeting Times
 -------------------
-**Lecture:** MTTF 10--10:50am Carver 0001.
+**Lecture:** MTTF 1:10--2pm Carver 0132
 
 Overview, Prerequisites, Outcomes
 ---------------------------------
@@ -128,18 +128,18 @@ excuse for failing to submit homework on time.*
 
 Exams
 -----
-There will be two midterm exams each worth 20%, and a final exam worth 30% of the course grade.
+There will be two midterm exams each worth 20%, and a final exam worth 35% of the course grade.
 
 + **MIDTERM EXAM 1** (focus on Chapters 1 and 2)  
-**DATE:** Friday, February 19.  
+**DATE:** Friday, February 19 (subject to change)  
   
 + **MIDTERM EXAM 2** (focus on Chapters 3 and 4)  
-**DATE:** Monday, April 4.  
+**DATE:** Monday, April 4 (subject to change)  
 
 + **FINAL EXAM** (focus on Chapters 1--6 and Section 7.1)  
-**DATE:** Monday, May 2, 2016.  
-**TIME:** 12--2pm.   
-**LOCATION:** Carver 0132.
+**DATE:** Monday, May 2, 2016  
+**TIME:** 12--2pm   
+**LOCATION:** Carver 0132
 
 The final exam will be cumulative, that is, it will cover everything we have
 learned during the semester.
@@ -167,7 +167,7 @@ At least one (possibly more) of the lowest or missed homework scores
 will be dropped and not counted toward the final course grade.
 *The 10 best homework scores will count toward the final grade.*
 
-The last homework assignment will be due on the Friday of the last week
+The last homework assignment will be due during the last week
 of the semester, also known as "dead week."  
 
 Make-up Policy
