@@ -1,0 +1,291 @@
+\documentclass[fleqn,11pt]{paper}
+
+%% This is the Homework LaTeX template.  Use this file to fill in your solutions. 
+%%
+%% Notes: 
+%%    1. If possibly, try to write your answers inside a \begin{solution}...\end{solution}
+%%    environment.
+%%
+%%    2. If you will use acronyms, please define them in the macros.tex file.
+%%
+%%    3. If you enter your answers into this Homework*.tex source file, you
+%%    will have to compile it into a pdf document.  There are a number of ways to
+%%    do that. Probably the easiest is to use the website called ShareLaTeX.com.
+%%    Alternatively,
+%%
+%%       Mac OS X users: you might try MacTeX. 
+%%       Linux users: most come with TeX; otherwise do a full install of TeXLive.
+%%       Windows users: ...proTeXt maybe? (or switch to a better operating system) 
+%%
+%%       There is a Makefile in this directory, so (on Linux) you could just 
+%%       enter `make` to compile all the Homework*.tex files at once (assuming
+%%       you have everything set up properly).
+%%
+%%    4. Please don't hesitate to inform the professor if you have trouble, or open
+%%       a ``New issue'' on GitHub or post to Piazza or ask in lecture.
+%%
+%%    5. Update the title and date if necessary.
+         \title{Math 317: Homework 1}
+         \date{Due: 22 January 2016}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[letterpaper,top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry}
+\usepackage{tikz-cd}
+\usepackage{scalefnt}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{url} % for url in bib entries
+\usepackage{mathrsfs}
+
+\theoremstyle{remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{prop}{Proposition}
+\newtheorem{problem}{Problem}
+\newtheorem*{prob}{Problem}
+\newtheorem*{solution}{{\bf Solution}}
+\newtheorem*{hint}{{\it Hint}}
+\newtheorem*{ex}{Exercise}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Surround the problem and solution with 
+%% \begin{ProbBox}  and   \end{ProbBox}
+%% to prevent pagebreaks.
+\newenvironment{ProbBox}{\noindent\begin{minipage}{\linewidth}}{\end{minipage}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Fancy page style     %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\newcommand{\metadata}[2]{
+  \lhead{}
+  \chead{}
+  \rhead{\bfseries Math 317: Linear Algebra}
+  \lfoot{#1}
+  \cfoot{#2}
+  \rfoot{\thepage}
+}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Customize list enviroonments   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% package to customize three basic list environments: enumerate, itemize and description.
+%% \usepackage{enumitem}
+%% \setitemize{noitemsep, topsep=0pt, leftmargin=*}
+%% \setenumerate{noitemsep, topsep=0pt, leftmargin=*}
+%% \setdescription{noitemsep, topsep=0pt, leftmargin=*}
+
+\usepackage{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Space between problems  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newrobustcmd*{\probskip}{\vskip1cm}
+
+%%    Try to use standard notation, as used in class and in the textbook.
+%%    For the most basic symbols, you may wish to use LaTeX macros to keep 
+%%    the conventions you use consistent and easy to remember.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%    Math shortcuts     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\join{\ensuremath{\vee}}
+\newcommand\meet{\ensuremath{\wedge}}
+\newcommand\R{\fld{R}}
+\newcommand\proj{\ensuremath{\operatorname{proj}}}
+\newcommand\End{\ensuremath{\operatorname{End}}}
+\newcommand\Aut{\ensuremath{\operatorname{Aut}}}
+\newcommand\Hom{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Aff}{\ensuremath{\operatorname{Aff}}}
+\newcommand{\ann}[1]{\ensuremath{\operatorname{ann}(#1)}}
+\newcommand{\id}{\ensuremath{\operatorname{id}}}
+\newcommand{\nulity}[1]{\ensuremath{\operatorname{null}(#1)}}
+\renewcommand{\ker}[1]{\ensuremath{\operatorname{ker}(#1)}}
+\renewcommand{\dim}[1]{\ensuremath{\operatorname{dim}(#1)}}
+\newcommand\im[1]{\ensuremath{\operatorname{im}(#1)}}
+\newcommand{\rank}[1]{\ensuremath{\operatorname{rank}(#1)}}
+\newcommand{\trace}[1]{\ensuremath{\operatorname{trace}(#1)}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+         \newcommand\alg[1]{\ensuremath{\mathbf{#1}}}
+         \newcommand{\<}{\ensuremath{\langle}}
+         \renewcommand{\>}{\ensuremath{\rangle}}
+         \newcommand\fld[1]{\ensuremath{\mathbb{#1}}}
+
+%%       To make a boldface vector, use backslash v in front of the 
+%        letter and add a new command for that letter here.
+         \newcommand\va{\vec{a}}
+         \newcommand\vb{\vec{b}}
+         \newcommand\vp{\vec{p}}
+         \newcommand\vu{\vec{u}}
+         \newcommand\vv{\vec{v}}
+         \newcommand\vw{\vec{w}}
+         \newcommand\vx{\vec{x}}
+         \newcommand\vy{\vec{y}}
+         \newcommand\vz{\vec{z}}
+         \newcommand\vzero{\vec{0}}
+
+         \newcommand\sP{\ensuremath{\mathscr P}}
+         \newcommand\Span{\ensuremath{\operatorname{Span}}}
+
+\begin{document}
+
+%%    INSERT YOUR NAME HERE!!!
+         \metadata{Name:}{HW 2 (due 2016/01/29)}
+         \author{NAME:}
+%%       Example:
+%%         \metadata{Name: William DeMeo}{HW 1 (due 2015/09/04)}
+%%         \author{NAME: William DeMeo}
+%%
+
+\maketitle
+
+%%  PAGE 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%--  PROBLEM 1  ---------------------------------------------------
+\begin{problem}[SA 1.4.3af]
+For each of the following matrices $A$, determine its reduced echelon form and
+give a general solution to $A\vx = \vzero$ in standard form.
+\[
+\mathrm{a.} \quad A = 
+\begin{bmatrix*}[r]
+  1 & 0 & -1 \\
+  -2 & 3 & -1 \\
+  3 & -3 & 0
+\end{bmatrix*},
+%% \qquad
+%% \mathrm{c.} \quad A = 
+%% \begin{bmatrix*}[r]
+%%   1 & 2 & -1 \\
+%%   1 & 3 & 1 \\
+%%   2 & 4 & 3\\
+%%  -1 & 1 & 6
+%% \end{bmatrix*},
+\qquad
+\mathrm{f.} \quad A = 
+\begin{bmatrix*}[r]
+  1 & 2 & 0 & -1 & -1 \\
+  -1 & -3 & 1 & 2 & 3\\
+  1 & -1 & 3 & 1 & 1\\
+  2 & -3 & 7 & 3 & 4
+\end{bmatrix*}.
+\]
+
+\end{problem}
+
+
+
+\newpage
+%%  PAGE 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%--  PROBLEM 2  ---------------------------------------------------
+\begin{problem}[SA 1.4.4de]
+  For the matrix $A$ and vector $\vb$ given, find the general solution of the
+  equation $A\vx = \vb$ in standard form. 
+\begin{enumerate}[a.]
+%% \item[b.]
+%% \[
+%% A = 
+%% \begin{bmatrix*}[r]
+%%   2 & -1\\
+%%   2 & 1\\
+%%   -1 & 1
+%% \end{bmatrix*},
+%% \quad
+%% \vb = \begin{bmatrix*}[r] -4\\ 0 \\ 3 \end{bmatrix*}
+%% \]
+
+\item[d.]
+\[
+A = 
+\begin{bmatrix*}[r]
+  2 & -1 & 1\\
+  2 & 1 & 3\\
+  1 & 1 & 2
+\end{bmatrix*},
+\quad
+\vb = \begin{bmatrix*}[r] 1\\ -1 \\ -1 \end{bmatrix*}
+\]
+
+\item[e.]
+\[
+A = 
+\begin{bmatrix*}[r]
+  1 & 1 & 1 & 1\\
+  3 & 3 & 2 & 0
+\end{bmatrix*},
+\quad
+\vb = \begin{bmatrix*}[r] 6\\ 17 \end{bmatrix*}
+\]
+
+\end{enumerate}
+\end{problem}
+
+\newpage
+
+%%  PAGE 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%--  PROBLEM 3  ---------------------------------------------------
+\begin{problem}[SA 1.4.7a]
+  One might need to find solutions of $A\vx = \vb$ for several different
+  $\vb$s, say $\vb_1, \dots, \vb_k$.
+  In this situation, one can augment the matrix $A$ with all the $\vb$s
+  simultaneously, forming the ``multi-augmented'' matrix
+  $[ A | \vb_1\; \vb_2 \; \cdots \; \vb_k ]$.
+  One can then read off the various solutions from the reduced echelon form of
+  the multi-augmented matrix. Use this method to solve $A\vx = \vb_j$
+  for the given matrix $A$ and vectors $\vb_j$.
+\begin{enumerate}[a.]
+\item
+\[
+A = 
+\begin{bmatrix*}[r]
+  1 & 0 & -1 \\
+  2 & 1 & -1 \\
+  -1 & 2 & 2
+\end{bmatrix*},
+\quad
+\vb_1 = \begin{bmatrix*}[r] -1\\ 1\\ 5 \end{bmatrix*},
+\quad
+\vb_2 = \begin{bmatrix*}[r] 1\\ 3\\ 2 \end{bmatrix*}
+\]
+\end{enumerate}
+\end{problem}
+
+\newpage
+
+%--  PROBLEM 4  ---------------------------------------------------
+\begin{problem}[SA 1.4.14]
+Let $A$ be an $m \times n$ matrix, and let $\vb \in \R^m$.
+\begin{enumerate}[a.]
+\item Show that if the vectors $\vu$ and $\vv$ in $\R^n$ are both
+  solutions to $A\vx = \vb$, then $\vu - \vv$ is a solution to $A\vx = \vzero$.
+\item Suppose $\vu$ is a solution to $A\vx = \vzero$ and $\vp$ is a solution to
+  $A\vx = \vb$. Show that $\vu + \vp$ is a solution to $A\vx = \vb$.
+  ({\it Hint:} Use Exercise 1.4.13.)
+\end{enumerate}
+\end{problem}
+
+\newpage
+
+%--  PROBLEM 5  ---------------------------------------------------
+\begin{problem}[SA 1.4.15a]
+Prove or give a counterexample: If $A$ is an $m \times n$
+  matrix and $\vx \in \R^n$ is a vector satisfying $A\vx = \vzero$,
+  then either every entry of $A$ is $0$ or $\vx = \vzero$.
+\end{problem}
+
+\end{document}
