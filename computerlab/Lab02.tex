@@ -264,12 +264,30 @@ In Homework 3, we proved that the vector
 \]
 \vskip5mm
 \noindent  If you want to stop here, ask the instructor to check your work and sign below
-then save and quit. Otherwise, move on to Part 2 by loading the Math317-Lab2.sws file into your 
+then save and quit. Otherwise, move on to Part 2 by loading the \href{https://github.com/williamdemeo/Math317-Spring2016/raw/master/computerlab/Math317-Lab2.sws}{Math317-Lab2.sws} file into your 
 Sage session.
     \\\\
     Instructor signature: \underline{\phantom{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}} (1 point)
+
+
 \end{document}
-\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%% OLD STUFF BELOW (not used) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
 %--  Part 2  ---------------------------------------------------
 \section*{Part 2}
 In this part we will use Sage to solve the last exercise of Homework 4.
@@ -298,128 +316,3 @@ Recall, in that problem, we had
   \end{enumerate}
 
 \newpage
-%--  Part 2  ---------------------------------------------------
-\section*{Part 2}
-In this part we will use Sage to help solve the following exercise from the textbook:
-\begin{quote}
-%--  PROBLEM 1  ---------------------------------------------------
-\begin{prob}[SA 1.5.1]
-  By solving a system of equations, write the vector
-  \[
-  \vb = \begin{bmatrix*}[r] 3 \\ 0 \\ -2 \end{bmatrix*}
-  \; \text{ as a linear combination of the vectors } \;
-  \vv_1 = \begin{bmatrix*}[r] 1 \\ 0 \\ -1 \end{bmatrix*},
-  \;
-  \vv_2 = \begin{bmatrix*}[r] 0 \\ 1 \\ 2 \end{bmatrix*},
-  \; \text{ and } \;
-  \vv_3 = \begin{bmatrix*}[r] 2 \\ 1 \\ 1 \end{bmatrix*}.
-  \]
-\end{prob}
-\end{quote}
-
-\vskip1cm
-\begin{solution}
-  To write the vector $\vb$ as a linear combination of the vectors
-  $\vv_1$, $\vv_2$,  and $\vv_3$, we must find coefficients 
-  $x_1, x_2, x_3$ such that $\vb = x_1 \vv_1 +  x_2 \vv_2 + x_3 \vv_3$.  
-  As we discussed in lecture, this is equivalent to
-  finding a vector $\vx = (x_1, x_2, x_3)$ such that $A\vx = \vb$, where $A$ is
-  the matrix whose columns are the vectors $\vv_1$, $\vv_2$, and $\vv_3$.  
-
-  In Sage, we will construct the matrix $A$ and then augment this matrix with the 
-  vector $\vb$. Finally we will solve for $\vx$ by putting the augmented matrix 
-  in echelon form. We'll make Sage do all the tedious work, but it will be 
-  up to us to interpret Sage's output and write down a correct solution.
-  
-\end{solution}
-  
-  \begin{enumerate}
-  \item First, we need to learn how to enter the matrix
-    \[
-    A = \begin{bmatrix*}[r] 1 &0&2\\ 0&1&1\\-1&2&1\end{bmatrix*} %, \; 
-      %% \vb = \begin{bmatrix*}[r] 3 \\ 0 \\ -2 \end{bmatrix*}
-      \]
-      in Sage.
-      In your Lab1 Sage worksheet, click the {\bf Help} link at the top right.  A help
-    window should appear (possibly in a pop-up window). On the Help page, navigate through the following links: 
-    \begin{quote}
-    {\bf Reference Manual} $\rightarrow$ {\bf modules} $\rightarrow$ {\bf m} $\rightarrow$ {\bf sage.matrix.constructor}
-    \end{quote}
-    From the help page that appears, you should be able to discern how to input the matrix $A$ in
-    Sage. (Hint: you should start with {\tt A = matrix([[1,0,2],[}...)
-
-    After entering the matrix, type Shift+Enter to evaluate your input.  
-    To confirm that Sage correctly interpreted your
-    input, enter the single character {\tt A} in a new cell and then Shift+Enter.
-  \item Next, input the vector $\vb = (3, 0, -2)$ using the following syntax:
-    \begin{verbatim}
-     b = vector([3,0,-2])
-    \end{verbatim}
-    At this point, you are half way done with Part 2.  Ask the instructor to check your work.\\
-    \\\\
-    Instructor signature: \underline{\phantom{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}} (1/2 point)
-\newpage
-
-
-  \item Next, we want to construct the augmented matrix 
-    \[
-      [A|\vb] = 
-      \begin{amatrix}{3} 
-        1 &0&2&3\\ 0&1&1&0\\-1&2&1&-2
-      \end{amatrix}.
-      \]
-      Using a search engine (e.g., Google) search for the phrase ``sage augmented matrix.''  The
-      first result will probably be to the Sage Reference Manual page
-      {\tt matrices/sage/matrix/matrix1.html}.  
-
-      Read a bit of this page and see if you can 
-      figure out how to use the {\tt augment()} function (or \emph{method}) of the matrix 
-      object {\tt A}.
-      You will use {\tt b} as the input to the  {\tt augment()} method.
-      
-      Don't forget to give a name to the augmented matrix, e.g., {\tt Ab = augment}... and then
-      check that Sage correctly interpreted your input (by typing {\tt Ab} then Shift+Enter.)
-
-    \item Next, put your augmented matrix in echelon form.  Again, try to use the Sage help pages
-      or a Google search to figure out how to do this.  If you need help, ask the instructor.
-
-    \item Finally, interpret the Sage output of the {\tt echelon\_form} command and write down a
-      solution.
-      
-      The solution vector is 
-\vskip5mm
-\[\vx = \]
-\vskip1cm
-      ...so $\vb = (3, 0, -2)$ can be written as the following linear combination: 
-\vskip5mm
-\[
-\vb = \text{\underline{\phantom{XXX}}}\vv_1 + \text{\underline{\phantom{XXX}}} \vv_2+
-\text{\underline{\phantom{XXX}}} \vv_3.
-\]
-\vskip5mm
-%% This shows that the vector $\vx = (1, -1, 1)$ solves $A\vx = \vb$.  To check this,
-You have now completed Part 2.  By the way, you can also use Sage to check your final 
-answer. One way to do this is to type your solution vector  
-into Sage (with {\tt x = vector([}...) and then compute {\tt A*x}.  Does this result in the vector $(3, 0, -2)$?
-Alternatively, you could simply ask Sage to solve the system for you with %% {\tt A.solve\_right(b)}!
-the {\tt solve\_right} command!
-  \end{enumerate}
-\vskip5mm
-\noindent A tutorial describing how to do more linear algebra in Sage is available at
-\begin{quote}
-\url{http://doc.sagemath.org/html/en/tutorial/tour_linalg.html}
-\end{quote}
-\vskip 1cm
-    Instructor signature: \underline{\phantom{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}} (1/2 point)
-
-\end{document}
-
-  \end{enumerate}
-\end{Solution}
-
-%%  PAGE 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% \bibliographystyle{plain}
-%% \bibliography{refs}
-
-\end{document}
