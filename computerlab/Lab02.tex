@@ -1,0 +1,425 @@
+\documentclass[fleqn,11pt]{paper}
+
+%% This is the Homework LaTeX template.  Use this file to fill in your solutions. 
+%%
+%% Notes: 
+%%    1. If possibly, try to write your answers inside a \begin{solution}...\end{solution}
+%%    environment.
+%%
+%%    2. If you enter your answers into this Homework*.tex source file, you
+%%    will have to compile it into a pdf document.  There are a number of ways to
+%%    do that. Probably the easiest is to use the website called ShareLaTeX.com.
+%%    Alternatively,
+%%
+%%       Mac OS X users: you might try MacTeX. 
+%%       Linux users: most come with TeX; otherwise do a full install of TeXLive.
+%%       Windows users: ...proTeXt maybe? (or switch to a better operating system) 
+%%
+%%       There is a Makefile in this directory, so (on Linux) you could just 
+%%       enter `make` to compile all the Homework*.tex files at once (assuming
+%%       you have everything set up properly).
+%%
+%%    3. Please don't hesitate to inform the professor if you have trouble, or open
+%%       a ``New issue'' on GitHub or post to Piazza or ask in lecture.
+%%
+%%    4. Update the title and date if necessary.
+         \title{Math 317: Computer Lab 1}
+         \date{Due: 29 January 2016, 2pm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[letterpaper,top=3cm,bottom=3cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{tikz-cd}
+\usepackage{scalefnt}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{sagetex}
+\usepackage{url} % for url in bib entries
+\usepackage{mathrsfs}
+
+\theoremstyle{remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{prop}{Proposition}
+\newtheorem{problem}{Problem}
+\newtheorem*{prob}{Problem}
+\newtheorem*{solution}{{\bf Solution}}
+\newtheorem*{hint}{{\it Hint}}
+\newtheorem*{ex}{Exercise}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Surround the problem and solution with 
+%% \begin{ProbBox}  and   \end{ProbBox}
+%% to prevent pagebreaks.
+\newenvironment{ProbBox}{\noindent\begin{minipage}{\linewidth}}{\end{minipage}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Fancy page style     %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\newcommand{\metadata}[2]{
+  \lhead{}
+  \chead{}
+  \rhead{\bfseries Math 317: Linear Algebra}
+  \lfoot{#1}
+  \cfoot{#2}
+  \rfoot{\thepage}
+}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Customize list enviroonments   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% package to customize three basic list environments: enumerate, itemize and description.
+%% \usepackage{enumitem}
+%% \setitemize{noitemsep, topsep=0pt, leftmargin=*}
+%% \setenumerate{noitemsep, topsep=0pt, leftmargin=*}
+%% \setdescription{noitemsep, topsep=0pt, leftmargin=*}
+
+\usepackage{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Space between problems  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newrobustcmd*{\probskip}{\vskip1cm}
+
+%%    Try to use standard notation, as used in class and in the textbook.
+%%    For the most basic symbols, you may wish to use LaTeX macros to keep 
+%%    the conventions you use consistent and easy to remember.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%    Math shortcuts     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\join{\ensuremath{\vee}}
+\newcommand\meet{\ensuremath{\wedge}}
+\newcommand\R{\fld{R}}
+\newcommand\proj{\ensuremath{\operatorname{proj}}}
+\newcommand\End{\ensuremath{\operatorname{End}}}
+\newcommand\Aut{\ensuremath{\operatorname{Aut}}}
+\newcommand\Hom{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Aff}{\ensuremath{\operatorname{Aff}}}
+\newcommand{\ann}[1]{\ensuremath{\operatorname{ann}(#1)}}
+\newcommand{\id}{\ensuremath{\operatorname{id}}}
+\newcommand{\nulity}[1]{\ensuremath{\operatorname{null}(#1)}}
+\renewcommand{\ker}[1]{\ensuremath{\operatorname{ker}(#1)}}
+\renewcommand{\dim}[1]{\ensuremath{\operatorname{dim}(#1)}}
+\newcommand\im[1]{\ensuremath{\operatorname{im}(#1)}}
+\newcommand{\rank}[1]{\ensuremath{\operatorname{rank}(#1)}}
+\newcommand{\trace}[1]{\ensuremath{\operatorname{trace}(#1)}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+         \newcommand\alg[1]{\ensuremath{\mathbf{#1}}}
+         \newcommand{\<}{\ensuremath{\langle}}
+         \renewcommand{\>}{\ensuremath{\rangle}}
+         \newcommand\fld[1]{\ensuremath{\mathbb{#1}}}
+
+%%       To make a boldface vector, use backslash v in front of the 
+%        letter and add a new command for that letter here.
+         \newcommand\va{\vec{a}}
+         \newcommand\vb{\vec{b}}
+         \newcommand\vu{\vec{u}}
+         \newcommand\vv{\vec{v}}
+         \newcommand\vw{\vec{w}}
+         \newcommand\vx{\vec{x}}
+         \newcommand\vy{\vec{y}}
+         \newcommand\vz{\vec{z}}
+         \newcommand\vzero{\vec{0}}
+
+         \newcommand\sP{\ensuremath{\mathscr P}}
+         \newcommand\Span{\ensuremath{\operatorname{Span}}}
+
+%% ---for augmented matrices---
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{r}|rr@{}}
+}{%
+  \end{array}\right]
+}
+\newenvironment{amatrix2}[1]{%
+  \left[\begin{array}{@{}*{#1}{r}|rr@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+
+         \metadata{Name:}{Lab 2 (due 2/12 2pm)}
+         \author{NAME:}
+%%       Example:
+%%         \metadata{Name: William DeMeo}{Lab 1 (due: 2016/01/29 by end of lab)}
+%%         \author{NAME: William DeMeo}
+%%
+
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent {\bf Instructions.}
+\begin{itemize}
+\item This assignment must be completed in the Carver 449 computer lab by 2pm on
+  \begin{quote}
+    {\bf Friday February 12.}  
+  \end{quote}
+  Late submissions will not be accepted.
+Here is a summary of what it takes to complete each part of the lab.
+More detailed instructions appear on the following pages.
+\item {\bf Part 1.} To complete this part, you must login to your account on the 
+  Math Department Sage server and demonstrate that you know how to input a matrix, augment a matrix with a vector,
+  and compute the echelon form of an (augmented) matrix.  
+
+  Completing Part 1 is worth 1 point. If you are not interested in completing Part 2 of the
+  assignment, you may turn in your paper and leave the lab after completing Part 1. \\
+  {\bf Make sure your name is on your paper and it was signed by the instructor.}
+\item {\bf Part 2.} To complete Part 2, you must first download the Sage worksheet file 
+  Math317-Lab2.sws from either Blackboard or GitHub, load this worksheet into your Sage session
+  and follow the instructions provided.  You must then save your completed Sage worksheet 
+  to a file and upload the resulting sws file to Blackboard.
+
+\item When you have finished working or it is 2pm (whichever comes first): 
+  \begin{enumerate}
+  \item {\bf stop your Sage worksheet} (Action $\rightarrow$ Save and quit worksheet; or use Stop button),
+  \item {\bf sign out of Sage}, 
+  \item {\bf logout of your computer}, 
+  \item {\bf write your name on your paper},
+  \item {\bf hand it in to the instructor}.
+  \end{enumerate}
+\end{itemize}
+
+
+%--  Part 1  ---------------------------------------------------
+\section*{Part 1}
+In Homework 3, we proved that the vector 
+    $\vb = (1, -1, 1, -1)$ is as a linear combination 
+    of the vectors 
+    $\vv_1 = (1 , 0 , 1 , -2)$, 
+    $\vv_2 = (0 , -1 , 0 , 1)$, and 
+    $\vv_3 = (1, -2 , 1 , 0)$.  Do you remember how we did this?
+    That's right! We recognized that if
+    the matrix $A$ has first column $\vv_1$, second column $\vv_2$, and third
+    column $\vv_3$, then writing $\vb$ as a linear combination of 
+    the given vectors is the same as solving the system $A\vx = \vb$.
+    That is, if we find $\vx = (x_1, x_2, x_3)$ that solves 
+    this system, then $\vb = x_1\vv_1+x_2\vv_2+x_3\vv_3$ is the
+    desired linear combination. 
+
+    In this first part of this lab assignment, we will simply re-solve the above problem, but 
+    this time we will make Sage do the tedious work.  Carry out the following steps:
+
+  \begin{enumerate}
+  \item Login to any machine in Carver 449, open up a browser (preferably Chrome) and navigate to
+
+    \begin{quote}
+      \url{https://sage.math.iastate.edu/}
+    \end{quote}
+
+    Login to your account on the Math Department Sage server using the login information you
+    were given for Lab 1. Once you are logged in, create a new worksheet and name it Lab2.  
+
+    \item In the Lab2 worksheet, click the first cell and type the following:
+    \begin{sageblock}
+      b = vector([1, -1, 1, -1]); print b
+    \end{sageblock}
+    Then type Shift+Enter or click `evaluate`.
+    Did Sage print what you expect? If so, move on.  If not, try again and/or ask the instructor for help.
+  
+  \item Click somewhere inside the next cell and enter the following  expression:
+    \begin{sageblock}
+      A = matrix(4, 3, [1, 0, 1, 0, -1, -2, 1, 0, 1, -2, 1, 0]) 
+      print A
+    \end{sageblock}
+    What did Sage print?  Is it a matrix with three columns, 
+    $\vv_1$, $\vv_2$, $\vv_3$? If not, try again and/or your neighbor for help.
+    Can you decypher the syntax we used to input this matrix $A \in \R^{4\times 3}$?
+    If so, move on.  If not, think a litter harder and/or discuss it with your neighbor.
+\item Next, have Sage augment the matrix $A$ with the vector $b$ by entering the following into the
+  next worksheet cell:
+    \begin{sageblock}
+      Ab = A.augment(b, subdivide=True)
+      print Ab
+    \end{sageblock}
+\item Ask Sage to put your augmented matrix in reduced-row echelon form:
+    \begin{sageblock}
+      Ab.rref()
+    \end{sageblock}
+    You should now see two pivots (both equal to 1).  Let the free variable $x_3 = s$ and write 
+    the vector $\vb$ as a linear combination of the vectors $\vv_1$, $\vv_2$, $\vv_3$
+    involving $s$.
+  \end{enumerate}
+\vskip5mm
+\[
+  \vb = \begin{bmatrix*}[r] 1 \\ -1 \\ 1 \\ -1\end{bmatrix*}= \text{\underline{\phantom{XXX}}}\vv_1 + \text{\underline{\phantom{XXX}}} \vv_2+
+\text{\underline{\phantom{XXX}}} \vv_3.
+\]
+\vskip5mm
+\noindent  If you want to stop here, ask the instructor to check your work and sign below
+then save and quit. Otherwise, move on to Part 2 by loading the Math317-Lab2.sws file into your 
+Sage session.
+    \\\\
+    Instructor signature: \underline{\phantom{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}} (1 point)
+\end{document}
+\newpage
+%--  Part 2  ---------------------------------------------------
+\section*{Part 2}
+In this part we will use Sage to solve the last exercise of Homework 4.
+Recall, in that problem, we had
+  $A = \begin{bmatrix*}[r] 1&1&1\\0&1&1\\1&2&1\end{bmatrix*}$ 
+    and 
+    $\vb = \begin{bmatrix*}[r] 3\\0\\1\end{bmatrix*}$.
+      \begin{sageblock}
+        A = matrix([[1,0,1],[1,1,2],[1,1,1]]) 
+      \end{sageblock}
+      Use Sage to compute $A^{-1}$.
+      Try changing the 2 in the matrix $A$ to 1 and then take the inverse.  What happens?
+      Using your answer to (i) to solve $A\vx = \vb$.
+      \item Use your answer to (ii) to express $\vb$ as a linear combination of the columns of $A$.
+      \end{enumerate}
+
+\end{document}
+      
+    \end{sageblock}
+
+    If a 4 appears in the worksheet, congratulations on completing Part 1. Ask the
+    instructor to check your work and sign below, then do Part 2 (or Save \& quit if you want to stop here):\\
+    \\\\
+    Instructor signature: \underline{\phantom{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}} (1 point)
+
+  \end{enumerate}
+
+\newpage
+%--  Part 2  ---------------------------------------------------
+\section*{Part 2}
+In this part we will use Sage to help solve the following exercise from the textbook:
+\begin{quote}
+%--  PROBLEM 1  ---------------------------------------------------
+\begin{prob}[SA 1.5.1]
+  By solving a system of equations, write the vector
+  \[
+  \vb = \begin{bmatrix*}[r] 3 \\ 0 \\ -2 \end{bmatrix*}
+  \; \text{ as a linear combination of the vectors } \;
+  \vv_1 = \begin{bmatrix*}[r] 1 \\ 0 \\ -1 \end{bmatrix*},
+  \;
+  \vv_2 = \begin{bmatrix*}[r] 0 \\ 1 \\ 2 \end{bmatrix*},
+  \; \text{ and } \;
+  \vv_3 = \begin{bmatrix*}[r] 2 \\ 1 \\ 1 \end{bmatrix*}.
+  \]
+\end{prob}
+\end{quote}
+
+\vskip1cm
+\begin{solution}
+  To write the vector $\vb$ as a linear combination of the vectors
+  $\vv_1$, $\vv_2$,  and $\vv_3$, we must find coefficients 
+  $x_1, x_2, x_3$ such that $\vb = x_1 \vv_1 +  x_2 \vv_2 + x_3 \vv_3$.  
+  As we discussed in lecture, this is equivalent to
+  finding a vector $\vx = (x_1, x_2, x_3)$ such that $A\vx = \vb$, where $A$ is
+  the matrix whose columns are the vectors $\vv_1$, $\vv_2$, and $\vv_3$.  
+
+  In Sage, we will construct the matrix $A$ and then augment this matrix with the 
+  vector $\vb$. Finally we will solve for $\vx$ by putting the augmented matrix 
+  in echelon form. We'll make Sage do all the tedious work, but it will be 
+  up to us to interpret Sage's output and write down a correct solution.
+  
+\end{solution}
+  
+  \begin{enumerate}
+  \item First, we need to learn how to enter the matrix
+    \[
+    A = \begin{bmatrix*}[r] 1 &0&2\\ 0&1&1\\-1&2&1\end{bmatrix*} %, \; 
+      %% \vb = \begin{bmatrix*}[r] 3 \\ 0 \\ -2 \end{bmatrix*}
+      \]
+      in Sage.
+      In your Lab1 Sage worksheet, click the {\bf Help} link at the top right.  A help
+    window should appear (possibly in a pop-up window). On the Help page, navigate through the following links: 
+    \begin{quote}
+    {\bf Reference Manual} $\rightarrow$ {\bf modules} $\rightarrow$ {\bf m} $\rightarrow$ {\bf sage.matrix.constructor}
+    \end{quote}
+    From the help page that appears, you should be able to discern how to input the matrix $A$ in
+    Sage. (Hint: you should start with {\tt A = matrix([[1,0,2],[}...)
+
+    After entering the matrix, type Shift+Enter to evaluate your input.  
+    To confirm that Sage correctly interpreted your
+    input, enter the single character {\tt A} in a new cell and then Shift+Enter.
+  \item Next, input the vector $\vb = (3, 0, -2)$ using the following syntax:
+    \begin{verbatim}
+     b = vector([3,0,-2])
+    \end{verbatim}
+    At this point, you are half way done with Part 2.  Ask the instructor to check your work.\\
+    \\\\
+    Instructor signature: \underline{\phantom{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}} (1/2 point)
+\newpage
+
+
+  \item Next, we want to construct the augmented matrix 
+    \[
+      [A|\vb] = 
+      \begin{amatrix}{3} 
+        1 &0&2&3\\ 0&1&1&0\\-1&2&1&-2
+      \end{amatrix}.
+      \]
+      Using a search engine (e.g., Google) search for the phrase ``sage augmented matrix.''  The
+      first result will probably be to the Sage Reference Manual page
+      {\tt matrices/sage/matrix/matrix1.html}.  
+
+      Read a bit of this page and see if you can 
+      figure out how to use the {\tt augment()} function (or \emph{method}) of the matrix 
+      object {\tt A}.
+      You will use {\tt b} as the input to the  {\tt augment()} method.
+      
+      Don't forget to give a name to the augmented matrix, e.g., {\tt Ab = augment}... and then
+      check that Sage correctly interpreted your input (by typing {\tt Ab} then Shift+Enter.)
+
+    \item Next, put your augmented matrix in echelon form.  Again, try to use the Sage help pages
+      or a Google search to figure out how to do this.  If you need help, ask the instructor.
+
+    \item Finally, interpret the Sage output of the {\tt echelon\_form} command and write down a
+      solution.
+      
+      The solution vector is 
+\vskip5mm
+\[\vx = \]
+\vskip1cm
+      ...so $\vb = (3, 0, -2)$ can be written as the following linear combination: 
+\vskip5mm
+\[
+\vb = \text{\underline{\phantom{XXX}}}\vv_1 + \text{\underline{\phantom{XXX}}} \vv_2+
+\text{\underline{\phantom{XXX}}} \vv_3.
+\]
+\vskip5mm
+%% This shows that the vector $\vx = (1, -1, 1)$ solves $A\vx = \vb$.  To check this,
+You have now completed Part 2.  By the way, you can also use Sage to check your final 
+answer. One way to do this is to type your solution vector  
+into Sage (with {\tt x = vector([}...) and then compute {\tt A*x}.  Does this result in the vector $(3, 0, -2)$?
+Alternatively, you could simply ask Sage to solve the system for you with %% {\tt A.solve\_right(b)}!
+the {\tt solve\_right} command!
+  \end{enumerate}
+\vskip5mm
+\noindent A tutorial describing how to do more linear algebra in Sage is available at
+\begin{quote}
+\url{http://doc.sagemath.org/html/en/tutorial/tour_linalg.html}
+\end{quote}
+\vskip 1cm
+    Instructor signature: \underline{\phantom{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}} (1/2 point)
+
+\end{document}
+
+  \end{enumerate}
+\end{Solution}
+
+%%  PAGE 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% \bibliographystyle{plain}
+%% \bibliography{refs}
+
+\end{document}
