@@ -179,7 +179,7 @@ right  = 2.00cm]{geometry}
 %%    5. Insert your name here!!!
 %%
 %%
-\metadata       {Name:                     }{HW 6 (due 2016/02/26)}
+\metadata       {Name:                     }{HW 6a (due 2016/02/29)}
 %% Put your name here ^^^^^^^^^^^^^^^^^^^^^, like this:
 %%
 \author         {NAME:                     }
@@ -187,8 +187,8 @@ right  = 2.00cm]{geometry}
 %%     \author{NAME: William DeMeo}
 %%
 %%    6. Update the title and date if necessary.
-\title{Math 317: Homework 6}
-\date{Due: 26 Feb 2016}
+\title{Math 317: Homework 6a}
+\date{Due: 29 Feb 2016}
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
@@ -284,13 +284,13 @@ They merely test whether you know the definition of orthogonal complement
 We will cover orthogonal complements in lecture, but in case we don't get to it 
 before you come to this part of the homework, here's the definition.
 If $V$ is a subspace of $\R^n$, then the \emph{orthogonal complement} of $V$ in $\R^n$ 
-is denoted by $V^\bot$ and is defined as follows:
-\[V^\bot := \{ \vx \in \R^n \mid \vx \cdot \vv = 0 \text{ for all $\vv\in V$}\}.\]
+is denoted by $V^\bot$ and is defined as follows
+$V^\bot := \{ \vx \in \R^n \mid \vx \cdot \vv = 0 \text{ for all $\vv\in V$}\}$.
 \probskip
 
 %--  PROBLEM  ---------------------------------------------------
 \begin{prob}[SA 3.1.10]
-Let $V \leq \R^n$ be a subspace. Show that $V \cap V^\bot = \{\vzero \}$.
+Let $V$ be a subspace of $\R^n$. Show that $V \cap V^\bot = \{\vzero \}$.
 \end{prob}
 \probskip
 
@@ -299,11 +299,11 @@ Let $V \leq \R^n$ be a subspace. Show that $V \cap V^\bot = \{\vzero \}$.
 \begin{prob}[SA 3.1.11-2]
 Suppose $V$ and $W$ are \emph{orthogonal subspaces} of $\R^n$, that is, 
 $\vv \cdot \vw = 0$ for every $\vv \in V$ and every $\vw \in W$. 
-\begin{enumerate}
+\begin{enumerate}[(a)]
 \item Prove that $V \subseteq W^\bot$.
 \item Prove that $V \cap W = \{\vzero\}$.
 \end{enumerate}
-\end{problem}
+\end{prob}
 \newpage
 
 
@@ -318,26 +318,3 @@ $V \subseteq W$. Prove that $W^{\bot} \subseteq V^\bot$.
 %% \end{solution}
 
 \end{document}
-\noindent {\bf Recommended Exercises} (students are not required to submit solutions
-for the following)
-
-\medskip
-
-
-\probskip
-\noindent
-\begin{prob}[SA 5.1.9a]
-  Suppose $A\in \R^{k\times k}$ and
-  $B\in \R^{\ell \times \ell}$. Prove that
-  \[
-  \det
- \left[ 
-    \begin{array}{c|c}
-      A &B \\ 
-      \hline
-      O & D
-    \end{array}
-    \right] = \det A \det D.
- \]
-\end{prob}
-
