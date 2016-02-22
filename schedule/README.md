@@ -84,10 +84,10 @@ T 4/7: 6.1 Eigenvalues, Eigenvectors
 F 4/8: 6.1 Characteristic Polynomial  
 
 ---------------------------------------------------------  
-M 4/11: 6.2 Diagonalizability; **HW 11.1 due** (5.1)  
+M 4/11: 6.2 Diagonalizability; **HW 11a due** (5.1)  
 T 4/12: 6.2 Diagonalizability  
 T 4/14: 6.3 Applications: Combinatorics, Graphs  
-F 4/15: Computer Lab #4 in Carver 449; **HW 11.2 due** (6.1, 6.2)  
+F 4/15: Computer Lab #4 in Carver 449; **HW 11b due** (6.1, 6.2)  
 
 ---------------------------------------------------------  
 M 4/18: 6.4 The Spectral Theorem  
