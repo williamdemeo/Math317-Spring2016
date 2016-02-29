@@ -1,0 +1,354 @@
+%%This is the LaTeX file for the Math 317 Homework.  
+
+%% You may use this file to fill in your solutions if you know how 
+%% to compile a LaTeX file to turn it into a pdf document.  If you 
+%% don't know how to do this but want to learn, there are plenty of
+%% resources for learning about LaTeX on the net.  You may also ask
+%% your professor for help.
+%% 
+%% For more information about using this file to complete the homework,
+%% please see the NOTES section below of the comments below.
+
+\documentclass[fleqn,11pt]{paper}
+
+
+\usepackage[
+letterpaper,
+top    = 3cm,
+bottom = 3cm,
+left   = 3.00cm,
+right  = 3.00cm]{geometry}
+
+\usepackage{tikz-cd}
+\usepackage{amsthm}
+\usepackage{scalefnt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{url} % for url in bib entries
+\usepackage{mathrsfs}
+
+\theoremstyle{remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{prop}{Proposition}
+\newtheorem{problem}{Problem}
+\newtheorem*{prob}{Problem}
+\newtheorem*{solution}{{\bf Solution}}
+\newtheorem*{hint}{{\it Hint}}
+\newtheorem*{ex}{Exercise}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Surround the problem and solution with 
+%% \begin{ProbBox}  and   \end{ProbBox}
+%% to prevent pagebreaks.
+\newenvironment{ProbBox}{\noindent\begin{minipage}{\linewidth}}{\end{minipage}}
+
+%%%%%%%%%%%%%%%%
+% Acronyms     %
+%%%%%%%%%%%%%%%%
+\usepackage[acronym, shortcuts]{glossaries}
+
+%% HERE IS HOW YOU DEFINE ACRONYMS:
+\newacronym{FTA}{FTA}{Fundamental Theorem of Algebra}
+\newacronym{CRT}{CRT}{Chinese Remainder Theorem}
+
+% Make \ac robust.
+\robustify{\ac}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Fancy page style     %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\newcommand{\metadata}[2]{
+  \lhead{}
+  \chead{}
+  \rhead{\bfseries Math 317: Linear Algebra}
+  \lfoot{#1}
+  \cfoot{#2}
+  \rfoot{\thepage}
+}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\newrobustcmd*{\vocab}[1]{\emph{#1}}
+\newrobustcmd*{\latin}[1]{\textit{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Customize list enviroonments   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% package to customize three basic list environments: enumerate, itemize and description.
+%% \usepackage{enumitem}
+%% \setitemize{noitemsep, topsep=0pt, leftmargin=*}
+%% \setenumerate{noitemsep, topsep=0pt, leftmargin=*}
+%% \setdescription{noitemsep, topsep=0pt, leftmargin=*}
+
+\usepackage{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Space between problems  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newrobustcmd*{\probskip}{\vskip1cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%    Math shortcuts     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand\iff{\ensuremath{\Longleftrightarrow}}
+\newcommand\join{\ensuremath{\vee}}
+\newcommand\meet{\ensuremath{\wedge}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\proj{\ensuremath{\operatorname{proj}}}
+\newcommand\End{\ensuremath{\operatorname{End}}}
+\newcommand\Aut{\ensuremath{\operatorname{Aut}}}
+\newcommand\Hom{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Aff}{\ensuremath{\operatorname{Aff}}}
+\newcommand{\id}{\ensuremath{\operatorname{id}}}
+%% \newcommand{\ann}[1]{\ensuremath{\operatorname{ann}(#1)}}
+%% \newcommand{\nullity}[1]{\ensuremath{\operatorname{null}(#1)}}
+%% \renewcommand{\ker}[1]{\ensuremath{\operatorname{ker}(#1)}}
+%% \renewcommand{\dim}[1]{\ensuremath{\operatorname{dim}(#1)}}
+%% \newcommand\im[1]{\ensuremath{\operatorname{im}(#1)}}
+%% \newcommand{\rank}[1]{\ensuremath{\operatorname{rank}(#1)}}
+%% \newcommand{\trace}[1]{\ensuremath{\operatorname{trace}(#1)}}
+\newcommand{\ann}{\ensuremath{\operatorname{ann}}}
+\newcommand{\nullity}{\ensuremath{\operatorname{null}}}
+\renewcommand{\ker}{\ensuremath{\operatorname{ker}}}
+\renewcommand{\dim}{\ensuremath{\operatorname{dim}}}
+\newcommand\im{\ensuremath{\operatorname{im}}}
+\newcommand{\rank}{\ensuremath{\operatorname{rank}}}
+\newcommand{\trace}{\ensuremath{\operatorname{trace}}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\newcommand\bA{\ensuremath{\mathbf A}}
+\newcommand\bB{\ensuremath{\mathbf B}}
+\newcommand\bC{\ensuremath{\mathbf C}}
+\newcommand\bN{\ensuremath{\mathbf N}}
+\newcommand\bR{\ensuremath{\mathbf R}}
+\newcommand\sP{\ensuremath{\mathcal P}}
+\newcommand\Span{\ensuremath{\operatorname{Span}}}
+
+%%%% NOTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%
+%%    1. Type your answers inside a 
+%%
+%%               \begin{solution}...\end{solution}
+%%
+%%       environment.
+%%
+%%    2. Try to use standard notation, as used in class and in the textbook.
+%%       For the most basic symbols, you may wish to use LaTeX macros to keep 
+%%       the conventions you use consistent and easy to remember.
+%%
+%%       To make a boldface vector, use backslash v in front of the 
+%%       letter and add a new command for that letter here:
+         \renewcommand{\vec}[1]{\mathbf{#1}}
+         \newcommand\va{\vec{a}}
+         \newcommand\vb{\vec{b}}
+         \newcommand\vu{\vec{u}}
+         \newcommand\vv{\vec{v}}
+         \newcommand\vw{\vec{w}}
+         \newcommand\vx{\vec{x}}
+         \newcommand\vy{\vec{y}}
+         \newcommand\vz{\vec{z}}
+         \newcommand\vzero{\vec{0}}
+
+         \metadata       {HW 7}{Due: 2016/03/11}
+         
+%%
+%%    3. Insert your name here!!!
+%%
+         \author         {NAME:                     }
+         %% Put your name here ^^^^^^^^^^^^^^^^^^^^^, like this:
+         %%     \author{NAME: William DeMeo}
+         %%
+%%
+%%
+%%    4. Update the title and date if necessary.
+         \title{Math 317: Homework 7 \\{\large Due: 11 March 2016}}
+         \date{Due: 11 March 2016}
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\begin{document}
+
+\maketitle
+
+\section*{Section 3.3}
+%--  PROBLEM 1  ---------------------------------------------------
+\begin{problem}[SA 3.3.3]
+Decide whether the following sets of vectors give a basis for the indicated
+space. (Show your work and/or justify your answer.)
+\begin{enumerate}[a.]
+\item $\{(1, 2, 1), (2, 4, 5), (1, 2, 3)\}$; $\R^3$.
+\item $\{(1, 0, 1), (1, 2, 4), (2, 2, 5), (2, 2, -1)\}$; $\R^3$.
+\item $\{(1, 0, 2, 3), (0, 1, 1, 1), (1, 1, 4, 4)\}$; $\R^4$.
+\item $\{(1, 0, 2, 3), (0, 1, 1, 1), (1, 1, 4, 4), (2, -2, 1, 2)\}$; $\R^4$.
+\end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%%  (type answer here; uncomment these and surrounding lines)
+%% \end{solution}
+
+\newpage
+
+%--  PROBLEM 2  ---------------------------------------------------
+\begin{problem}[SA 3.3.4ac]
+In each case, check that $\{\vv_1 ,\dots , \vv_n \}$ 
+is a basis for $\R^n$ and give the coordinates of the
+given vector $\vb \in \R^n$ with respect to that basis.
+\begin{enumerate}[a.]
+\item 
+$\vv_1 =\begin{bmatrix*}[r] 2\\3 \end{bmatrix*}$,
+$\vv_2 =\begin{bmatrix*}[r] 3\\5 \end{bmatrix*}$,
+$\vb =\begin{bmatrix*}[r] 3\\4 \end{bmatrix*}$.
+\item[c.]
+$\vv_1 =\begin{bmatrix*}[r] 1\\0\\1 \end{bmatrix*}$,
+$\vv_2 =\begin{bmatrix*}[r] 1\\1\\2 \end{bmatrix*}$,
+$\vv_3 =\begin{bmatrix*}[r] 1\\1\\1 \end{bmatrix*}$,
+$\vb =\begin{bmatrix*}[r] 3\\0\\1 \end{bmatrix*}$.
+\end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+
+\newpage
+
+%--  PROBLEM 3  ---------------------------------------------------
+\begin{problem}[SA 3.3.5b]
+Give a basis for each of the subspaces 
+$\bR(A)$, $\bC(A)$, $\bN(A)$
+where\\[4pt]
+$A = \begin{bmatrix*}[r] 1&1&0\\2&1&1\\1&-1&2\end{bmatrix*}$.
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+
+\newpage
+
+%--  PROBLEM 4  ---------------------------------------------------
+\begin{problem}[SA 3.3.11]
+Suppose $\vv_1,\dots, \vv_n$ are nonzero, mutually orthogonal vectors in $\R^n$.
+\begin{enumerate}[a.]
+\item 
+Prove that they form a basis for $\R^n$.
+\item 
+Given any $\vx \in \R^n$, give an explicit formula for the coordinates of 
+$\vx$ with respect to the basis $\{\vv_1,\dots, \vv_n\}$.
+\item Deduce from your answer to part b that $\vx = \sum_{i=1}^n \proj_{\vv_i}\vx$.
+\end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+
+\newpage
+
+%--  PROBLEM 5  ---------------------------------------------------
+\begin{problem}[SA 3.4.1bcd]
+For each subspace $V$, find a basis and determine $\dim V$.
+\begin{enumerate}
+\item[b.]
+  $V = \{\vx \in \R^4 : x_1 + x_2 + x_3 + x_4 = 0, \; x_ 2 + x_4 = 0\} \subseteq  \R^4$.
+\item[c.] $V = \left(\Span\{(1, 2, 3)\}\right)^\bot \subseteq \R^3$.
+\item[d.] $V = \{\vx \in \R^5 : x_1 = x_2, \; x_3 = x_4 \} \subseteq \R^5$.
+\end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+
+\newpage
+
+%--  PROBLEM 6  ---------------------------------------------------
+\begin{problem} %[cf.~SA 3.4.3]
+  Let
+  $A = \begin{bmatrix*}[r]
+      1&-2 & 1 & 0 \\
+      2 & -4 & 3 & -1
+      \end{bmatrix*}$.
+  \begin{enumerate}[(a)]
+  \item Give bases for $\bR(A)$, $\bN(A)$, $\bC(A)$, and $\bN(A^\top)$.
+  \item Use your answer to Part (a) to determine the dimension
+    of each of these subspaces; confirm your answer using
+    the ``Nullity-Rank  Theorem'' (Corollary 4.7 of the text).
+  \item Using your answer to Part (a), verify the orthogonality conditions
+    given in Theorem 3.2.5. (That is, check $\bN(A)^\bot = \bR(A)$ and $\bN(A^\top)^\bot = \bC(A)$.)
+  \end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+
+\newpage
+
+%--  PROBLEM 7  ---------------------------------------------------
+\begin{problem}[SA 3.4.24]
+  Continuing Exercise 3.2.10 from last week's homework... \\[4pt]
+  Let $A$ be an $m\times n$ matrix.
+\begin{enumerate}[a.]
+\item  Use Theorem 2.5 to prove that $\bN(A^\top A) = \bN(A)$.\\[4pt]
+  ({\it Hint:} if $\vx \in \bN(A^\top A)$, then $A\vx \in \bC(A) \cap \bN(A^\top)$.)
+\item Prove that $\rank(A) = \rank(A^\top A)$.
+\item Prove that $\bC(A^\top A) = \bC(A^\top)$.
+\end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+\newpage
+
+%--  PROBLEM  ---------------------------------------------------
+\noindent The following problem is recommended but not required; it will not be graded.
+\begin{prob}[SA 3.4.17]
+  Let $V \leq R^n$ be a subspace.
+  Prove that any linearly independent set of vectors in $V$ can
+  be extended to a basis for $V$. 
+  In other words, prove the following: if $\dim V > k$ and if we are
+  given a linearly independent set of vectors
+  $S=\{\vv_1, \vv_2, \dots, \vv_k\} \subseteq V$, 
+  then there exist vectors
+  $\vv_{k+1}, \dots, \vv_\ell \in V$
+  such that $\{\vv_1, \vv_2, \dots, \vv_\ell\}$ is a basis for $V$.
+\end{prob}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+
+
+
+%% \bibliographystyle{plain}
+%% \bibliography{refs}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
