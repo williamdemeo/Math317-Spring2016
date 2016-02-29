@@ -21,7 +21,7 @@ F 1/22: 1.4 Gaussian Elimination; **HW 1 due** (1.1, 1.2)
 M 1/25: 1.4 Gaussian Elimination   
 T 1/26: 1.5 Theory of Linear Systems   
 T 1/28: 1.5 Theory of Linear Systems   
-F 1/29: Computer Lab #1 in Carver 449; **HW 2 due** (1.3, 1.4)  
+F 1/29: **Computer Lab #1 in Carver 449; HW 2 due** (1.3, 1.4)  
 
 ---------------------------------------------------------  
 M 2/1: 1.6 Applications  
@@ -33,7 +33,7 @@ F 2/5: 2.2 Linear Transformations;   **HW 3 due** (1.5, 2.1)
 M 2/8: 2.3 Inverse Matrices  
 T 2/9: 2.3 Inverse Matrices  
 T 2/11: 2.4 Elementary Matrices  
-F 2/12: Computer Lab #2 in Carver 449;   **HW 4 due** (2.2, 2.3)   
+F 2/12: **Computer Lab #2 in Carver 449;  HW 4 due** (2.2, 2.3)   
 
 ---------------------------------------------------------  
 M 2/15: 2.5 The Transpose;  
@@ -69,7 +69,7 @@ F 3/18: no class
 M 3/21: 4.1 Inconsistent Systems and Projection  
 T 3/22: 4.2 Orthogonal Bases;  **HW 8 due** (3.5, 3.6)  
 T 3/24: 4.2 Orthogonal Bases  
-F 3/25: Computer Lab #3 in Carver 449; **last day to drop**, see [Academic Calendar](http://www.registrar.iastate.edu/calendar/cal-spring16)
+F 3/25: **Computer Lab #3 in Carver 449; last day to drop**, see [Academic Calendar](http://www.registrar.iastate.edu/calendar/cal-spring16)
 
 ---------------------------------------------------------  
 M 3/28: 4.3 The Matrix of a Linear Transformation  
@@ -87,7 +87,7 @@ F 4/8: 6.1 Characteristic Polynomial
 M 4/11: 6.2 Diagonalizability; **HW 11a due** (5.1)  
 T 4/12: 6.2 Diagonalizability  
 T 4/14: 6.3 Applications: Combinatorics, Graphs  
-F 4/15: Computer Lab #4 in Carver 449; **HW 11b due** (6.1, 6.2)  
+F 4/15: **Computer Lab #4 in Carver 449; HW 11b due** (6.1, 6.2)  
 
 ---------------------------------------------------------  
 M 4/18: 6.4 The Spectral Theorem  
