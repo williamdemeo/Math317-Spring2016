@@ -131,16 +131,8 @@ Then $W = V$ if and only if $\ell = k$.
 \noindent {\bf Corollary:} If $W \subseteq V$ are subspaces of $\R^n$ and $\dim W = \dim V$, then $W = V$.
 
 \begin{proof}
-  This follows directly from the Proposition above and the definition of dimension.
+  This follows directly from the proposition above and the definition of dimension.
 \end{proof}
 
 \end{document}
 
-
-\subset \mathbf{E}(\mu)$$ is linearly independent. Prove that $$\{\mathbf{v}_1,\dots, \mathbf{v}_k, \mathbf{w}_1,\dots, \mathbf{w}_\ell\}$$ is linearly independent.
-
-Farouq asked a good question about this.  He suggested that it might suffice to show that for each $$i$$ the set $$\{\mathbf{v}_i, \mathbf{w}_1, \dots, \mathbf{w}_\ell\}$$ is linearly independent.  I told him that, while this might work in special cases, in general this approach can lead to mistakes.  I promised him I would post an example if he asked about this on Piazza.  Well, time passed, and Farouq didn't post so neither did I.
-
-But I wanted to resolve this by giving a simple example that shows what can go wrong.  Suppose $$k=2$$ and $$\{\mathbf{v}_1, \mathbf{v}_2\} = \{(1,0), (0,1)\}$$, and suppose $$\ell=1$$ and $$\{\mathbf{w}_1\} = \{(1,1)\}$$.  Then clearly $$\{\mathbf{v}_1, \mathbf{w}_1\}$$ and $$\{\mathbf{v}_2, \mathbf{w}_1\}$$ are both linearly independent sets, but $$\{\mathbf{v}_1, \mathbf{v}_2, \mathbf{w}_1\}$$ is not linearly independent.
-
-So you see that just showing each vector from the first set cannot be written as a linear combination of vectors from the second set does not guarantee that when you take the union of the two sets it will still be linearly independent.
