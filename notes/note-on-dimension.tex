@@ -1,0 +1,139 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+
+\title{A Note on Linear Independence and Bases}
+\author{William DeMeo}
+\date{\today}
+
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\vN}{\ensuremath{\operatorname{N}}}
+\newcommand{\Span}{\ensuremath{\operatorname{Span}}}
+\newcommand{\sV}{\ensuremath{\mathcal{V}}}
+\newcommand{\sW}{\ensuremath{\mathcal{W}}}
+\newcommand{\sA}{\ensuremath{\mathcal{A}}}
+\newcommand{\sB}{\ensuremath{\mathcal{B}}}
+\newcommand{\vx}{\ensuremath{\mathbf{x}}}
+\newcommand{\vy}{\ensuremath{\mathbf{y}}}
+\newcommand{\vw}{\ensuremath{\mathbf{w}}}
+\newcommand{\vv}{\ensuremath{\mathbf{v}}}
+\newcommand{\vb}{\ensuremath{\mathbf{b}}}
+\newcommand{\va}{\ensuremath{\mathbf{a}}}
+\newcommand{\vzero}{\ensuremath{\mathbf{0}}}
+
+
+\begin{document}
+
+\maketitle
+
+\noindent {\bf Lemma 1:}
+If $A \in \R^{m\times n}$ and $\vN(A)= \{\vzero\}$, then
+$m\geq n$.
+\begin{proof}
+If $\vN(A)= \{\vzero\}$, then by definition the only solution to
+$A \vx = \vzero$ is the trivial solution $\vzero$.  It follows that
+any echelon form of $A$ cannot have free variables, so there must be a pivot
+in each column of $A$.  But there can be at most $m$ pivots, so $m\geq n$.
+\end{proof}
+
+\noindent {\bf Lemma 2:}
+If $V$ is a subspace of $\R^n$ with basis 
+$\sV = \{\mathbf{v}_1,\dots, \mathbf{v}_k\}$, then
+any linearly independent subset of $V$ has at most $k$ vectors.
+\begin{proof}
+%% Recall that, by definition, $\dim V$ is the number of vectors in any basis.  So,
+%% in the present case, $\dim V= k$.
+  Let $\{\vx_1, \vx_2, \dots, \vx_m\}$ be a linearly independent subset of $V$.
+  We will prove $m\leq k$.
+  Each $\vx_i$ is a linear combination of the basis vectors in $\sV$.
+  That is, there exist scalars $a_{ij}\in \R$ such that
+  \begin{align}
+    \label{eq:1}
+    \vx_1 &= a_{11}\vv_1+a_{21}\vv_2+\cdots +a_{k1}\vv_k\nonumber\\
+    \vx_2 &= a_{12}\vv_1+a_{22}\vv_2+\cdots +a_{k2}\vv_k\\
+    &\vdots \nonumber\\
+    \vx_m &= a_{1m}\vv_1+a_{2m}\vv_2+\cdots +a_{km}\vv_k\nonumber
+  \end{align}
+  Note that, in the first equation above, the right-hand side is a matrix-vector
+  product, so we can write this equation as follows:
+  \[
+  \vx_1=
+  \begin{bmatrix*}
+    | & | & & |\\
+    \vv_1& \vv_2 &\hdots & \vv_k\\
+    | & | & & |
+  \end{bmatrix*}
+  \begin{bmatrix*}
+    a_{11}\\
+    a_{21}\\
+    \vdots\\
+    a_{k1}
+  \end{bmatrix*}.
+  \]
+  Of course, the same is true of the other equations in (\ref{eq:1}), so we can
+  write them all simultaneously as a the following system of equations:
+  \begin{equation}
+    \label{eq:2}
+  \begin{bmatrix*}
+    | & | & & |\\
+    \vx_1& \vx_2 &\hdots & \vx_m\\
+    | & | & & |
+  \end{bmatrix*}=
+  \begin{bmatrix*}
+    | & | & & |\\
+    \vv_1& \vv_2 &\hdots & \vv_k\\
+    | & | & & |
+  \end{bmatrix*}
+  \begin{bmatrix*}
+    a_{11}  & a_{12} & \cdots &a_{1m}\\
+    a_{21}  & a_{22} & \cdots &a_{2m}\\
+    \vdots &       & \ddots & \vdots\\
+    a_{k1}  & a_{k2} & \cdots & a_{km}
+  \end{bmatrix*}
+  \end{equation}
+  Let $X$ denote the matrix on the left-hand side of~(\ref{eq:2}), and 
+  let $A$ denote the second matrix on the right-hand side of~(\ref{eq:2}).
+  Since $\{\vx_1, \dots, \vx_m\}$ is linearly independent, we have
+  $\vN(X) =\{\vzero\}$, and this implies $\vN(A) =\{\vzero\}$.
+  (Reason: if $A \vy = \vzero$, then $X\vy = \vzero$ by~(\ref{eq:2}).)
+  Finally, if $\vN(A) =\{\vzero\}$, we know that $A$ must have at least as
+  many rows as columns, by Lemma 1.  Therefore $m\leq k$, as desired.
+\end{proof}
+
+\noindent {\bf Proposition:}
+Let $W \subseteq V$ be subspaces of $\R^n$.
+Suppose $\sV = \{\mathbf{v}_1,\dots, \mathbf{v}_k\}$ is a basis for
+$V$ and $\sW = \{\mathbf{w}_1,\dots, \mathbf{w}_\ell\}$ is a basis for $W$.
+Then $W = V$ if and only if $\ell = k$.
+
+\begin{proof}\
+  \begin{itemize}
+  \item[($\Rightarrow$)]
+  If $W = V$, then $\sW$ is a basis for $V$ so $\ell = k$, since (as we proved
+  earlier) all bases for a given subspace have the same number of vectors.
+
+  \item[($\Leftarrow$)] We want to prove $\ell=k$ implies $W = V$.
+  We will prove the (equivalent) contrapositive statement, which is
+  $W \neq V$ implies $\ell\neq k$.
+
+  %% Since $\sW$ is a linearly independent subset of $V$, we know by
+  %% Lemma 2 that $\ell \leq k$.  We want to show that $\ell < k$.
+
+  If $W \neq V$, then there is a vector $\vv \in V$ that does not belong to $W$.
+  Therefore, $\vv \notin \Span \{\vw_1, \vw_2, \dots, \vw_\ell\}$, so
+  $\{\vw_1, \vw_2, \dots, \vw_\ell, \vv\}$ is a set of $\ell + 1$ linearly independent
+  vectors in $V$.  By Lemma 2 then, $\ell + 1 \leq k$, so $\ell < k$, as desired.
+  
+  \end{itemize}
+\end{proof}
+
+
+\end{document}
+
+
+\subset \mathbf{E}(\mu)$$ is linearly independent. Prove that $$\{\mathbf{v}_1,\dots, \mathbf{v}_k, \mathbf{w}_1,\dots, \mathbf{w}_\ell\}$$ is linearly independent.
+
+Farouq asked a good question about this.  He suggested that it might suffice to show that for each $$i$$ the set $$\{\mathbf{v}_i, \mathbf{w}_1, \dots, \mathbf{w}_\ell\}$$ is linearly independent.  I told him that, while this might work in special cases, in general this approach can lead to mistakes.  I promised him I would post an example if he asked about this on Piazza.  Well, time passed, and Farouq didn't post so neither did I.
+
+But I wanted to resolve this by giving a simple example that shows what can go wrong.  Suppose $$k=2$$ and $$\{\mathbf{v}_1, \mathbf{v}_2\} = \{(1,0), (0,1)\}$$, and suppose $$\ell=1$$ and $$\{\mathbf{w}_1\} = \{(1,1)\}$$.  Then clearly $$\{\mathbf{v}_1, \mathbf{w}_1\}$$ and $$\{\mathbf{v}_2, \mathbf{w}_1\}$$ are both linearly independent sets, but $$\{\mathbf{v}_1, \mathbf{v}_2, \mathbf{w}_1\}$$ is not linearly independent.
+
+So you see that just showing each vector from the first set cannot be written as a linear combination of vectors from the second set does not guarantee that when you take the union of the two sets it will still be linearly independent.
