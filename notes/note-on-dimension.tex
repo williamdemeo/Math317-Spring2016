@@ -30,9 +30,11 @@ If $A \in \R^{m\times n}$ and $\vN(A)= \{\vzero\}$, then
 $m\geq n$.
 \begin{proof}
 If $\vN(A)= \{\vzero\}$, then by definition the only solution to
-$A \vx = \vzero$ is the trivial solution $\vzero$.  It follows that
-any echelon form of $A$ cannot have free variables, so there must be a pivot
-in each column of $A$.  But there can be at most $m$ pivots, so $m\geq n$.
+$A \vx = \vzero$ is the trivial solution $\vzero$.  Equivalently, the system 
+$A\vx = \vzero$ has no free variables, so any echelon form of $A$ has a 
+pivot in each of its $n$ columns. 
+Since there are $m$ rows, there can be at most $m$ pivots, so
+$m\geq n$.
 \end{proof}
 
 \noindent {\bf Lemma 2:}
