@@ -220,8 +220,8 @@ right  = 3.00cm]{geometry}
 %% and let $\sV =\{\vv_1, \vv_2\}$ and $\sW= \{\vw_1, \vw_2\}$.
 Let $\sV$ and $\sW$ be subsets of $\R^3$ give by
 \[
-\sV :=\{\vv_1, \vv_2\} = \{(1,0,0), (1,1,0)\} \; \text{ and } \;
-\sW := \{\vw_1, \vw_2\} =\{(0,1,1), (0,0,1)\}.
+\sV :=\{\vv_1, \vv_2\} = \{(1,0,0,0), (1,1,0,0)\} \; \text{ and } \;
+\sW := \{\vw_1, \vw_2\} =\{(0,1,1,0), (0,0,1,0)\}.
 \]
 It is not hard to see that each of these sets is linearly independent.  What about their union?
 Decide whether the following claim and its proof are valid.  If not, where is the error?
@@ -238,7 +238,8 @@ Both of the matrices
   \begin{bmatrix*}
     0  & 0 & 1\\
     1  & 0 & 0\\
-    1  & 1 & 0
+    1  & 1 & 0\\
+    0  & 0 & 0
   \end{bmatrix*}
 \; \text{ and } \;
 \begin{bmatrix*}
@@ -249,13 +250,15 @@ Both of the matrices
   \begin{bmatrix*}
     0  & 0 & 1\\
     1  & 0 & 1\\
-    1  & 1 & 0
+    1  & 1 & 0\\
+    0  & 0 & 0
   \end{bmatrix*}\]
   have reduced echelon form
   $\begin{bmatrix*}
     1  & 0 & 0\\
     0  & 1 & 0\\
-    0  & 0 & 1
+    0  & 0 & 1\\
+    0  & 0 & 0
   \end{bmatrix*}$.
 We deduce the following facts:
 \begin{itemize}
