@@ -49,23 +49,10 @@ right  = 3.00cm]{geometry}
 \newtheorem*{ex}{Exercise}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Surround the problem and solution with 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% If you want to prevent pagebreaks, surround the problem and/or solution with 
 %% \begin{ProbBox}  and   \end{ProbBox}
-%% to prevent pagebreaks.
 \newenvironment{ProbBox}{\noindent\begin{minipage}{\linewidth}}{\end{minipage}}
-
-%%%%%%%%%%%%%%%%
-% Acronyms     %
-%%%%%%%%%%%%%%%%
-\usepackage[acronym, shortcuts]{glossaries}
-
-%% HERE IS HOW YOU DEFINE ACRONYMS:
-\newacronym{FTA}{FTA}{Fundamental Theorem of Algebra}
-\newacronym{CRT}{CRT}{Chinese Remainder Theorem}
-
-% Make \ac robust.
-\robustify{\ac}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Fancy page style     %
@@ -81,19 +68,8 @@ right  = 3.00cm]{geometry}
 }
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
-
-
 \newrobustcmd*{\vocab}[1]{\emph{#1}}
 \newrobustcmd*{\latin}[1]{\textit{#1}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Customize list enviroonments   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% package to customize three basic list environments: enumerate, itemize and description.
-%% \usepackage{enumitem}
-%% \setitemize{noitemsep, topsep=0pt, leftmargin=*}
-%% \setenumerate{noitemsep, topsep=0pt, leftmargin=*}
-%% \setdescription{noitemsep, topsep=0pt, leftmargin=*}
 
 \usepackage{enumerate}
 
@@ -106,7 +82,6 @@ right  = 3.00cm]{geometry}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%    Math shortcuts     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-%\newcommand\iff{\ensuremath{\Longleftrightarrow}}
 \newcommand\join{\ensuremath{\vee}}
 \newcommand\meet{\ensuremath{\wedge}}
 \newcommand\R{\fld{R}}
@@ -117,12 +92,6 @@ right  = 3.00cm]{geometry}
 \newcommand{\Aff}{\ensuremath{\operatorname{Aff}}}
 \newcommand{\ann}[1]{\ensuremath{\operatorname{ann}(#1)}}
 \newcommand{\id}{\ensuremath{\operatorname{id}}}
-%% \newcommand{\nulity}[1]{\ensuremath{\operatorname{null}(#1)}}
-%% \renewcommand{\ker}[1]{\ensuremath{\operatorname{ker}(#1)}}
-%% \renewcommand{\dim}[1]{\ensuremath{\operatorname{dim}(#1)}}
-%% \newcommand\im[1]{\ensuremath{\operatorname{im}(#1)}}
-%% \newcommand{\rank}[1]{\ensuremath{\operatorname{Rank}(#1)}}
-%% \newcommand{\trace}[1]{\ensuremath{\operatorname{trace}(#1)}}
 \newcommand{\nulity}{\ensuremath{\operatorname{null}}}
 \renewcommand{\ker}{\ensuremath{\operatorname{ker}}}
 \renewcommand{\dim}{\ensuremath{\operatorname{dim}}}
@@ -133,53 +102,15 @@ right  = 3.00cm]{geometry}
 \newcommand{\vN}{\ensuremath{\operatorname{N}}}
 \newcommand{\vC}{\ensuremath{\operatorname{C}}}
 \renewcommand{\phi}{\ensuremath{\varphi}}
-
 \renewcommand{\vec}[1]{\mathbf{#1}}
 
-
-
 %%%% NOTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-
-%%
-%%    1. If possibly, try to write your answers inside a 
-%%
-%%               \begin{solution}...\end{solution}
-%%
-%%       environment.
-%%
-%%    2. If you will use acronyms, please define them in the macros.tex file.
-%%
-%%    3. If you enter your answers into this Homework*.tex source file, you
-%%       will have to compile it into a pdf document.  There are a number of ways to
-%%       do that. Probably the easiest is to use the website called ShareLaTeX.com.
-%%       Alternatively,
-%%
-%%           Mac OS X users: you might try MacTeX. 
-%%           Linux users: most come with TeX; otherwise do a full install of TeXLive.
-%%           Windows users: try proTeXt maybe? (or switch to a real operating system!) 
-%%
-%%       There is a Makefile in this directory, so on Linux you could just 
-%%       enter `make` to compile all the Homework*.tex files at once.
-%%
-%%    4. Please don't hesitate to inform the professor if you have trouble, or open
-%%       a ``New issue'' on GitHub or post to Piazza or ask in lecture.  Otherwise,
-%%       send an email to williamdemeo at gmail.
-%%
-%%    5. Try to use standard notation, as used in class and in the textbook.
-%%       For the most basic symbols, you may wish to use LaTeX macros to keep 
-%%       the conventions you use consistent and easy to remember.
-%%       For example, to denote an algebra,
          \newcommand\alg[1]{\ensuremath{\mathbf{#1}}}
          \newcommand{\<}{\ensuremath{\langle}}
          \renewcommand{\>}{\ensuremath{\rangle}}
-%%       So, an algebra in LaTeX is typed as $\alg{A} = \<A, F\>$.
-%%       Similarly, for a field, let's use:
          \newcommand\fld[1]{\ensuremath{\mathbb{#1}}}
-%%       So, a field in LaTeX is typed as $\fld{F}$.
-%%
 %%       To make a boldface vector, use backslash v in front of the 
-%%       letter and add a new command for that letter here or in 
-%%       the macros.tex file:
+%%       letter and add a new command for that letter here.
          \newcommand\va{\vec{a}}
          \newcommand\vu{\vec{u}}
          \newcommand\vv{\vec{v}}
@@ -192,21 +123,15 @@ right  = 3.00cm]{geometry}
          \newcommand\sW{\ensuremath{\mathcal W}}
          \newcommand\sP{\ensuremath{\mathcal P}}
          \newcommand\Span{\ensuremath{\operatorname{Span}}}
-%%
-%%    6. Insert your name here!!!
-%%
 
          \author         {NAME:                     }
          %% Put your name here ^^^^^^^^^^^^^^^^^^^^^, like this:
          %%     \author{NAME: William DeMeo}
-%%
-%%    7. Update the title and date if necessary.
+         %%
+         %% Update the title and date if necessary.
          \title{Math 317: Homework 8}
          \date{Due: 22 March 2016}
-
-         \metadata       {HW 8}{Due March 22}
-         
-%%
+         \metadata{HW 8}{Due March 22}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 
