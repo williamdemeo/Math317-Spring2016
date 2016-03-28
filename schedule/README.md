@@ -50,14 +50,14 @@ F 2/26: 3.2 The Four Fundamental Subspaces
 ---------------------------------------------------------  
 M 2/29: 3.3 Linear Independence and Basis; **HW 6a due** (3.1)   
 T 3/1: 3.3 Linear Independence and Basis   
-T 3/3: 3.4 Dimension and Its Consequences  
+T 3/3: Review  
 F 3/4: 3.4 Dimension and Its Consequences; **HW 6b due** (3.2)   
 
 ---------------------------------------------------------  
-M 3/7: 3.5 A Graphic Example  
-T 3/8: 3.6 Abstract Vector Spaces  
+M 3/7: 3.4 Dimension and Its Consequences  
+T 3/8: 3.4 Dimension and Its Consequences  
 T 3/10: 3.6 Abstract Vector Spaces  
-F 3/11: 4.1 Inconsistent Systems and Projection; **HW 7 due** (3.3, 3.4)   
+F 3/11: 3.6 Abstract Vector Spaces; **HW 7 due** (3.3, 3.4)   
 
 ---------------------------------------------------------  
 M 3/14: no class  
@@ -67,36 +67,36 @@ F 3/18: no class
 
 ---------------------------------------------------------  
 M 3/21: 4.1 Inconsistent Systems and Projection  
-T 3/22: 4.2 Orthogonal Bases;  **HW 8 due** (3.5, 3.6)  
-T 3/24: 4.2 Orthogonal Bases  
+T 3/22: 4.1 Inconsistent Systems and Projection  
+T 3/24: 4.2 Orthogonal Bases;  **HW 8 due** (3.5, 3.6)  
 F 3/25: **Computer Lab #3 in Carver 449; last day to drop**, see [Academic Calendar](http://www.registrar.iastate.edu/calendar/cal-spring16)
 
 ---------------------------------------------------------  
-M 3/28: 4.3 The Matrix of a Linear Transformation  
-T 3/29: 4.3 Change-of-Basis Formula; **HW 9 due** (4.1, 4.2)    
-T 3/31: 4.4 Linear Transformations on Abstract VS  
-F 4/1: Review  
+M 3/28: 4.2 Orthogonal Bases  
+T 3/29: 4.3 The Matrix of a Linear Transformation  
+T 3/31: 4.3 Change-of-Basis Formula; **HW 9 due** (4.1, 4.2)    
+F 4/1: 4.4 Linear Transformations on Abstract VS  
 
 ---------------------------------------------------------  
-M 4/4: **Exam 2:** Ch. 3 and 4;  **HW 10 (not due)** (4.3, 4.4)   
-T 4/5: 5.1. Properties of Determinants   
-T 4/7: 6.1 Eigenvalues, Eigenvectors  
-F 4/8: 6.1 Characteristic Polynomial  
+M 4/4: Review  
+T 4/5: **Exam 2:** Ch. 3 and 4;  **HW 10 (not due)** (4.3, 4.4)   
+T 4/7: 5.1 Properties of Determinants   
+F 4/8: 6.1 Eigenvalues, Eigenvectors  
 
 ---------------------------------------------------------  
-M 4/11: 6.2 Diagonalizability; **HW 11a due** (5.1)  
-T 4/12: 6.2 Diagonalizability  
-T 4/14: 6.3 Applications: Combinatorics, Graphs  
-F 4/15: **Computer Lab #4 in Carver 449; HW 11b due** (6.1, 6.2)  
+M 4/11: 6.1 Characteristic Polynomial  
+T 4/12: 6.2 Diagonalizability   
+T 4/14: 6.2 Diagonalizability  
+F 4/15: **Computer Lab #4 in Carver 449**  
 
 ---------------------------------------------------------  
-M 4/18: 6.4 The Spectral Theorem  
+M 4/18: 6.4 The Spectral Theorem; **HW 11 due** (5.1, 6.1, 6.2)   
 T 4/19: 6.4 The Spectral Theorem  
 T 4/21: 7.1 Complex Eigenvalues and Jordan Form   
-F 4/22: 7.1 Jordan Canonical Form; **HW 12 due** (6.3, 6.4)  
+F 4/22: 7.1 Jordan Canonical Form   
 
 ---------------------------------------------------------  
-M 4/25: Applications: Translation and Convolution  
+M 4/25: Applications: Translation and Convolution; **HW 12 due** (6.3, 6.4)    
 T 4/26: Applications: Fourier Transform (time permitting)    
 T 4/28: Applications: Fourier Transform (time permitting)  
 F 4/29: Review;  **HW 13 due** (7.1)   
