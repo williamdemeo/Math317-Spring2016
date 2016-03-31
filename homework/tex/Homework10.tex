@@ -1,0 +1,311 @@
+%%This is the LaTeX file for the Math 317 Homework.  
+
+%% You may use this file to fill in your solutions if you know how 
+%% to compile a LaTeX file to turn it into a pdf document.  If you 
+%% don't know how to do this but want to learn, there are plenty of
+%% resources for learning about LaTeX on the net.  You may also ask
+%% your professor for help.
+%% 
+%% For more information about using this file to complete the homework,
+%% please see the NOTES section below of the comments below.
+
+\documentclass[fleqn,11pt]{paper}
+
+
+\usepackage[
+letterpaper,
+top    = 3cm,
+bottom = 3cm,
+left   = 3.00cm,
+right  = 3.00cm]{geometry}
+
+\usepackage{tikz-cd}
+\usepackage{amsthm}
+\usepackage{scalefnt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{etoolbox}
+\usepackage[mathcal]{euscript}
+\usepackage{fancyhdr}
+ \usepackage{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{url} % for url in bib entries
+\usepackage{mathrsfs}
+
+\theoremstyle{remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{prop}{Proposition}
+\newtheorem{problem}{Problem}
+\newtheorem*{prob}{Problem}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{solution}{{\bf Solution}}
+\newtheorem*{hint}{{\it Hint}}
+\newtheorem*{ex}{Exercise}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Surround the problem and solution with 
+%% \begin{ProbBox}  and   \end{ProbBox}
+%% to prevent pagebreaks.
+\newenvironment{ProbBox}{\noindent\begin{minipage}{\linewidth}}{\end{minipage}}
+
+%%%%%%%%%%%%%%%%
+% Acronyms     %
+%%%%%%%%%%%%%%%%
+\usepackage[acronym, shortcuts]{glossaries}
+
+%% HERE IS HOW YOU DEFINE ACRONYMS:
+\newacronym{FTA}{FTA}{Fundamental Theorem of Algebra}
+\newacronym{CRT}{CRT}{Chinese Remainder Theorem}
+
+% Make \ac robust.
+\robustify{\ac}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Fancy page style     %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\newcommand{\metadata}[2]{
+  \lhead{}
+  \chead{}
+  \rhead{\bfseries Math 317: Linear Algebra}
+  \lfoot{#1}
+  \cfoot{#2}
+  \rfoot{\thepage}
+}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\newrobustcmd*{\vocab}[1]{\emph{#1}}
+\newrobustcmd*{\latin}[1]{\textit{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Customize list enviroonments   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% package to customize three basic list environments: enumerate, itemize and description.
+%% \usepackage{enumitem}
+%% \setitemize{noitemsep, topsep=0pt, leftmargin=*}
+%% \setenumerate{noitemsep, topsep=0pt, leftmargin=*}
+%% \setdescription{noitemsep, topsep=0pt, leftmargin=*}
+
+\usepackage{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Space between problems  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newrobustcmd*{\probskip}{\vskip1cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%    Math shortcuts     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand\iff{\ensuremath{\Longleftrightarrow}}
+\newcommand\join{\ensuremath{\vee}}
+\newcommand\meet{\ensuremath{\wedge}}
+\newcommand\R{\fld{R}}
+\newcommand\proj{\ensuremath{\operatorname{proj}}}
+\newcommand\End{\ensuremath{\operatorname{End}}}
+\newcommand\Aut{\ensuremath{\operatorname{Aut}}}
+\newcommand\Hom{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Aff}{\ensuremath{\operatorname{Aff}}}
+\newcommand{\ann}[1]{\ensuremath{\operatorname{ann}(#1)}}
+\newcommand{\id}{\ensuremath{\operatorname{id}}}
+%% \newcommand{\nulity}[1]{\ensuremath{\operatorname{null}(#1)}}
+%% \renewcommand{\ker}[1]{\ensuremath{\operatorname{ker}(#1)}}
+%% \renewcommand{\dim}[1]{\ensuremath{\operatorname{dim}(#1)}}
+%% \newcommand\im[1]{\ensuremath{\operatorname{im}(#1)}}
+%% \newcommand{\rank}[1]{\ensuremath{\operatorname{Rank}(#1)}}
+%% \newcommand{\trace}[1]{\ensuremath{\operatorname{trace}(#1)}}
+\newcommand{\nulity}{\ensuremath{\operatorname{null}}}
+\renewcommand{\ker}{\ensuremath{\operatorname{ker}}}
+\renewcommand{\dim}{\ensuremath{\operatorname{dim}}}
+\newcommand\im{\ensuremath{\operatorname{im}}}
+\newcommand{\rank}{\ensuremath{\operatorname{rank}}}
+\newcommand{\trace}{\ensuremath{\operatorname{trace}}}
+\newcommand{\vR}{\ensuremath{\operatorname{R}}}
+\newcommand{\vN}{\ensuremath{\operatorname{N}}}
+\newcommand{\vC}{\ensuremath{\operatorname{C}}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+%%       Try to use standard notation, as used in class and in the textbook.
+%%       For the most basic symbols, you may wish to use LaTeX macros to keep 
+%%       the conventions you use consistent and easy to remember.
+%%       For example, to denote an algebra,
+         \newcommand\alg[1]{\ensuremath{\mathbf{#1}}}
+         \newcommand{\<}{\ensuremath{\langle}}
+         \renewcommand{\>}{\ensuremath{\rangle}}
+%%       So, an algebra in LaTeX is typed as $\alg{A} = \<A, F\>$.
+%%       Similarly, for a field, let's use:
+         \newcommand\fld[1]{\ensuremath{\mathbb{#1}}}
+%%       So, a field in LaTeX is typed as $\fld{F}$.
+%%
+%%       To make a boldface vector, use backslash v in front of the 
+%%       letter and add a new command for that letter here or in 
+%%       the macros.tex file:
+         \newcommand\va{\vec{a}}
+         \newcommand\vc{\vec{c}}
+         \newcommand\ve{\vec{e}}
+         \newcommand\vu{\vec{u}}
+         \newcommand\vv{\vec{v}}
+         \newcommand\vw{\vec{w}}
+         \newcommand\vx{\vec{x}}
+         \newcommand\vy{\vec{y}}
+         \newcommand\vz{\vec{z}}
+         \newcommand\vzero{\vec{0}}
+         \newcommand\sV{\ensuremath{\mathcal V}}
+         \newcommand\sB{\ensuremath{\mathcal B}}
+         \newcommand\sE{\ensuremath{\mathcal E}}
+         \newcommand\sW{\ensuremath{\mathcal W}}
+         \newcommand\sP{\ensuremath{\mathcal P}}
+         \newcommand\Span{\ensuremath{\operatorname{Span}}}
+%%
+%%       Insert your name here!!!
+%%
+
+         \author         {NAME:                     }
+         %% Put your name here ^^^^^^^^^^^^^^^^^^^^^, like this:
+         %%     \author{NAME: William DeMeo}
+%%
+%%       Update the title and date if necessary.
+         \title{Math 317: Homework 10}
+         \date{31 March 2016}
+
+         \metadata       {HW 10}{(not due)}
+         
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+\begin{document}
+
+\maketitle
+%--  EXERCISE 1 ---------------------------------------------------
+\begin{exercise}[SA 4.3.5a]
+  Let $\vv_1 = \begin{bmatrix*}[r]2\\3\end{bmatrix*}$
+  and $\vv_2 = \begin{bmatrix*}[r]1\\2\end{bmatrix*}$,
+  and consider the basis $\sB = \{\vv_1, \vv_2\}$ for $\R^2$.
+  Suppose $T : \R^2 \to \R^2$ is a linear transformation whose standard matrix is 
+$[T]_\sE = \begin{bmatrix*}[r]1& 5\\2 &-2 \end{bmatrix*}$.
+    Find the matrix $[T]_\sB$.
+\end{exercise}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+
+\vskip5cm
+
+%--  EXERCISE 2 ---------------------------------------------------
+\begin{exercise}[SA 4.3.7]
+  Suppose the standard matrix for a linear transformation $T : \R^3 \to \R^3$ is
+  $[T]_\sE = \begin{bmatrix*}[r]
+-1 &2 &1\\
+0 &1 &3\\
+1 &-1& 1
+  \end{bmatrix*}$.
+Find the matrix representation $[T]_\sB$ of $T$ with respect to the basis
+$\sB = \left\{
+\begin{bmatrix*}[r]1\\0\\-1 \end{bmatrix*},
+\begin{bmatrix*}[r]0\\2\\3 \end{bmatrix*},
+\begin{bmatrix*}[r]1\\1\\1 \end{bmatrix*}\right\}$.
+\end{exercise}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+
+\vfill
+
+\noindent {\it Hint:} For the first two exercises, apply the change-of-basis formula given
+in Proposition 3.2 on page 215 of the textbook.
+\newpage
+
+%--  EXERCISE 3  ---------------------------------------------------
+\begin{exercise}[SA 4.3.16]
+Let $V = \Span((1, 0, 2, 1), (0, 1,-1, 1)) \leq \R^4$.
+Use the change-of-basis formula to find the standard matrix for $\proj_V: \R^4 \to \R^4$.
+({\it Hint:} this is similar to Example 9 on page 216.)
+\end{exercise}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+  
+\newpage
+
+%--  EXERCISE ---------------------------------------------------
+\begin{exercise}[SA 4.3.19] 
+Let $\ve_1$, $\ve_2$ denote the standard basis, as usual. Let $T : \R^2 \to \R^2$ be defined by
+\[
+T (\ve_1) = 8\ve_1 - 4\ve_2 \quad \text{ and } \quad 
+T (\ve_2) = 9\ve_1 - 4\ve_2.
+\]
+\begin{enumerate}
+\item 
+Give the standard matrix for $T$.
+\item Let $\vv_1 = 3\ve_1 - 2\ve_2$ and $\vv_2 = -\ve_1 + \ve_2$. Calculate the matrix for $T$ with respect to
+the basis $\sB = \{\vv_1, \vv_2\}$.
+\item Is $T$ diagonalizable? Give your reasoning. (Hint: See part d of Exercise
+  18.)
+\end{enumerate}
+\end{exercise}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+
+
+\end{document}
+
+First, we need to extend the given basis for $V$ to a basis for all
+of $\mathbb R^4$.  It's not too hard to find two more vectors so that the four
+vectors are linearly independent.  For example, you could use 
+\[
+\mathcal{B} = \{(1,0,2,1), (0,1,-1,1), (1,1,0,0), (0,1,0,1)\}.
+\]
+Now, the projection matrix onto $V$ in this basis is just
+\[
+  [\proj_V]_{\mathcal B} = \begin{bmatrix*}[r]
+    1&0&0&0\\
+    0&1&0&0\\
+    0&0&0&0\\
+    0&0&0&0
+  \end{bmatrix*}
+\]
+Do you see why?  Given a $\mathcal B$-basis representation
+$[\mathbf{x}]_{\mathcal B}$ of a vector $\mathbf{x}$, in order to project onto
+$V$ you just project onto the first two basis vectors.  If you are working
+in the basis $\mathcal{B}$, this simply means pick out the first two coordinates
+of $[\mathbf{x}]_{\mathcal B}$ and zero out the other two. That's exactly what the matrix above does.
+
+Next let's form the matrix $P$ that has the basis vectors of $\mathcal B$ as
+columns.  Compute $P^{-1}$, and then your projection matrix in the standard basis will be
+\[[\proj_V]_{\mathcal E} = P[\proj_V]_{\mathcal B} P^{-1}\]
+You could do this by hand, but let's have Sage do it for us.
+We get the following projection matrix in the standard basis
+(which, incidentally, is different from the answer in the back of the book):
+\[
+  [P_V]_{\mathcal E} = \frac{1}{2}
+  \begin{bmatrix*}[r]
+    1&-1&0&1\\
+    2&-2&-2&2\\
+    0&0&2&0\\
+    3&-3&-2&3
+  \end{bmatrix*}
+\]
+\end{solution}
+I wouldn't go so far as to suggest that the book's answer is wrong, but we can be 
+fairly certain the answer above is right, especially if we test it on some vectors.
+For example, if we take $[\mathbf{x}]_{\mathcal B} = (1,1,1,1)$, the projection
+of this in the basis $\mathcal B$ is simply $(1,1,0,0)$.  The standard basis
+representation of this vector is $\mathbf{x} = (2,3,1,3)$.  If we take the
+projection of this vector onto $V$ in the standard basis, using the
+matrix $[\operatorname{proj}_V]_{\mathcal E}$ computed above, we
+get $(1,1,1,2)$. If we then convert this back to the $\mathcal B$-basis, we
+get $(1,1,0,0)$, as expected.
+
