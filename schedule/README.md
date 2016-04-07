@@ -75,31 +75,31 @@ F 3/25: **Computer Lab #3 in Carver 449; last day to drop**, see [Academic Calen
 M 3/28: 4.2 Orthogonal Bases  
 T 3/29: 4.3 The Matrix of a Linear Transformation  
 T 3/31: 4.3 Change-of-Basis Formula; **HW 9 due** (4.1, 4.2)    
-F 4/1: 4.4 Linear Transformations on Abstract VS  
+F 4/1: 4.3 Change-of-Basis Formula  
 
 ---------------------------------------------------------  
 M 4/4: Review  
-T 4/5: **Exam 2:** Ch. 3 and 4;  **HW 10 (not due)** (4.3, 4.4)   
-T 4/7: 5.1 Properties of Determinants   
-F 4/8: 6.1 Eigenvalues, Eigenvectors  
+T 4/5: **Exam 2:** Ch. 3 and 4;  **HW 10 (not due)** (4.2, 4.3)   
+T 4/7: 4.4 Linear Transformations on Abstract VS  
+F 4/8: 5.1 Properties of Determinants   
 
 ---------------------------------------------------------  
-M 4/11: 6.1 Characteristic Polynomial  
-T 4/12: 6.2 Diagonalizability   
-T 4/14: 6.2 Diagonalizability  
+M 4/11: 6.1 Eigenvalues, Eigenvectors  
+T 4/12: 6.1 Characteristic Polynomial  
+T 4/14: 6.2 Diagonalizability   
 F 4/15: **Computer Lab #4 in Carver 449**  
 
 ---------------------------------------------------------  
-M 4/18: 6.4 The Spectral Theorem; **HW 11 due** (5.1, 6.1, 6.2)   
+M 4/18: 6.2 Diagonalizability  **HW 11 due** (4.4, 6.1)   
 T 4/19: 6.4 The Spectral Theorem  
 T 4/21: 7.1 Complex Eigenvalues and Jordan Form   
-F 4/22: 7.1 Jordan Canonical Form   
+F 4/22: 7.1 Jordan Canonical Form; **HW 12 due** (6.2, 6.3)   
 
 ---------------------------------------------------------  
-M 4/25: Applications: Translation and Convolution; **HW 12 due** (6.3, 6.4)    
+M 4/25: Applications: Translation and Convolution; 
 T 4/26: Applications: Fourier Transform (time permitting)    
 T 4/28: Applications: Fourier Transform (time permitting)  
-F 4/29: Review;  **HW 13 due** (7.1)   
+F 4/29: Review;  **HW 13 due** (6.4, 7.1)   
 
 ---------------------------------------------------------  
 **FINAL EXAM:** Monday 2 May, 12--2pm, Carver 0132 (our usual classroom).
