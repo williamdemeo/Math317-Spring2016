@@ -1,0 +1,379 @@
+%%This is the LaTeX file for the Math 317 Homework.  
+
+%% You may use this file to fill in your solutions if you know how 
+%% to compile a LaTeX file to turn it into a pdf document.  If you 
+%% don't know how to do this but want to learn, there are plenty of
+%% resources for learning about LaTeX on the net.  You may also ask
+%% your professor for help.
+%% 
+%% For more information about using this file to complete the homework,
+%% please see the NOTES section below of the comments below.
+
+\documentclass[fleqn,11pt]{paper}
+
+
+\usepackage[
+letterpaper,
+top    = 3cm,
+bottom = 3cm,
+left   = 3.00cm,
+right  = 3.00cm]{geometry}
+
+\usepackage{tikz-cd}
+\usepackage{amsthm}
+\usepackage{scalefnt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[mathcal]{euscript}
+\usepackage{mathtools}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+ \usepackage{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{url} % for url in bib entries
+\usepackage{mathrsfs}
+
+\theoremstyle{remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{prop}{Proposition}
+\newtheorem{problem}{Problem}
+\newtheorem*{prob}{Problem}
+\newtheorem*{solution}{{\bf Solution}}
+\newtheorem*{hint}{{\it Hint}}
+\newtheorem*{ex}{Exercise}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Surround the problem and solution with 
+%% \begin{ProbBox}  and   \end{ProbBox}
+%% to prevent pagebreaks.
+\newenvironment{ProbBox}{\noindent\begin{minipage}{\linewidth}}{\end{minipage}}
+
+%%%%%%%%%%%%%%%%
+% Acronyms     %
+%%%%%%%%%%%%%%%%
+\usepackage[acronym, shortcuts]{glossaries}
+
+%% HERE IS HOW YOU DEFINE ACRONYMS:
+\newacronym{FTA}{FTA}{Fundamental Theorem of Algebra}
+\newacronym{CRT}{CRT}{Chinese Remainder Theorem}
+
+% Make \ac robust.
+\robustify{\ac}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Fancy page style     %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\newcommand{\metadata}[2]{
+  \lhead{}
+  \chead{}
+  \rhead{\bfseries Math 317: Linear Algebra}
+  \lfoot{#1}
+  \cfoot{#2}
+  \rfoot{\thepage}
+}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\newrobustcmd*{\vocab}[1]{\emph{#1}}
+\newrobustcmd*{\latin}[1]{\textit{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Customize list enviroonments   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% package to customize three basic list environments: enumerate, itemize and description.
+%% \usepackage{enumitem}
+%% \setitemize{noitemsep, topsep=0pt, leftmargin=*}
+%% \setenumerate{noitemsep, topsep=0pt, leftmargin=*}
+%% \setdescription{noitemsep, topsep=0pt, leftmargin=*}
+
+\usepackage{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Space between problems  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newrobustcmd*{\probskip}{\vskip1cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%    Math shortcuts     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand\iff{\ensuremath{\Longleftrightarrow}}
+\newcommand\join{\ensuremath{\vee}}
+\newcommand\meet{\ensuremath{\wedge}}
+\newcommand\R{\fld{R}}
+\newcommand\proj{\ensuremath{\operatorname{proj}}}
+\newcommand\End{\ensuremath{\operatorname{End}}}
+\newcommand\Aut{\ensuremath{\operatorname{Aut}}}
+\newcommand\Hom{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Aff}{\ensuremath{\operatorname{Aff}}}
+\newcommand{\ann}[1]{\ensuremath{\operatorname{ann}(#1)}}
+\newcommand{\id}{\ensuremath{\operatorname{id}}}
+\newcommand{\nulity}[1]{\ensuremath{\operatorname{null}(#1)}}
+%\renewcommand{\ker}[1]{\ensuremath{\operatorname{ker}(#1)}}
+\renewcommand{\ker}{\ensuremath{\operatorname{ker}}}
+%% \renewcommand{\dim}[1]{\ensuremath{\operatorname{dim}(#1)}}
+\renewcommand{\dim}{\ensuremath{\operatorname{dim}}}
+%\newcommand\im[1]{\ensuremath{\operatorname{im}(#1)}}
+\newcommand\im{\ensuremath{\operatorname{im}}}
+%% \newcommand{\rank}[1]{\ensuremath{\operatorname{rank}(#1)}}
+\newcommand{\rank}{\ensuremath{\operatorname{rank}}}
+\newcommand{\trace}[1]{\ensuremath{\operatorname{trace}(#1)}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\newcommand{\vR}{\ensuremath{\operatorname{R}}}
+\newcommand{\vN}{\ensuremath{\operatorname{N}}}
+\newcommand{\vC}{\ensuremath{\operatorname{C}}}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+
+
+%%%% NOTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%       Try to use standard notation, as used in class and in the textbook.
+%%       For the most basic symbols, you may wish to use LaTeX macros to keep 
+%%       the conventions you use consistent and easy to remember.
+%%       For example, to denote an algebra,
+         \newcommand\alg[1]{\ensuremath{\mathbf{#1}}}
+         \newcommand{\<}{\ensuremath{\langle}}
+         \renewcommand{\>}{\ensuremath{\rangle}}
+%%       So, an algebra in LaTeX is typed as $\alg{A} = \<A, F\>$.
+%%       Similarly, for a field, let's use:
+         \newcommand\fld[1]{\ensuremath{\mathbb{#1}}}
+%%       So, a field in LaTeX is typed as $\fld{F}$.
+%%
+%%       To make a boldface vector, use backslash v in front of the 
+%%       letter and add a new command for that letter here or in 
+%%       the macros.tex file:
+         \newcommand\vE{\vec{E}}
+         \newcommand\va{\vec{a}}
+         \newcommand\vf{\vec{f}}
+         \newcommand\vu{\vec{u}}
+         \newcommand\vv{\vec{v}}
+         \newcommand\vw{\vec{w}}
+         \newcommand\vx{\vec{x}}
+         \newcommand\vy{\vec{y}}
+         \newcommand\vz{\vec{z}}
+         \newcommand\vzero{\vec{0}}
+         \newcommand\sC{\ensuremath{\mathcal C}}
+         \newcommand\sB{\ensuremath{\mathcal B}}
+         \newcommand\sV{\ensuremath{\mathcal V}}
+         \newcommand\sW{\ensuremath{\mathcal W}}
+         \newcommand\sP{\ensuremath{\mathcal P}}
+         \newcommand\Span{\ensuremath{\operatorname{Span}}}
+         \metadata       {HW 11}{due 2016/04/18}
+%%
+%%       Insert your name here!!!
+         \author {NAME:                     }
+%%       Your name goes here ^^^^^^^^^^^^^^, like this:
+         %%     \author{NAME: William DeMeo}
+%%
+%%       Update the title and date if necessary.
+         \title{Math 317: Homework 11}
+         \date{Due: 18 April 2016}
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\begin{document}
+
+\maketitle
+
+\section*{Section 4.4}
+\noindent The first exercise is recommended but not required.  It will not be graded.
+%--  PROBLEM 0  ---------------------------------------------------
+\begin{ex}[SA 4.4.2]
+  Let $V \leq \sC^\infty(\R)$ be the given subspace.
+Let $D : V \to V$ be the \emph{differentiation operator}
+$D(f) = f'$. Give the matrix for $D$ with respect to the given basis.
+\begin{enumerate}[{\bf a.}]
+  \item $V = \Span \{1, e^x, e^{2x}, \dots, e^{nx}\}$.
+  \item $V = \Span= \Span\{e^x, xe^x, x^2 e^x, \dots, x^n e^x\}$. 
+\end{enumerate}
+{\it Hints:} For part (a), if you have trouble, consult the solution in back of
+  the textbook. For part (b), 
+we have $D(e^x) = e^x$, $D(xe^x) = e^x + xe^x$, $D(x^2e^x) = 2xe^x + x^2 e^x$, 
+and, in general, $D(x^k e^x) = kx^{k-1} e^x + x^k e^x$.  Now write down the
+matrix for $D$ with respect to the given basis, i.e., the basis
+$\sB = \{e^x, xe^x, x^2 e^x, \dots, x^n e^x\}$. 
+\end{ex}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+
+\newpage
+
+
+%--  PROBLEM 1  ---------------------------------------------------
+\begin{problem}[SA 4.4.4]
+Recall from  Example 5 (p.~229) (and from lecture), 
+the matrix $[D]_{\sV, \sW}$ representing the differentiation operator 
+$D : \mathcal{P}_3 \to \mathcal{P}_2$ with respect to the bases
+$\sV = \{1, t, t^2 , t^3 \}$ and $\sW = \{1, t, t^2\}$ is given by
+\[
+[D]_{\sV, \sW} = \begin{bmatrix*}[r] 
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 2 & 0 \\
+0 & 0 & 0 & 3
+\end{bmatrix*}.
+\]
+Use the \emph{Change-of-Basis Formula} (Theorem 4.2) to find, 
+in each case, the matrix $[D]_{\sV', \sW'}$ that represents the differential operator
+with respect to the given pair of bases.
+\begin{enumerate}[{\bf a.}]
+\item 
+$\sV' = \{1, t - 1, (t - 1)^2 , (t - 1)^3 \}$ and  $\sW' = \sW$;
+\item 
+$\sV' = V$ and $\sW' = \{1, t - 1, (t - 1)^2 \}$;
+\item
+$\sV' = \{1, t - 1, (t - 1)^2 , (t - 1)^3 \}$ and $\sW' = \{1, t - 1, (t - 1)^2 \}$.
+\end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \begin{enumerate}[{\bf a.}]
+%% \item 
+%% \end{enumerate}
+%% \end{solution}
+
+\newpage
+
+%--  PROBLEM 2  ---------------------------------------------------
+\begin{problem}[SA 4.4.16]
+  \label{prob2}
+Let $V$ be a finite-dimensional vector space, let $W$ be a vector space, and let 
+$T : V \to W$ be a linear transformation. 
+Prove the matrix-free analog of the ``rank+nullity theorem'' for linear transformations.
+That is, give a (matrix-free) proof that $\dim(\ker T) + \dim(\im T) = \dim V$
+by following these steps.
+\begin{enumerate}[{\bf a.}]
+\item 
+Let $\{\vv_1, \vv_2, \dots, \vv_k\}$ 
+be a basis for $\ker(T)$, and (following Exercise 3.4.17) 
+extend to obtain a basis $\{\vv_1, \dots, \vv_k, \vv_{k+1},\dots, \vv_n\}$ 
+for $V$. Show that $\{T(\vv_{k+1}), \dots, T(\vv_n)\}$
+gives a basis for $\im(T)$.
+\item Conclude the desired result. Explain why this is a restatement of
+  Corollary 4.7 of Chapter 3 when $W$ is finite-dimensional.
+\end{enumerate}
+\end{problem}
+\medskip
+%% \begin{solution}\
+%% \begin{enumerate}[{\bf a.}]
+%% \item 
+%% \end{enumerate}
+%% \end{solution}
+
+\newpage
+
+%--  PROBLEM 3  ---------------------------------------------------
+\begin{problem}[SA 4.4.18]
+Prove the following claims.
+\begin{enumerate}[{\bf a.}]
+\item {\bf Claim 1:}
+  If $T : V \to W$ is a linear transformation and  
+  if $\{\vv_1, \vv_2, \dots, \vv_k \}$ is a linearly dependent set of vectors in
+  $V$, then $\{T(\vv_1), T(\vv_2), \dots , T(\vv_k)\}$ is a 
+  linearly dependent set in $W$. 
+\item {\bf Claim 2:}
+  Suppose $T : V \to V$ is a linear transformation and $V$ is
+  finite-dimensional.
+  If $\im(T) = V$ and if $\{\vv_1, \vv_2, \dots, \vv_k \}$
+  is linearly independent, then $\{T(\vv_1), T(\vv_2), \dots , T(\vv_k)\}$ is 
+  linearly independent.
+  ({\it Hint:} Use Problem~\ref{prob2} (SA 4.4.16).)
+\end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}\
+%% \begin{enumerate}[{\bf a.}]
+%% \item 
+%% \end{enumerate}
+%% \end{solution}
+\newpage
+
+%--  PROBLEM 4  ---------------------------------------------------
+\begin{problem}[SA 4.4.21]
+Let $V$ be a vector space.
+\begin{enumerate}[{\bf a.}]
+\item 
+Let $V^\ast$ denote the set of all linear transformations from $V$ to $\R$. 
+Show that $V^\ast$ is a vector space.\footnote{The vectors in 
+$V^\ast$ are sometimes called the \emph{linear functionals} of $V$.}
+
+\item Suppose $\{\vv_1, \vv_2, \dots, \vv_n\}$ is a basis for $V$. 
+For $i = 1, 2, \dots, n$, define $\vf_i \in V^\ast$ by
+\[
+\vf_i (a_1 \vv_1 + a_2 \vv_2 + \cdots + a_n \vv_n) = a_i.
+\]
+Prove that $\{\vf_1, \vf_2, \dots, \vf_n\}$ gives a basis for $V^\ast$.
+\item Deduce that whenever $V$ is finite-dimensional, $\dim V^\ast = \dim V$.
+\end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}\
+%% \begin{enumerate}[{\bf a.}]
+%% \item
+%% \end{enumerate}
+%% \end{solution}
+\newpage
+
+\section*{Section 6.1}
+%--  PROBLEM 5  ---------------------------------------------------
+\noindent In the next exercise, parts f and k are required. Part p is recommended.
+\begin{problem}[SA 6.1.1fkp]
+Find eigenvalues and bases for the eigenspaces of the following matrices.
+\begin{enumerate}
+\item[{\bf f.}] $\begin{bmatrix*}[r]1&1\\-1&3\end{bmatrix*}$
+\item[{\bf k.}] $\begin{bmatrix*}[r]1&-2&2\\-1&0&-1\\0&2&-1\end{bmatrix*}$
+\item[{\bf p.}] $\begin{bmatrix*}[r]1&0&0&1\\0&1&1&1\\0&0&2&0\\0&0&0&2\end{bmatrix*}$
+\end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}\
+%% \begin{enumerate}
+%% \item[{\bf f.}]
+%% \item[{\bf k.}]
+%% \item[{\bf p.}]
+%% \end{enumerate}
+%% \end{solution}
+\newpage
+
+%--  PROBLEM 6  ---------------------------------------------------
+\begin{problem}[cf.~SA 6.1.4]
+Let $V\leq \R^n$ be a subspace and let $P_V$ denote the projection onto $V$.  
+What are the eigenvalues and eigenvectors of $P_V$? 
+({\it Hint:} Think about what $P_V$ does to vectors $\vv\in V$ and to vectors
+$\vw\in V^\bot$. Are these the only vectors you need to consider?)
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+\newpage
+
+
+%--  PROBLEM 8  ---------------------------------------------------
+\noindent In the next exercise, part a is required.  Part b and c are recommended.
+\begin{problem}[SA 6.1.13abc]
+In each of the following cases, find the eigenvalues and eigenvectors of the linear
+transformation $T : \mathcal{P}_3 \to \mathcal{P}_3$.
+\begin{enumerate}[{\bf a.}]
+\item $T(p)(t) = p'(t)$
+\item $T(p)(t) = tp(t)$
+\item $T(p)(t) = \int_0^t p'(u)\, du$
+\end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% Set $p(t) = a_0 + a_1 t + a_2 t^2 + a_3 t^3$.
+%% \begin{enumerate}[{\bf a.}]
+%% \item
+%% \end{enumerate}
+%% \end{solution}
+\end{document}
+
