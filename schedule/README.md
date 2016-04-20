@@ -93,13 +93,13 @@ F 4/15: **Computer Lab #4 in Carver 449**
 M 4/18: 6.2 Diagonalizability  **HW 11 due** (4.4, 6.1)   
 T 4/19: 6.4 The Spectral Theorem  
 T 4/21: 7.1 Complex Eigenvalues and Jordan Form   
-F 4/22: 7.1 Jordan Canonical Form; **HW 12 due** (6.2, 6.3)   
+F 4/22: 7.1 Jordan Canonical Form  
 
 ---------------------------------------------------------  
-M 4/25: Applications: Translation and Convolution; 
-T 4/26: Applications: Fourier Transform (time permitting)    
-T 4/28: Applications: Fourier Transform (time permitting)  
-F 4/29: Review;  **HW 13 due** (6.4, 7.1)   
+M 4/25: Applications: Translation and Convolution  
+T 4/26: Applications: Fourier Transform (time permitting); **HW 12 due** (6.2, 6.4)  
+T 4/28: Review  
+F 4/29: Review
 
 ---------------------------------------------------------  
 **FINAL EXAM:** Monday 2 May, 12--2pm, Carver 0132 (our usual classroom).
