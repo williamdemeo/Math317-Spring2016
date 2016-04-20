@@ -1,0 +1,294 @@
+%%This is the LaTeX file for the Math 317 Homework.  
+
+%% You may use this file to fill in your solutions if you know how 
+%% to compile a LaTeX file to turn it into a pdf document.  If you 
+%% don't know how to do this but want to learn, there are plenty of
+%% resources for learning about LaTeX on the net.  You may also ask
+%% your professor for help.
+%% 
+%% For more information about using this file to complete the homework,
+%% please see the NOTES section below of the comments below.
+
+\documentclass[fleqn,11pt]{paper}
+
+
+\usepackage[
+letterpaper,
+top    = 3cm,
+bottom = 3cm,
+left   = 3.00cm,
+right  = 3.00cm]{geometry}
+
+\usepackage{tikz-cd}
+\usepackage{amsthm}
+\usepackage{scalefnt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[mathcal]{euscript}
+\usepackage{mathtools}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+ \usepackage{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{url} % for url in bib entries
+\usepackage{mathrsfs}
+
+\theoremstyle{remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{prop}{Proposition}
+\newtheorem{problem}{Problem}
+\newtheorem*{prob}{Problem}
+\newtheorem*{solution}{{\bf Solution}}
+\newtheorem*{hint}{{\it Hint}}
+\newtheorem*{ex}{Exercise}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Surround the problem and solution with 
+%% \begin{ProbBox}  and   \end{ProbBox}
+%% to prevent pagebreaks.
+\newenvironment{ProbBox}{\noindent\begin{minipage}{\linewidth}}{\end{minipage}}
+
+%%%%%%%%%%%%%%%%
+% Acronyms     %
+%%%%%%%%%%%%%%%%
+\usepackage[acronym, shortcuts]{glossaries}
+
+%% HERE IS HOW YOU DEFINE ACRONYMS:
+\newacronym{FTA}{FTA}{Fundamental Theorem of Algebra}
+\newacronym{CRT}{CRT}{Chinese Remainder Theorem}
+
+% Make \ac robust.
+\robustify{\ac}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Fancy page style     %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\newcommand{\metadata}[2]{
+  \lhead{}
+  \chead{}
+  \rhead{\bfseries Math 317: Linear Algebra}
+  \lfoot{#1}
+  \cfoot{#2}
+  \rfoot{\thepage}
+}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\newrobustcmd*{\vocab}[1]{\emph{#1}}
+\newrobustcmd*{\latin}[1]{\textit{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Customize list enviroonments   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% package to customize three basic list environments: enumerate, itemize and description.
+%% \usepackage{enumitem}
+%% \setitemize{noitemsep, topsep=0pt, leftmargin=*}
+%% \setenumerate{noitemsep, topsep=0pt, leftmargin=*}
+%% \setdescription{noitemsep, topsep=0pt, leftmargin=*}
+
+\usepackage{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Space between problems  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newrobustcmd*{\probskip}{\vskip1cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%    Math shortcuts     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand\iff{\ensuremath{\Longleftrightarrow}}
+\newcommand\join{\ensuremath{\vee}}
+\newcommand\meet{\ensuremath{\wedge}}
+\newcommand\R{\fld{R}}
+\newcommand\proj{\ensuremath{\operatorname{proj}}}
+\newcommand\End{\ensuremath{\operatorname{End}}}
+\newcommand\Aut{\ensuremath{\operatorname{Aut}}}
+\newcommand\Hom{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Aff}{\ensuremath{\operatorname{Aff}}}
+\newcommand{\ann}[1]{\ensuremath{\operatorname{ann}(#1)}}
+\newcommand{\id}{\ensuremath{\operatorname{id}}}
+\newcommand{\nulity}[1]{\ensuremath{\operatorname{null}(#1)}}
+%\renewcommand{\ker}[1]{\ensuremath{\operatorname{ker}(#1)}}
+\renewcommand{\ker}{\ensuremath{\operatorname{ker}}}
+%% \renewcommand{\dim}[1]{\ensuremath{\operatorname{dim}(#1)}}
+\renewcommand{\dim}{\ensuremath{\operatorname{dim}}}
+%\newcommand\im[1]{\ensuremath{\operatorname{im}(#1)}}
+\newcommand\im{\ensuremath{\operatorname{im}}}
+%% \newcommand{\rank}[1]{\ensuremath{\operatorname{rank}(#1)}}
+\newcommand{\rank}{\ensuremath{\operatorname{rank}}}
+\newcommand{\trace}[1]{\ensuremath{\operatorname{trace}(#1)}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+
+
+%%%% NOTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%
+%%       Try to use standard notation, as used in class and in the textbook.
+%%       For the most basic symbols, you may wish to use LaTeX macros to keep 
+%%       the conventions you use consistent and easy to remember.
+%%       For example, to denote an algebra,
+         \newcommand\alg[1]{\ensuremath{\mathbf{#1}}}
+         \newcommand{\<}{\ensuremath{\langle}}
+         \renewcommand{\>}{\ensuremath{\rangle}}
+%%       So, an algebra in LaTeX is typed as $\alg{A} = \<A, F\>$.
+%%       Similarly, for a field, let's use:
+         \newcommand\fld[1]{\ensuremath{\mathbb{#1}}}
+%%       So, a field in LaTeX is typed as $\fld{F}$.
+%%
+%%       To make a boldface vector, use backslash v in front of the 
+%%       letter and add a new command for that letter here or in 
+%%       the macros.tex file:
+         \newcommand\va{\vec{a}}
+         \newcommand\vf{\vec{f}}
+         \newcommand\vu{\vec{u}}
+         \newcommand\vv{\vec{v}}
+         \newcommand\vw{\vec{w}}
+         \newcommand\vx{\vec{x}}
+         \newcommand\vy{\vec{y}}
+         \newcommand\vz{\vec{z}}
+         \newcommand\vzero{\vec{0}}
+         \newcommand\sC{\ensuremath{\mathcal C}}
+         \newcommand\sB{\ensuremath{\mathcal B}}
+         \newcommand\bE{\ensuremath{\mathbf E}}
+         \newcommand\sV{\ensuremath{\mathcal V}}
+         \newcommand\sW{\ensuremath{\mathcal W}}
+         \newcommand\sP{\ensuremath{\mathcal P}}
+         \newcommand\Span{\ensuremath{\operatorname{Span}}}
+         \metadata       {HW 12}{due 2016/04/25}
+%%
+%%       Insert your name here!!!
+%%
+         \author         {NAME:                     }
+         %% Put your name here ^^^^^^^^^^^^^^^^^^^^^, like this:
+         %%     \author{NAME: William DeMeo}
+         %%
+%%
+%%
+%%    8. Update the title and date if necessary.
+         \title{Math 317: Homework 12}
+         \date{Due: 25 April 2015}
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+  %% \begin{bmatrix*}[r] 1 & 0 & -1 \\ -2 & 3 & -1 \\ 3 & -3 & 0\end{bmatrix*}.
+
+\begin{document}
+
+\maketitle
+
+
+\section*{Section 6.2}
+%--  PROBLEM 1  ---------------------------------------------------
+\begin{problem}[cf.~SA 6.2.1fkp]
+Recall, the matrices in Problem 6.1.1 of Homework 11 were,
+%% \begin{enumerate}
+%% \item[f.] $\begin{bmatrix*}[r]1&1\\-1&3\end{bmatrix*}$
+%% \item[k.] $\begin{bmatrix*}[r]1&-2&2\\-1&0&-1\\0&2&-1\end{bmatrix*}$
+%% \item[p.] $\begin{bmatrix*}[r]1&0&0&1\\0&1&1&1\\0&0&2&0\\0&0&0&2\end{bmatrix*}$
+%% \end{enumerate}
+\[ \text{f.} \begin{bmatrix*}[r]1&1\\-1&3\end{bmatrix*}, \qquad
+\text{k.} \begin{bmatrix*}[r]1&-2&2\\-1&0&-1\\0&2&-1\end{bmatrix*}, \quad \text{ and }\quad
+\text{p.} \begin{bmatrix*}[r]1&0&0&1\\0&1&1&1\\0&0&2&0\\0&0&0&2\end{bmatrix*}.
+\]
+Decide which of these matrices is diagonalizable.  Give your reasoning.
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+\newpage
+
+%--  PROBLEM 2  ---------------------------------------------------
+\begin{problem}[SA 6.2.2]
+Prove or give a counterexample:
+\begin{enumerate}[a.]
+\item If $A$ is an $n \times n$ matrix with $n$ distinct (real) eigenvalues,
+  then $A$ is diagonalizable.
+\item If $A$ is diagonalizable and $AB = BA$, then $B$ is diagonalizable.
+\item If there is an invertible matrix $P$ so that $A = P^{-1}BP$, then $A$ and
+  $B$ have the same eigenvalues.
+\item If $A$ and $B$ have the same eigenvalues, then there is an invertible matrix $P$ so that
+$A = P^{-1}BP$.
+\item There is no real $2 \times 2$ matrix $A$ satisfying $A^2 = -I_2$.
+\item If $A$ and $B$ are diagonalizable and have the same eigenvalues (with the same algebraic
+multiplicities), then there is an invertible matrix $P$ so that $A = P^{-1}BP$.
+\end{enumerate}
+{\it Hints:} You may find Lemma 1.4 and Corollary 2.2 helpful. 
+In at least three cases, find a counterexample to show that the claim is false.
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+\newpage
+
+%--  EXERCISE  ---------------------------------------------------
+\noindent The following exercise is recommended but not required.
+\begin{ex}[SA 6.2.11]
+Suppose $A$ is an $n \times n$ matrix with the property that $A^2 = A$.
+\begin{enumerate}[a.]
+\item Show that if $\lambda$ is an eigenvalue of $A$, then $\lambda = 0$ or $\lambda = 1$.
+\item Prove that $A$ is diagonalizable. ({\it Hint:} See Exercise 3.2.13.)
+\end{enumerate}
+\end{ex}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+\newpage
+
+%--  PROBLEM 3  ---------------------------------------------------
+\begin{problem}[SA 6.2.20a]
+Let $\lambda$ and $\mu$ be distinct eigenvalues of a linear
+transformation. Suppose 
+$\{\vv_1,\dots, \vv_k\} \subset \mathbf{E}(\lambda)$
+is linearly independent and 
+$\{\vw_1,\dots, \vw_\ell\} \subset \mathbf{E}(\mu)$
+is linearly independent.
+Prove that $\{\vv_1,\dots, \vv_k, \vw_1,\dots, \vw_\ell\}$ is linearly
+independent.
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+\newpage
+
+\section*{Section 6.4}
+%--  PROBLEM 5  ---------------------------------------------------
+\begin{problem}[SA 6.4.9]\
+  \begin{enumerate}[a.]
+  \item   Suppose $A$ is a symmetric $n \times n$ matrix. Using the Spectral Theorem, 
+    prove that if $A\vx \cdot \vx = 0$ for every vector $\vx \in \R^n$, then $A = O$.
+  \item Give a counterexample to show that if we drop the symmetry hypothesis, then the statement
+    in part a is false.
+  \end{enumerate}
+\end{problem}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+\newpage
+\noindent The next exercise is recommended but not required.
+%--  PROBLEM 4  ---------------------------------------------------
+\begin{ex}[cf.~SA 6.4.3]
+Find a matrix $A$ with the following properties:
+\begin{itemize}
+\item $A$ is symmetric;
+\item $A$ has eigenvalues 1 and 2;
+\item $\bE(2) = \Span \bigl\{(1,1,1)\bigr\}$. %\begin{bmatrix*}[r]1\\1\\1\end{bmatrix*}\right\}$.
+\end{itemize}
+({\it Hint:} the Spectral Theorem implies $\bE(1) =\bE(2)^\top$.
+Find a basis for $\bE(1)$, and then compute $A = P \Lambda P^{-1}$ for 
+an appropriate choice of $P$ and $\Lambda$.)
+\end{ex}
+%% \medskip
+%% \begin{solution}
+%% \end{solution}
+\end{document}
