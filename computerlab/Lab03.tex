@@ -1,0 +1,612 @@
+\documentclass[fleqn,11pt]{paper}
+
+%% This is the Homework LaTeX template.  Use this file to fill in your solutions. 
+%%
+%% Notes: 
+%%    1. If possibly, try to write your answers inside a \begin{solution}...\end{solution}
+%%    environment.
+%%
+%%    2. If you enter your answers into this Homework*.tex source file, you
+%%    will have to compile it into a pdf document.  There are a number of ways to
+%%    do that. Probably the easiest is to use the website called ShareLaTeX.com.
+%%    Alternatively,
+%%
+%%       Mac OS X users: you might try MacTeX. 
+%%       Linux users: most come with TeX; otherwise do a full install of TeXLive.
+%%       Windows users: ...proTeXt maybe? (or switch to a better operating system) 
+%%
+%%       There is a Makefile in this directory, so (on Linux) you could just 
+%%       enter `make` to compile all the Homework*.tex files at once (assuming
+%%       you have everything set up properly).
+%%
+%%    3. Please don't hesitate to inform the professor if you have trouble, or open
+%%       a ``New issue'' on GitHub or post to Piazza or ask in lecture.
+%%
+%%    4. Update the title and date if necessary.
+         \title{Math 317: Computer Lab 3}
+         \date{Due: 25 March 2016, 2pm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[letterpaper,top=3cm,bottom=3cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{tikz-cd}
+\usepackage{scalefnt}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,urlcolor=black,linkcolor=black,citecolor=black]{hyperref}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{sagetex}
+\usepackage{url} % for url in bib entries
+\usepackage{mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shadows}
+
+\newcommand*\keystroke[1]{%
+  \tikz[baseline=(key.base)]
+    \node[%
+      draw,
+      fill=white,
+      drop shadow={shadow xshift=0.25ex,shadow yshift=-0.25ex,fill=black,opacity=0.75},
+      rectangle,
+      rounded corners=2pt,
+      inner sep=1pt,
+      line width=0.5pt,
+      font=\scriptsize\sffamily
+    ](key) {#1\strut}
+  ;
+}
+
+
+
+\theoremstyle{remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{prop}{Proposition}
+\newtheorem{problem}{Problem}
+\newtheorem*{prob}{Problem}
+\newtheorem*{solution}{{\bf Solution}}
+\newtheorem*{hint}{{\it Hint}}
+\newtheorem*{ex}{Exercise}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Surround the problem and solution with 
+%% \begin{ProbBox}  and   \end{ProbBox}
+%% to prevent pagebreaks.
+\newenvironment{ProbBox}{\noindent\begin{minipage}{\linewidth}}{\end{minipage}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Fancy page style     %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\newcommand{\metadata}[2]{
+  \lhead{}
+  \chead{}
+  \rhead{\bfseries Math 317: Linear Algebra}
+  \lfoot{#1}
+  \cfoot{#2}
+  \rfoot{\thepage}
+}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Customize list enviroonments   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% package to customize three basic list environments: enumerate, itemize and description.
+%% \usepackage{enumitem}
+%% \setitemize{noitemsep, topsep=0pt, leftmargin=*}
+%% \setenumerate{noitemsep, topsep=0pt, leftmargin=*}
+%% \setdescription{noitemsep, topsep=0pt, leftmargin=*}
+
+\usepackage{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Space between problems  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newrobustcmd*{\probskip}{\vskip1cm}
+
+%%    Try to use standard notation, as used in class and in the textbook.
+%%    For the most basic symbols, you may wish to use LaTeX macros to keep 
+%%    the conventions you use consistent and easy to remember.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%    Math shortcuts     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\join{\ensuremath{\vee}}
+\newcommand\meet{\ensuremath{\wedge}}
+\newcommand\R{\fld{R}}
+\newcommand\Z{\fld{Z}}
+\newcommand\C{\fld{C}}
+\newcommand\Q{\fld{Q}}
+\newcommand\proj{\ensuremath{\operatorname{proj}}}
+\newcommand\End{\ensuremath{\operatorname{End}}}
+\newcommand\Aut{\ensuremath{\operatorname{Aut}}}
+\newcommand\Hom{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Aff}{\ensuremath{\operatorname{Aff}}}
+\newcommand{\ann}[1]{\ensuremath{\operatorname{ann}(#1)}}
+\newcommand{\id}{\ensuremath{\operatorname{id}}}
+\newcommand{\nulity}[1]{\ensuremath{\operatorname{null}(#1)}}
+\renewcommand{\ker}[1]{\ensuremath{\operatorname{ker}(#1)}}
+\renewcommand{\dim}[1]{\ensuremath{\operatorname{dim}(#1)}}
+\newcommand\im[1]{\ensuremath{\operatorname{im}(#1)}}
+\newcommand{\rank}[1]{\ensuremath{\operatorname{rank}(#1)}}
+\newcommand{\trace}[1]{\ensuremath{\operatorname{trace}(#1)}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+         \newcommand\alg[1]{\ensuremath{\mathbf{#1}}}
+         \newcommand{\<}{\ensuremath{\langle}}
+         \renewcommand{\>}{\ensuremath{\rangle}}
+         \newcommand\fld[1]{\ensuremath{\mathbb{#1}}}
+
+%%       To make a boldface vector, use backslash v in front of the 
+%        letter and add a new command for that letter here.
+         \newcommand\va{\vec{a}}
+         \newcommand\vb{\vec{b}}
+         \newcommand\vu{\vec{u}}
+         \newcommand\vv{\vec{v}}
+         \newcommand\vw{\vec{w}}
+         \newcommand\vx{\vec{x}}
+         \newcommand\vy{\vec{y}}
+         \newcommand\vz{\vec{z}}
+         \newcommand\vzero{\vec{0}}
+
+         \newcommand\sP{\ensuremath{\mathscr P}}
+         \newcommand\Span{\ensuremath{\operatorname{Span}}}
+
+%% ---for augmented matrices---
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{r}|rr@{}}
+}{%
+  \end{array}\right]
+}
+\newenvironment{amatrix2}[1]{%
+  \left[\begin{array}{@{}*{#1}{r}|rr@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+
+         \metadata{Lab 3}{25 March 2016}
+         \author{NAME:}
+%%       Example:
+%%         \metadata{Name: William DeMeo}{Lab 1 (due: 2016/01/29 by end of lab)}
+%%         \author{NAME: William DeMeo}
+%%
+
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent {\bf Instructions.}
+\begin{itemize}
+\item This assignment must be completed in the Carver 449 computer lab by 2pm on
+  \begin{quote}
+    {\bf Friday March 25.}  
+  \end{quote}
+  Late submissions will not be accepted.
+\item When you have finished working or it is 2pm (whichever comes first): 
+  \begin{enumerate}
+
+  \item {\bf Ask the professor to check your work.}
+  \item Save your worksheet and name it Lab03.sws. 
+  \item {\bf Submit your Lab03.sws file on Blackboard}.
+  \item Stop your Sage worksheet (Action $\rightarrow$ Save and quit worksheet; or use Stop button).
+  \item Sign out of your Sage account and log off the computer.
+  \end{enumerate}
+\end{itemize}
+
+%--  Part 1  ---------------------------------------------------
+\part*{Part 1: Sage recap/review}
+The purpose of the first part of this lab is simply to recapitulate
+some of the things we learned about Sage in previous computer lab assignments,
+in case you are a bit rusty.
+Although this part will not be graded, you are strongly
+encouraged to try out all of the examples yourself (by entering them in a Sage
+worksheet). You need to be comfortable with the commands covered in
+Sections~\ref{sec:matrices-sage} and~\ref{sec:vectors-sage} in order to complete the second part of the lab.
+
+
+
+\section{Number systems}
+\label{sec:number-systems}
+Sage knows a wide variety of sets of numbers. These are known as ``rings'' or
+``fields,'' but we may call them ``number fields'' or ``scalar fields.''  (We
+need not worry about the differences for now.)
+Examples include the integers and the rational numbers---these sets are denoted
+by $\Z$ and $\Q$, respectively---as well as the real and complex number fields,
+denoted $\R$ and $\C$, respectively.  Sage has special notation for each of
+these sets of numbers, and these are listed in the table below:
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+  \hline
+  &&{\bf Standard} & {\bf Sage}\\
+  {\bf Set} & {\bf Description} & {\bf notation} & {\bf notation} \\[4pt]
+  \hline
+  Integers & $\{\dots, -1, 0, 1, 2, \dots\}$& $\Z$ & {\tt ZZ} \\[4pt]
+  \hline
+  Rational numbers & $\{\frac{p}{q} : p, q \in \Z, q \neq 0\}$ & $\Q$ & {\tt QQ} \\[4pt] 
+  \hline
+  Real numbers &  $(-\infty, \infty)$ & $\R$ & {\tt RR} \\[4pt] 
+  \hline
+  Complex numbers & $\{a + ib : a, b \in \R\}$ &  $\C$ & {\tt CC}\\[4pt]
+  \hline
+\end{tabular}
+\end{center}
+
+Thus, {\tt RR} denotes (Sage's representation of) the set of real numbers (up to
+``reasonable'' precision), and {\tt CC} is (Sage's representation of) the complex
+numbers (up to ``reasonable'' precision).  In any computer
+system, there are complications surrounding the inability of digital
+arithmetic to accurately represent all real (or complex) numbers. In contrast,
+Sage can represent rational numbers exactly as the quotient of two (perhaps very
+large) integers.  So, for now at least, we will use {\tt QQ} as our main number system
+so we can concentrate on understanding the key concepts and ignore the fact that
+computers have trouble faithfully representing real and complex numbers.
+
+\section{Matrices in Sage}
+\label{sec:matrices-sage}
+Sage is largely ``object-oriented,'' which means many functions are associated
+with a specific ``object'' and are invoked using the ``dot'' notation. For
+example a matrix {\tt A} is represented in Sage as a ``matrix object,'' and
+the command {\tt A.nrows()} returns the number of rows of the matrix {\tt A}.
+\begin{sageblock}
+    sage: A = matrix(QQ, 2, 3, [[1,2,3],[4,5,6]])
+    sage: print A
+      [1 2 3]
+      [4 5 6]
+
+    sage: A.nrows(), A.ncols()
+      (2, 3)
+
+    sage: A.base_ring()
+      Rational Field
+
+    sage: A.parent()
+      Full MatrixSpace of 2 by 3 dense matrices over Rational Field
+\end{sageblock}
+
+\section{Vectors in Sage}
+\label{sec:vectors-sage}
+Vectors in Sage are built, manipulated and interrogated in much the same way
+as matrices. However as simple lists, they are simpler to construct
+and manipulate. Sage will print a vector across the screen, even if we wish to
+interpret it as a column vector. It will be delimited by parentheses ((,)) which allows
+us to distinguish a vector from a matrix with just one row, if we look carefully. The
+number of slots in a vector is not referred to in Sage as rows or columns, but rather
+by ``degree.'' Here are some examples:
+
+\begin{sageblock}
+    sage: v = vector(QQ, 4, [1, 1/2, 1/3, 1/4])
+    sage: print v
+      (1, 1/2, 1/3, 1/4)
+
+    sage: v.degree()
+      4
+  
+    sage: v.parent()
+      Vector space of dimension 4 over Rational Field
+
+    sage: v[2]
+      1/3
+
+    sage: w = vector([1, 2, 3, 4, 5, 6])
+    sage: print w
+      (1, 2, 3, 4, 5, 6)
+
+    sage: w.degree()
+      6
+
+    sage: w.parent()
+      Ambient free module of rank 6 over the principal ideal domain Integer Ring
+
+    sage: w[3]
+      4
+\end{sageblock}
+Notice that if you use commands like {\tt .parent()} you will sometimes see references
+to ``free modules.'' This is a technical generalization of the notion of a vector, which
+is beyond the scope of this course, so just mentally convert to vectors when you see
+this term.
+
+The zero vector is super easy to build, but be sure to specify what number system
+your zero is from.
+\begin{sageblock}
+    sage: z = zero_vector(QQ, 5)
+    sage: print z
+      (0, 0, 0, 0, 0)
+
+\end{sageblock}
+
+\begin{exercise}
+  \label{ex:vectors}
+  Login to your Sage account, open a new worksheet and name it Lab03.
+  Then try out all of the examples above. (Enter what appears after the
+  {\tt sage:}~prompt in a worksheet cell and click \keystroke{evaluate}; alternatively,
+  you can evaluate a worksheet cell with the keyboard shortcut
+  \keystroke{shift}+ \keystroke{enter}.)
+  Also note, you can put multiple lines in a single worksheet cell and evaluate
+  them all at once.
+\end{exercise}
+
+%--  Part 2  ---------------------------------------------------
+\part*{Part 2: Spanning Sets \& the Four Fundamental Subspaces}
+\section{Spanning Sets}
+One of Sage's strengths is the ability to create infinite sets, such as the span of a set of
+vectors, from finite descriptions. In other words, we can take a finite set with just a
+handful of vectors and Sage will create the set that is the span of these vectors, which
+is an infinite set. Here we learn how to do this for the example vector
+space $\Q^4 = \{(x_1, x_2, x_3, x_4) : x_i \in \Q\}$, which Sage denotes
+by {\tt QQ\^{}4}. 
+The key command is the vector space method {\tt .span()}.
+
+\begin{exercise}
+  Continuing with the worksheet (named Lab03) that you created in
+  Exercise~\ref{ex:vectors} above, try out each example below. 
+\end{exercise}
+\begin{sageblock}
+    sage: V = QQ^4
+    sage: v1 = vector(QQ, [1,1,2,-1])
+    sage: v2 = vector(QQ, [2,3,5,-4])
+    sage: W = V.span([v1, v2])
+    sage: print W
+      Vector space of degree 4 and dimension 2 over Rational Field
+      Basis matrix:
+      [ 1 0 1 1]
+      [ 0 1 1 -2]
+
+    sage: x = 2*v1 + (-3)*v2
+    sage: print x
+      (-4, -7, -11, 10)
+
+    sage: x in W
+      True
+
+    sage: y = vector(QQ, [3, -1, 2, 2])
+    sage: y in W
+      False
+
+    sage: u = vector(QQ, [3, -1, 2, 5])
+    sage: u in W
+      True
+
+    sage: W <= V
+      True
+\end{sageblock}
+Most of the above should be fairly self-explanatory, but a few comments are in
+order. The span, {\tt W}, is constructed with the {\tt .span()} method,
+which accepts a list of vectors and is called using the ``dot'' syntax (since it
+is a method of a vector space object).
+You can see the number system (Rational Field) and the number
+of entries in each vector (degree 4). 
+
+Notice that the span (and the {\tt .span()} command) is a
+function that takes as input a finite set of vectors and generates as output the
+span of these vectors. As we know, the result in an infinite collection of vectors.
+Of course, Sage does not literally construct all of the vectors in the span at once,
+since it's impossible to fit all of them in the computers finite physical memory.  However,
+Sage provides us with a means of accessing any (finite) number of vectors in the
+span, and, importantly, Sage can check whether any given vector belongs to the span.\footnote{If
+  you have studied computer 
+  science or programming, then you have probably heard of recursion, streams, and the like,
+  and you should not be surprised that a computer can \emph{represent} and
+  \emph{compute with} infinite sets, despite the fact that
+  a computer is a finite entity with finite amount of physical
+  memory. For example, a ``stream'' is basically just an infinite list
+  that gives us access to its elements as needed... as many as we need, the
+  stream will generate for us... but we are not allowed to ask for the entire list at once!}
+
+In the example above, we know the vector {\tt x} will be in the span {\tt W} since we built
+it as a linear combination of {\tt v1} and {\tt v2}. The vectors {\tt y} and
+{\tt u} are a bit more mysterious, but Sage
+can answer the membership question easily for both of these vectors as well. 
+In fact, from your experience in class and previous computer labs, you already know
+how to use Sage to prove that {\tt y} and {\tt u} belong to {\tt W}.
+
+\begin{exercise}~\\
+  If possible, use Sage to write {\tt y} as a linear combination of the vectors {\tt v1} and 
+  {\tt v2}. Do the same for {\tt u}. That is, find the coefficients $c_1, c_2, d_1, d_2$,
+  so that $\vy = c_1\vv_1 +c_2 \vv_2$ and $\vu = d_1\vv_1 +d_2 \vv_2$. Write these coefficients
+  in the blanks spaces provided below.  If it's not possible, explain why not.
+\end{exercise}
+
+%\vskip5mm
+\[
+  \vy = \begin{bmatrix*}[r] 3 \\ -1 \\ 2 \\ 2\end{bmatrix*}= \text{\underline{\phantom{XXX}}}\vv_1 + \text{\underline{\phantom{XXX}}} \vv_2,
+\qquad
+\qquad
+  \vu = \begin{bmatrix*}[r] 3 \\ -1 \\ 2 \\ 5\end{bmatrix*}= \text{\underline{\phantom{XXX}}}\vv_1 + \text{\underline{\phantom{XXX}}} \vv_2.
+\]
+\vskip5mm
+
+
+
+\section{The Four Fundamental Subspaces}
+\subsection{The Null Space $\operatorname{N}(A)$}
+Sage can compute the null space of a matrix. Again, this may seem rather
+remarkable, since the null space is very often an infinite set!
+The null space command is quite powerful since, as we have learned,
+there is a lot of theory associated with the null space; e.g., if we know
+the null space of a given matrix, then we know a lot about (among other things)
+systems of linear equations associated with that matrix.
+
+One way to get Sage to build the null space of a matrix is with the
+{\tt .right\_kernel()} command.
+We experiment with this command below and, to ensure that the presentation of results
+is consistent with our previous work and the textbook, we will always use the option {\tt basis="pivot"}.  (Also, for reasons that are not important
+right now, we must continue to define matrices over the rational numbers.)
+\begin{sageblock}
+    sage: A = matrix(QQ, [[ 1, 4, 0, -1, 0, 7, -9],
+                          [ 2, 8, -1, 3, 9, -13, 7],
+                          [ 0, 0, 2, -3, -4, 12, -8],
+                          [-1, -4, 2, 4, 8, -31, 37]])
+    
+    sage: NA = A.right_kernel(basis="pivot")  # (name this whatever you want...
+                                              # ...but NA seems reasonable)
+    sage: print NA
+      Vector space of degree 7 and dimension 4 over Rational Field
+      User basis matrix:
+      [-4 1 0 0 0 0 0]
+      [-2 0 -1 -2 1 0 0]
+      [-1 0 3 6 0 1 0]
+      [ 3 0 -5 -6 0 0 1]
+\end{sageblock}
+(Stuff that appears after a hashtag symbol {\tt \#} is called a comment; Sage
+ignores all comments.)\\
+\\
+We can test membership in {\tt NA}, 
+\begin{sageblock}
+    sage: x = vector(QQ, [3, 0, -5, -6, 0, 0, 1])
+    sage: x in NA
+      True
+
+    sage: vector(QQ, [-4, 1, -3, -2, 1, 1, 1]) in NA  
+      True     # (we needn't name a vector to test its membership in NA)
+
+    sage: vector(QQ, [1, 0, 0, 0, 0, 0, 2]) in NA
+      False
+\end{sageblock}
+We can also verify that {\tt NA} is an
+infinite set,
+\begin{sageblock}
+    sage: NA.is_finite()
+      False
+\end{sageblock}
+\vskip3mm
+\noindent As we also know, {\it sometimes} the null space is finite.  When does this
+occur?
+\vskip3mm
+\begin{exercise}
+  \label{ex:null-space-oper}
+  Build your own matrix (call it {\tt F}) such that the following command returns {\tt True}.
+  \begin{sageblock}
+    sage: F.right_kernel(basis="pivot").is_finite()
+  \end{sageblock}
+\end{exercise}
+\vskip3mm
+\noindent If you're having trouble with Exercise~\ref{ex:null-space-oper}, here's a hint:
+Since the null space of {\tt F} is finite, we can list
+its vectors. For example, if our matrix happens to have two columns, then we will observe
+\begin{sageblock}
+    sage: F.right_kernel(basis="pivot").list()
+      [(0, 0)]
+\end{sageblock}
+\vskip5mm
+
+
+\subsection{The Column Space $\operatorname{C}(A)$}
+Using span, we can expand our techniques for checking the consistency
+of a linear system $A\vx = \vb$. Recall that the system is consistent if and only if 
+$\vb$ is a linear combination of the columns of $A$.
+So consistency of a system is equivalent to the membership of $\vb$
+in the span of the columns of $A$.
+
+We make use of the matrix method {\tt columns()} to get all of the columns into a list at once.
+\begin{sageblock}
+    sage: A = matrix(QQ, [[33, -16, 10, -2],
+                          [99, -47, 27, -7],
+                          [78, -36, 17, -6],
+                          [-9,   2,  3,  4]])
+    sage: column_list = A.columns()
+\end{sageblock}
+    %% sage: print column_list
+    %%     [(33, 99, 78, -9), (-16, -47, -36, 2), (10, 27, 17, 3), (-2, -7, -6, 4)]
+
+    %% sage: CA = (QQ^4).span(column_list)
+    %% sage: b = vector(QQ, [-27, -77, -52, 5])
+    %% sage: b in CA
+    %%     True
+%% \end{sageblock}
+\vskip4mm
+\begin{exercise}
+Let {\tt b = vector(QQ, [-27, -77, -52, 5])}.
+Use the Sage commands {\tt columns} and {\tt (QQ\^{}4).span} to verify that
+the system {\tt Ax = b} is consistent.
+%% $A\vx = \vb$ is consistent.\\[4pt]
+\vskip4mm
+\noindent [{\it Hint:} write a line in Sage that tests for membership of {\tt b} in the column space of {\tt A}
+and returns {\tt True}.]
+\end{exercise}
+\newpage
+\section*{Alternatives}
+Although the above works perfectly well, Sage has its own column space command,
+called {\tt .column\_space()}.  It's very convenient, so let's try it out.
+\begin{sageblock}
+    sage: A = matrix(QQ, [[ 1,-1, 0],
+                          [ 2, 3, 9],
+                          [ 0, -3, -4],
+                          [-1, 4, 8]])
+    sage: CA = A.column_space()
+    sage: CA == (QQ^4).span(A.columns())  # check we get the same answer either way
+      True
+\end{sageblock}
+That the equality test in the last line above returns {\tt True} provides evidence 
+that our means of computing the column space of {\tt A} is equivalent to
+Sage's build-in {\tt column\_space()} command.
+
+Now if, say, {\tt b = vector(QQ, [-16, 43, -10, 126])}, then we can check that
+the system {\tt Ax = b} is consistent as follows:
+\begin{sageblock}
+    sage: b = vector(QQ, [-16, 43, -10, 126])
+    sage: b in A.column_space()
+      True
+\end{sageblock}
+Knowing that {\tt b} is in the column space of {\tt A}, we can now
+ask Sage to solve for {\tt x} in the system {\tt Ax = b}, without fear of
+producing an error.
+\begin{sageblock}
+    sage: A.solve_right(b)
+      (-46, -30, 25)
+\end{sageblock}
+
+\section*{Where to go from here?}
+\noindent To gain more familiarity with Sage, continue exploring on your own.  Here are
+some suggestions: construct a right-hand side vector for which the system above is
+inconsistent, then look up what Sage commands are available for least squares
+solutions and/or projections, and apply these to the example you just constructed to find the
+vector in the column space of $A$ that is closest to your right-hand side vector.
+
+\end{document}
+
+
+
+
+
+Earlier we discussed solutions to systems of equations and the membership
+of a vector $\vb$ in the span of the columns of the matrix $A$. 
+We can now be slightly more efficient, while still using the same ideas. 
+For example,
+\begin{sageblock}
+    sage: A = matrix(QQ, [[ 2, 1, 7, -7],
+                          [-3, 4, -5, -6],
+                          [ 1, 1, 4, -5]])
+    sage: b = vector(QQ, [8, -12, 4])
+    sage: c = vector(QQ, [2, 3, 2])
+    sage: CA = A.column_space()
+    sage: A.solve_right(b)
+      (4, 0, 0, 0)
+\end{sageblock}
+\subsection{The Row Space and Left Null Space}
+For this section, we'll want to know how to computer inner products.
+\begin{sageblock}
+    S = [x1, x2, x3, x4]
+    ips = [S[i].hermitian_inner_product(S[j])
+    for i in range(3) for j in range(i+1,3)]
+    all([ip == 0 for ip in ips])
+\end{sageblock}
+Notice how the list comprehension computes each pair just once, and never checks
+the inner product of a vector with itself.
+
+
