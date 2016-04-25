@@ -1,0 +1,1038 @@
+\begin{filecontents*}{refs.bib}
+@book {MR1487079,
+    AUTHOR = {Tolimieri, Richard and An, Myoung},
+     TITLE = {Time-frequency representations},
+    SERIES = {Applied and Numerical Harmonic Analysis},
+ PUBLISHER = {Birkh\"auser Boston, Inc., Boston, MA},
+      YEAR = {1998},
+     PAGES = {xiv+284},
+      ISBN = {0-8176-3918-7},
+   MRCLASS = {94A12 (20K01 42C15 43A25 94A11)},
+  MRNUMBER = {1487079 (99e:94013)},
+MRREVIEWER = {Lars F. Villemoes},
+}
+@book {MR2723807,
+    AUTHOR = {An, Myoung and Brodzik, Andrzej K. and Tolimieri, Richard},
+     TITLE = {Ideal sequence design in time-frequency space},
+    SERIES = {Applied and Numerical Harmonic Analysis},
+      NOTE = {Applications to radar, sonar, and communication systems},
+ PUBLISHER = {Birkh\"auser Boston, Inc., Boston, MA},
+      YEAR = {2009},
+     PAGES = {xii+218},
+      ISBN = {978-0-8176-4737-7},
+   MRCLASS = {65-02 (42C40 65Txx 94A12)},
+  MRNUMBER = {2723807 (2011i:65001)},
+}
+@incollection {MR2159216,
+    AUTHOR = {Tolimieri, Richard and An, Myoung},
+     TITLE = {Group filters and image processing},
+ BOOKTITLE = {Computational noncommutative algebra and applications},
+    SERIES = {NATO Sci. Ser. II Math. Phys. Chem.},
+    VOLUME = {136},
+     PAGES = {255--308},
+ PUBLISHER = {Kluwer Acad. Publ., Dordrecht},
+      YEAR = {2004},
+   MRCLASS = {94A12 (20C15 68U10 94-02)},
+  MRNUMBER = {2159216 (2006g:94007)},
+       DOI = {10.1007/1-4020-2307-3_10},
+       URL = {http://dx.doi.org/10.1007/1-4020-2307-3_10},
+}
+}
+\end{filecontents*}
+
+\documentclass[11pt]{amsart}
+%\documentclass[11pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz-cd}
+\usepackage{scalefnt}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[mathcal]{euscript}
+\usepackage{mathtools}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+ \usepackage{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
+%\usepackage[colorlinks=true,urlcolor=black,linkcolor=black,citecolor=black]{hyperref}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{url} % for url in bib entries
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+
+
+%% \usepackage{amscd,amssymb}  % amsthm, amsmath are included by default
+%% \usepackage{latexsym,stmaryrd,mathrsfs,enumerate,scalefnt,ifthen}
+%% \usepackage[mathcal]{euscript}
+%% \usepackage{amsmath,amsthm,amssymb}
+%% \usepackage{mathtools}
+%% \usepackage{etoolbox}
+
+%% %% for long mapsto arrows
+%% %% centernot,
+%% \usepackage{mathtools,stmaryrd}
+%% \makeatletter
+
+\newcommand{\xMapsto}[2][]{\ext@arrow 0599{\Mapstofill@}{#1}{#2}}
+\def\Mapstofill@{\arrowfill@{\Mapstochar\Relbar}\Relbar\Rightarrow}
+\makeatother
+\newcommand{\xlmapsto}[2][]{\xmapsto[\phantom{x}#1\phantom{x}]{\phantom{x}#2\phantom{x}}}
+\newcommand{\xlMapsto}[2][]{\xMapsto[\phantom{x}#1\phantom{x}]{\phantom{x}#2\phantom{x}}}
+%% use it like this:
+%%  \xmapsto[below]{above}  (``below'' goes below the arrow; ``above'' goes above)
+%%  \xlmapsto[below]{above}
+%%  \xMapsto[A]{sdfkjhsdf}  (double arrow version)
+%%  \xlMapsto[A]{sdfkjhsdf}  (double arrow version)
+
+
+
+\usepackage[style = ieee, urldate = comp]{biblatex}
+
+
+%%==============================================================================
+%% ---------- DEFINITIONS  -----------
+% New terms will be typeset as follows:
+% \newcommand{\defn}[1]{{\bf \emph{#1}}}    % bold and italic
+% (later we can change this to just bold, or just italic if we want)
+% \newcommand{\defn}[1]{{\bf #1}}  % bold
+% \newcommand{\defn}[1]{\emph{#1}}  % italic
+
+% Both definitions and indexing (from the commutator book):
+%%%--------------------------------------------------------
+%%% (modified from the free lattice book)
+%%% \defn usage:
+%%%     This writes its argument in bold italics and also calls \index
+%%%     for the index. eg.
+%%%
+%%%     \defn{join cover}
+%%%
+%%%     It has an optional second argument to specify the index
+%%%     entry more precisely which works just like \index.
+%%%
+%%%     If you are writing about join covers (but they were defined
+%%%     earlier, you can use \index{join cover}. This puts
+%%%     nothing in the text, but makes an index entry.
+%%%
+\newcommand{\indexit}[1]{\index{#1|textit}}
+\def\defn#1{\gdef\defnstring{#1}%
+  %%% original:   \xdef\dodefnii{{\noexpand\em
+  %% \xdef\dodefnii{{\noexpand\bfseries\noexpand\em
+  \xdef\dodefnii{{\noexpand\em
+       \defnstring}\noexpand\indexit{\defnstring}\noexpand\makeatother}%
+  \futurelet\nextthing\dodefn}
+\def\dodefn{%
+  \ifx\nextthing[\let\next=\dodefni
+    \else\let\next=\dodefnii\fi
+  \makeatletter
+  \next}
+
+\def\dodefni[#1]{%
+  {\bfseries\em\defnstring}%
+  \indexit{#1}%
+  \makeatother}
+
+%\newcommand{\defn}[1]{{\bf #1}}  %% \defn is now defined above so 
+%%                  that each use is accompanied by an index entry.
+%%                  To define something without an index entry, use
+\newcommand{\defb}[1]{{\bf #1}}  %%       \defb (for bold)
+\newcommand{\defi}[1]{{\it #1}}  %%       \defi (for italicised)
+\newcommand{\defbi}[1]{{\bfseries \em  #1}}  %%       \defbi (for bold and ital)
+
+
+%% CATEGORIES
+\newcommand{\cat}[1]{\ensuremath{\mathcal{#1}}\xspace}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\C}{\ensuremath{\mathbb C}}
+\newcommand{\Z}{\ensuremath{\mathbb Z}}
+\newcommand{\sL}{\ensuremath{\mathcal L}}
+\newcommand{\sT}{\ensuremath{\mathcal T}}
+\newcommand{\sE}{\ensuremath{\mathcal E}}
+\newcommand{\nn}{\ensuremath{\underline{n}}}
+\newcommand{\cC}{\cat{C}}
+\newcommand{\cD}{\cat{D}}
+\newcommand{\cE}{\cat{E}}
+\newcommand{\cF}{\cat{F}}
+\newcommand{\cM}{\cat{M}}
+\newcommand{\src}{\ensuremath{\operatorname{src}}}
+\newcommand{\tar}{\ensuremath{\operatorname{tar}}}
+
+\newcommand\vf{\ensuremath{\mathbf{f}}}
+\newcommand\vE{\ensuremath{\operatorname{E}}}
+\newcommand\vfour{\ensuremath{\underline{4}}}
+
+\newcommand\Set{\ensuremath{\mathbf{Set}}}        %% Sets and total functions
+\newcommand\Par{\ensuremath{\mathbf{Par}}}        %% Sets and partial functions
+\newcommand\Mon{\ensuremath{\mathbf{Mon}}}        %% Monoids
+\newcommand\ocpo{\ensuremath{\omega\mathbf{cpo}}} %% omega-chain cocomplete posets
+\newcommand\dcpo{\ensuremath{\mathbf{dcpo}}}      %% directed-cocomplete posets
+\newcommand\Pre{\ensuremath{\mathbf{Pre}}}        %% Preorders
+\newcommand\Poset{\ensuremath{\mathbf{Poset}}}    %% Posets
+\newcommand\Grp{\ensuremath{\mathbf{Grp}}}        %% Lattices
+\newcommand\Lat{\ensuremath{\mathbf{Lat}}}        %% Lattices
+\newcommand\CLat{\ensuremath{\mathbf{CLat}}}      %% Compelete lattices
+\newcommand\ACLat{\ensuremath{\mathbf{ACLat}}}    %% Algebraic compelete lattices
+\newcommand\BLat{\ensuremath{\mathbf{BLat}}}      %% Boolean lattices
+\newcommand\HLat{\ensuremath{\mathbf{HLat}}}      %% Heyting lattices
+\newcommand\SDom{\ensuremath{\mathbf{SDom}}}      %% Scott domains
+
+%% Alternatively, we could use the more traditional double underline.
+%% \def\dunderline#1{\underline{\underline{#1}}}
+%% \newcommand\Set{\ensuremath{\dunderline{\mathrm{Set}}}}
+
+%%==============================================================================
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acronyms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \usepackage[acronym, shortcuts]{glossaries}
+%\usepackage[smaller]{acro}
+\usepackage[smaller]{acronym}
+
+%% \acs{CSP} -- short version of the acronym\\
+%% \acl{CSP} -- expanded acronym without mentioning the acronym.\\
+%% \acp{CSP} -- plurals.\\
+%% \acfp{CSP} -- long forms into plurals.\\
+%% \acsp{CSP} -- short form into a plural.\\
+%% \aclp{CSP} -- long form into a plural.\\
+%% \acfi{CSP} -- Full Name acronym in italics and abbreviated form in upshape.\\
+%% \acsu{CSP} -- short form of the acronym and marks it as used.\\
+%% \aclu{CSP} -- Prints the long form of the acronym and marks it as used.\\
+
+\usepackage{xspace}
+
+\acrodef{sat}[SAT]{satisfiability}
+\acrodef{dsp}[DSP]{discrete signal processing}
+\acrodef{nae}[NAE]{not-all-equal}
+\acrodef{ctb}[CTB]{cube term blocker}
+\acrodef{tct}[TCT]{tame congruence theory}
+\acrodef{wnu}[WNU]{weak near-unanimity}
+\acrodef{CSP}[CSP]{constraint satisfaction problem}
+\acrodef{cib}[CIB]{commutative idempotent binar}
+\acrodef{NP}[NP]{nondeterministic polynomial time}
+\acrodef{P}[P]{polynomial time}
+\acrodef{PeqNP}[P $ = $ NP]{P is NP}
+\acrodef{PneqNP}[P $ \neq $ NP]{P is not NP}
+\newcommand{\bool}{\ensuremath{\mathtt{Bool}}}
+\newcommand{\true}{\ensuremath{\mathtt{true}}}
+\newcommand{\false}{\ensuremath{\mathtt{false}}}
+\newcommand{\CSP}{\ensuremath{\operatorname{CSP}}}
+\newcommand{\slt}{\ensuremath{\mathbf S_2}}
+\newcommand{\wnu}{\acs{wnu}\xspace}
+\newcommand{\tct}{\acs{tct}\xspace}
+\newcommand{\ctb}{\acs{ctb}\xspace}
+\newcommand{\csp}{\acs{CSP}\xspace}
+\newcommand{\dsp}{\acs{dsp}\xspace}
+\newcommand{\sat}{\acs{sat}\xspace}
+\newcommand{\nae}{\acs{nae}\xspace}
+\newcommand{\csps}{\acsp{CSP}\xspace}
+\newcommand{\cib}{\acs{cib}\xspace}
+\newcommand{\cibs}{\acsp{cib}\xspace}
+\newcommand{\PeqNP}{\acs{PeqNP}\xspace}
+\newcommand{\PneqNP}{\acs{PneqNP}\xspace}
+\newcommand{\NPcomplete}{\acs{NP}-complete\xspace}
+\newcommand{\NP}{\acs{NP}\xspace}
+\renewcommand{\P}{\acs{P}\xspace}
+%\newcommand{\Maroti}{\textsf{Mar\'{o}ti}\xspace}
+\usepackage{scalefnt}
+\usepackage{tikz}
+\usepackage{color}
+\usepackage[margin=1in]{geometry}
+\usetikzlibrary{calc}
+\newcommand{\mfA}{\ensuremath{\mathfrak{A}}}
+\newcommand{\mfX}{\ensuremath{\mathfrak{X}}}
+\newcommand{\lb}{\ensuremath{\llbracket}}
+\newcommand{\rb}{\ensuremath{\rrbracket}}
+\newcommand{\id}{\ensuremath{\operatorname{id}}}
+\newcommand{\fin}{\ensuremath{\operatorname{fin}}}
+\newcommand{\Eq}{\ensuremath{\operatorname{Eq}}}
+\newcommand{\Rel}{\ensuremath{\operatorname{Rel}}}
+\newcommand{\Proj}{\ensuremath{\operatorname{Proj}}}
+\newcommand{\arity}{\ensuremath{\operatorname{arity}}}
+\newcommand{\Op}{\ensuremath{\operatorname{Op}}}
+\newcommand{\alg}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\Sub}{\ensuremath{\operatorname{Sub}}}
+\newcommand{\Con}{\ensuremath{\operatorname{Con}}}
+\newcommand{\Clo}{\ensuremath{\operatorname{Clo}}}
+\newcommand{\Pol}{\ensuremath{\operatorname{Pol}}}
+\newcommand{\Poly}{\ensuremath{\operatorname{Poly}}}
+\newcommand{\V}{\ensuremath{\operatorname{V}}}
+
+\usepackage{bm}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\SDwedge}{\ensuremath{\mbox{SD}_\wedge}}
+
+\newcommand{\<}{\ensuremath{\langle}}
+\renewcommand{\>}{\ensuremath{\rangle}}
+\newcommand{\bR}{\ensuremath{\mathbf{R}}}
+\newcommand{\sansM}{\ensuremath{\mathsf{M}}}
+\newcommand{\sansA}{\ensuremath{\mathsf{A}}}
+\newcommand{\sansC}{\ensuremath{\mathsf{C}}}
+\newcommand{\sansH}{\ensuremath{\mathsf{H}}}
+\newcommand{\sansO}{\ensuremath{\mathsf{O}}} % ALL FINITARY OPERATIONS
+\newcommand{\sansP}{\ensuremath{\mathsf{P}}}
+\newcommand{\sansPoly}{\ensuremath{\mathsf{poly}}}
+\newcommand{\sansRel}{\ensuremath{\mathsf{rel}}}
+\newcommand{\sansClo}{\ensuremath{\mathsf{clo}}}
+\newcommand{\sansR}{\ensuremath{\mathsf{R}}} % ALL FINITARY RELATIONS
+\newcommand{\sansS}{\ensuremath{\mathsf{S}}}
+\newcommand{\sansT}{\ensuremath{\mathsf{T}}}
+\newcommand{\bA}{\ensuremath{\mathbf{A}}}
+\newcommand{\bD}{\ensuremath{\mathbf{D}}}
+\newcommand{\bF}{\ensuremath{\mathbf{F}}}
+\newcommand{\bM}{\ensuremath{\mathbf{M}}}
+\newcommand{\bP}{\ensuremath{\mathbf{P}}}
+\newcommand{\br}{\ensuremath{\mathbf{r}}}
+\newcommand{\bbA}{\ensuremath{\mathbb{A}}}
+\newcommand{\bbB}{\ensuremath{\mathbb{B}}}
+\newcommand{\bbC}{\ensuremath{\mathbb{C}}}
+\newcommand{\bbD}{\ensuremath{\mathbb{D}}}
+\newcommand{\bbS}{\ensuremath{\mathbb{S}}}
+\newcommand{\bbV}{\ensuremath{\mathbb{V}}}
+\newcommand{\bs}{\ensuremath{\mathbf{s}}}
+\newcommand{\sA}{\ensuremath{\mathscr{A}}}
+\newcommand{\sB}{\ensuremath{\mathcal{B}}}
+\newcommand{\sS}{\ensuremath{\mathscr{S}}}
+\newcommand{\bB}{\ensuremath{\mathbf{B}}}
+\newcommand{\bC}{\ensuremath{\mathbf{C}}}
+%\newcommand{\cC}{\ensuremath{\mathcal{C}}}
+\newcommand{\cS}{\ensuremath{\mathcal{S}}}
+\newcommand{\cP}{\ensuremath{\mathcal{P}}}
+\newcommand{\sC}{\ensuremath{\mathscr{C}}}
+\newcommand{\cI}{\ensuremath{\mathcal{I}}}
+\newcommand{\sI}{\ensuremath{\mathscr{I}}}
+\newcommand{\sM}{\ensuremath{\mathscr{M}}}
+\newcommand{\sR}{\ensuremath{\mathscr{R}}}
+\newcommand{\bS}{\ensuremath{\mathbf{S}}}
+\newcommand{\bx}{\ensuremath{\mathbf{x}}}
+\newcommand{\power}[1]{\ensuremath{\mathscr{P}(#1)}}
+\newcommand{\sP}{\ensuremath{\power{P}}}
+\newcommand{\balpha}{\ensuremath{\boldsymbol{\alpha}}}
+\newcommand{\bbeta}{\ensuremath{\boldsymbol{\beta}}}
+\newcommand{\bgamma}{\ensuremath{\boldsymbol{\gamma}}}
+\newcommand{\bdelta}{\ensuremath{\boldsymbol{\delta}}}
+\newcommand{\bepsilon}{\ensuremath{\boldsymbol{\epsilon}}}
+\newcommand{\AAn}{\ensuremath{A^{(A^n)}}}
+\newcommand{\AAm}{\ensuremath{A^{(A^m)}}}
+\newcommand{\AAk}{\ensuremath{A^{(A^k)}}}
+\newcommand{\meet}{\ensuremath{\wedge}}
+\newcommand{\Meet}{\ensuremath{\bigwedge}}
+\renewcommand{\Join}{\ensuremath{\bigvee}}
+\newcommand{\join}{\ensuremath{\vee}}
+\newcommand{\relR}{\ensuremath{\mathrel{R}}}
+
+%%////////////////////////////////////////////////////////////////////////////////
+%% Theorem styles
+\numberwithin{equation}{section}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{remarks}{Remarks}
+\newtheorem{fact}{Fact}
+\newtheorem*{obs}{Observation}
+%\newtheorem{definition}{Definition}
+%\newtheorem{example}{Example}
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}{Lemma}
+
+
+\usepackage{setspace}
+\onehalfspacing
+
+\addbibresource{refs.bib}
+
+%% All exercises can be excluded by setting the exercises variable to false.
+\newboolean{exercises}
+\setboolean{exercises}{true}
+%% To remove exercises, uncomment `\setboolean{exercises}{false}`
+%%\setboolean{exercises}{false}  % set to false to exclude exercises
+\newcommand{\Exercise}[1]{\ifthenelse{\boolean{exercises}}{\begin{exercise}#1\end{exercise}}{}}
+
+
+\makeindex 
+
+
+%%% This enables markdown style bold and italic. %%%
+\makeatletter
+\def\starparse{\@ifnextchar*{\bfstarx}{\itstar}}
+\def\bfstarx#1{\@ifnextchar*{\bfitstar\@gobble}{\bfstar}}
+\makeatother
+\def\itstar#1*{\textit{#1}\starON}
+\def\bfstar#1**{\textbf{#1}\starON}
+\def\bfitstar#1***{\textbf{\textit{#1}}\starON}
+\def\starON{\catcode`\*=\active}
+\def\starOFF{\catcode`\*=12}
+\starON
+\def*{\starOFF \starparse}
+\starOFF
+
+\begin{document}
+%\date{27 February 2015}
+%\date{17 March 2015\\
+%\date{20 May 2015\\
+\date{\today \\
+  The latest draft is available at
+  \href{https://github.com/williamdemeo}{github.com/williamdemeo}
+}
+\title[Introductory Fourier Analysis on Groups]{Introduction to Fourier analysis \\over finite Abelian groups}
+\author{William DeMeo}
+
+\maketitle
+
+\starON
+
+\begin{abstract}
+These are lecture notes to accompany two lectures, intended for linear algebra
+students, covering just a few basic definitions and
+facts that are useful in applications such as {\bf d}igital 
+(or {\bf d}iscrete-time) {\bf s}ignal {\bf p}rocessing 
+(\dsp).\footnote{See 
+  \href{https://en.wikipedia.org/wiki/Digital_signal_processing}{Wikipedia:Digital
+    signal processing}.
+}
+The objective is to acquaint students with yet another area
+in which vector spaces and linear transformations naturally arise.
+
+The work of Richard Tolimieri and Myoung An is the main source of inspiration
+for these lectures. (See~\cite{MR2159216}, for example.) 
+
+
+
+%practical problems can be set up and solved in the powerful framework of
+\end{abstract}
+
+\part{Translations and Convolutions (Monday)}
+
+\section{Definitions and Notations}
+
+%% \subsection{Definitions}
+%% We start off with the basic vocabulary we will need.  
+%% The terms that are set in italicized-bold font are, for the present purposes, 
+%% the most important, followed by terms set in italics.
+
+We view a ``digital signal'' as simply a complex-valued function
+defined on a finite set.  For example, if we sampled an analog signal at $n$
+points, and if we let $f(k)$ denote the value  
+we observed at point $k$, then the result is a function 
+$f: \{0,1,\dots, n-1\} \to \C$, which we may identify with the $n$-tuple 
+(or vector) of values, $\vf = (f(0), f(1), \dots, f(n-1))$.  Thus, we may equate
+the set of all such ``length-$n$'' signals with the (complex) vector space
+$\C^n$.\footnote{The vector space $\C^n$ is described in detail in the first
+  section of Chapter 7 of our textbook.}
+
+Throughout this lecture, we assume that our signals are always defined on the
+``index set'' 
+\[
+\nn := \{0, 1, \dots, n-1\},
+\]
+We need to endow this set with
+some additional structure.   
+In particular, we want to define a binary ``addition'' operation on the 
+index set, so that we can give meaning to ``translations'' of signals
+and evaluate expressions such as $f(x+y)$.
+%%  for any
+%% $x, y \in \{0, 1, \dots, n-1\}$.  
+ We have to be a little bit careful
+when doing this, because if the signal is only defined on 
+the set $\nn$, then $f(x+y)$ only has meaning if the 
+binary addition operation $(x,y) \mapsto x+y$ returns a number in $\nn$
+for every pair $(x, y) \in \nn \times \nn$. 
+To make this work, we use the so called \defn{cyclic group} $\Z/n\Z$ of
+integers modulo $n$ for the index set, which we define in just a moment.  
+But first let me note that, although it's possible the exploit the group
+structure of $\Z/n\Z$ to simplify the presentation of \dsp, 
+we will hardly use any group theory in these notes.
+Having said that, we do need to know a few very basic facts about
+$\Z/n\Z$.\footnote{If you are curious to know more about the cyclic group 
+  $\Z/n\Z$, see~\href{https://en.wikipedia.org/wiki/Abelian_group}{Wikipedia:
+    Abelian group.}   
+}
+But first, here is the definition we will use.  
+For simplicity, we will identify $\Z/n\Z$ with the set
+$\{0, 1, \dots, n-1\}$, along with the following operations defined on this set:
+\begin{itemize}
+\item (binary addition) $(x,y) \mapsto x+y$ is addition modulo $n$
+\item (unary negation) $x\mapsto -x$ is $n-x$
+\item (nullary identity) $0$ satisfies $x+0 = x = 0+x$.
+\end{itemize}
+Note that addition modulo $n$ is commutative ($x+y = y+x$, for all $x,y$) 
+and associative ($(x+y)+z = x+(y+z)$ for all $x,y,z$). 
+Although it is not a standard convention, it will greatly simplify our notation 
+to let the symbol $\nn$ stand for both the set 
+$\{0, 1, \dots, n-1\}$ as well as the cyclic group $\Z/n\Z$ with
+operations defined as above.  So, $\nn$ is the \defn{algebraic structure}
+$\<\{0,1,\dots, n-1\}, +, -, 0\>$, where $+$, $-$, and $0$ are taken to be the
+binary, unary, and nullary (resp.) operations defined above. 
+
+One fact about the group $\nn$ that
+is easily deduced from the definition is that $nx = 0$
+holds for all $x \in \nn$.
+\begin{exercise}
+\label{exer:nx}
+  Prove that $nx = 0$ holds for all $x \in \nn$.
+\end{exercise}
+
+Denote by $\sL(\nn)$ the set of all complex-valued functions defined on $\nn$.
+Define a (binary) addition operation on $\sL(\nn)$ as follows: 
+$(f,g) \mapsto f+g$ where $f+g$ is the function in $\sL(\nn)$ 
+defined for each $x\in \nn$ by
+\begin{equation}
+  \label{eq:1}
+(f+g)(x) = f(x) + g(x).
+\end{equation}
+(On the right-hand side of~(\ref{eq:1}) is the usual addition of 
+two complex numbers, $f(x)$ and $g(x)$.) 
+For each $c\in \C$, define a (unary) scalar multiplication operation on 
+$\sL(\nn)$ by $f \mapsto cf$, where $cf$ is the function in $\sL(\nn)$ 
+defined for each $x\in \nn$ by
+\begin{equation}
+  \label{eq:2}
+(cf)(x) = c f(x).
+\end{equation}
+(On the right is the usual multiplication of two complex numbers, $c$ and $f(x)$.)
+\begin{exercise}
+  Prove that set $\sL(\nn)$, along with vector addition and scalar multiplication
+  defined in the previous paragraph, is a vector space.  What is
+  the zero vector?
+\end{exercise}
+The vector space $\sL(\nn)$ is the \defn{space of complex-valued functions} 
+on $\nn$. The elements of $\sL(\nn)$ are 
+functions $f: \{0,1,\dots, n-1\} \to \C$, and we can identify each such function
+with the $n$-tuple (or vector) of its values, 
+$\vf = (f(0), f(1), \dots, f(n-1))$.  
+Thus, as mentioned above, we may identify the space 
+$\sL(\nn)$ of complex-valued functions with the $n$-dimensional complex 
+vector space $\C^n$, which is described in the first section of Chapter 7 
+of our textbook.
+
+\subsection{Convolution and Translation}
+An important operation in signal processing and elsewhere is called convolution
+which can be viewed as a sort of ``mixing'' of two signals. 
+Given two signals, $f$ and $g$ in
+$\sL(\nn)$, we define the \emph{convolution of $g$ by $f$} to be the function
+$f\ast g \in \sL(\nn)$ defined for each $x\in \nn$ as follows:
+\begin{equation}
+  \label{eq:3}
+(f\ast g)(x) = \sum_{y\in \nn} f(y) g(x-y).
+\end{equation}
+Note that the expression on the right hand side of (\ref{eq:3}) makes sense
+because of the way we defined addition and negation as (group) operations 
+on $\nn$.  In particular, for all $x, y \in \nn$, we have 
+$x-y\in \nn$.
+
+{\bf Warning:} Many authors call the operation defined in 
+(\ref{eq:3}) ``cyclic convolution'' and
+reserve the unqualified term ``convolution'' for the same operation defined on
+$\sL(\Z)$.\footnote{$\sL(\Z)$ denotes the space of complex-valued 
+functions defined on $\Z = \{\dots, -2, -1, 0, 1, 2, \dots\}$; the convolution of 
+two such functions is
+$(f\ast g)(x) = \sum_{y\in \Z} f(y) g(x-y)$.
+}
+
+The best way to view the expression in (\ref{eq:3}) is as a linear combination
+of translations of the function $g$. Indeed, for each $y\in \nn$, define the
+\defn{translation by $y$} as the mapping $\sansT(y): \sL(\nn) \to \sL(\nn)$ that
+takes a function $g\in \sL(\nn)$ to the (``$y$-translated'') function 
+$\sansT(y) g$, which is defined for each $x\in \nn$ as follows:
+\[
+(\sansT(y) g)(x) = g(x-y).
+\]
+
+\begin{example}
+  Suppose $g\in \sL(\vfour)$ is 
+  $(g(0), g(1), g(2), g(3)) = (5,6,7,8)$. Then $\sansT(1)g$ is
+  \[
+  (g(0-1), g(1-1), g(2-1), g(3-1))
+  = (g(3), g(0), g(1), g(2)) = (8,5,6,7).
+  \]
+So we see that $\sansT(1)$ performs a (cyclic) shift on its operand $g$; 
+it moves all the values of $g$ one place to the right, and wraps the end of the
+vector around to the beginning.  Similarly,
+$\sansT(3)g$ is $(g(1), g(2), g(3), g(0)) = (6,7,8,5)$.
+\end{example}
+
+\begin{exercise}
+  Prove that for each $y\in \nn$ the translation by $y$ operator 
+  $\sansT(y): \sL(\nn) \to \sL(\nn)$ is a linear transformation.
+\end{exercise}
+For each $x\in \nn$ denote by $e_x\in \sL(\nn)$ the function that is $1$ at $x$
+and $0$ otherwise.  That is, 
+\[
+e_x(k) = 
+\begin{cases}
+  1, & k=x,\\
+  0, & k\neq x.
+\end{cases}
+\]
+The set $\{e_x : x \in \nn\}$ 
+is called the \defn{canonical basis} for $\sL(\nn)$.  The next exercise 
+asks you to give partial justification for this terminology.
+\begin{exercise}
+Prove that the canonical basis is a basis for $\sL(\nn)$.
+\end{exercise}
+Translations permute the elements of the canonical basis,
+\[
+\sansT(y)e_x = e_{x+y}, \quad x, y \in \nn.
+\]
+For each $y\in \nn$, $\sansT(y)$ is a linear transformation of $\sL(\nn)$ so we can
+represent $\sansT(y)$ as a matrix with respect to the given basis.
+For example, relative to the canonical basis 
+$\sE = \{e_0, e_1, \dots, e_{n-1}\}$, the linear transformation $\sansT(1)$ is
+represented by the ``cyclic shift'' matrix
+\[
+[\sansT(1)]_\sE = 
+\begin{bmatrix}
+0 & 1    &     &\cdots&  0\\
+  & 0    & 1    &     & \vdots\\
+\vdots  &      &\ddots&\ddots&        \\
+0  &     &      &        0   & 1 \\
+1  & 0    &\cdots&      & 0
+\end{bmatrix}.
+\]
+
+If we denote by $\sT(\nn)$ the collection of all translations on $\sL(\nn)$, that is,
+\[
+\sT(\nn):= \{\sansT(y) : y \in \nn\},
+\]
+then the mapping $\sansT : \nn \to \sT(\nn)$ satisfies, for all
+$x, y \in \nn$,
+\begin{equation}
+  \label{eq:4}
+\sansT(x+y) = \sansT(x)\sansT(y) 
+\quad  \text{ and } \quad
+\sansT(y)^{-1} = \sansT(-y).
+\end{equation}
+Thus $\sT(\nn)$ is closed under operator composition and operator inverse.
+Moreover, $\sT(\nn)$ is a 
+\defn{commuting family} of linear operators, that is 
+$\sansT(x)\sansT(y)  =  \sansT(y)\sansT(x)$ holds for all
+$x, y \in \nn$. Indeed,
+since addition modulo $n$ is commutative, we have by (\ref{eq:4})
+\[
+\sansT(x)\sansT(y) = \sansT(x+y) = \sansT(y+x) = \sansT(y)\sansT(x).
+\]
+Also, by Exercise~\ref{exer:nx}, we have
+\[
+\sansT(y)^n = \sansT(ny) = \sansT(0) = \id_{\sL(\nn)},
+\]
+where $\id_{\sL(\nn)}$ denotes the identity operator (that is, $\id_{\sL(\nn)}(f) = f$).
+%\subsection{Convolution as a linear combination of translations}
+For $f \in \sL(\nn)$, define the function $\sansC(f): \sL(\nn) \to \sL(\nn)$ as the
+following linear combination of translations:
+\[
+\sansC(f) = \sum_{y\in \nn} f(y) \sansT(y).
+\]
+We call $\sansC(f)$ \defn{convolution by $f$}. As a linear combination 
+of %% translations---which are themselves 
+linear transformations, convolution 
+by $f$ is itself linear.
+%% \begin{exercise}
+%%   Prove directly that convolution by $f$ is also a linear transformation.
+%% \end{exercise}
+We can now define for all
+$f, g\in \sL(\nn)$ the \emph{convolution of $g$ by $f$} by applying
+the ``convolution by $f$'' operator to $g$, resulting in the function
+\[
+\sansC(f) g = \sum_{y\in \nn} f(y) \sansT(y) g.
+\]
+This is the function defined for each $x\in \nn$ by 
+\[
+(\sansC(f) g)(x) = \sum_{y\in \nn} f(y) \sansT(y) g(x)
+= \sum_{y\in \nn} f(y) g(x-y),
+\]
+which agrees with the function $f\ast g$ defined above, as expected.
+
+Note that, by the change of variables $z = x-y$, we have
+\[
+(\sansC(f) g)(x) = \sum_{y\in \nn} f(y) g(x-y)
+= \sum_{x-z\in \nn} f(x-z) g(z)
+= \sum_{z\in \nn} g(z) f(x-z) = (\sansC(g) f)(x),
+\]
+so that $\sansC(f)g = \sansC(g)f$.
+
+
+\begin{exercise}
+  ~
+  \begin{enumerate}[{\bf a}]
+  \item (for programmers).
+    In your favorite programming language, 
+    try to implement the cyclic convolution described 
+    in this section.\footnote{This 
+      can be done quite easily in Scala or Python, for example.}
+    Your program should accept as input two functions 
+    (lists? vectors? ...your choice) 
+    $f$ and $g$ of type 
+    $\{0,1,\dots, n-1\} \to \C$ and return the function
+    $\sansC(f)g$ (the convolution of $g$ by $f$).  
+    (To make your life easier, just get it to work for the special case of 
+    real-valued functions, and don't worry about handling complex numbers at this point.)
+
+  \item (for functional programmers). See if you can write your convolution
+    method so that it can be partially applied.  That is, it can take
+    a single function $f$ as input and return the operator $\sansC(f)$, 
+    which is a function of type $\sL(\nn) \to \sL(\nn)$.
+    (That is, if you apply your function to a single $f\in \sL(\nn)$, 
+    then the output is the function $\sansC(f)$ that takes another
+    function $g\in \sL(\nn)$ as input and returns $\sansC(f)g$.)
+  ({\it Hint:} If your favorite programming language has  
+  {\tt map} and {\tt reduce}, use them!)
+  \end{enumerate}
+\end{exercise}
+
+The \dsp of functions defined on $\nn$ is mainly 
+about \emph{translation-invariant subspaces} and
+\emph{translation-invariant linear operators} on $\sL(\nn)$.  
+A subspace $V\leq \sL(\nn)$ is called \emph{translation-invariant}
+if for all $f\in V$ and $y\in \nn$, we have $\sansT(y)f \in V$.
+A linear operator $\sansM : \sL(\nn) \to \sL(\nn)$ is called 
+\emph{translation-invariant} if for all $y \in \nn$ we have 
+$\sansM \,\sansT(y) = \sansT(y) \,\sansM$.  
+
+\begin{exercise}
+  ~
+  \begin{enumerate}[{\bf a.}]
+  \item 
+    Suppose $V$ is a translation-invariant subspace.
+    Prove that $V$ is also ``convolution-invariant.''  That is,
+    for $g\in V$ and $f\in \sL(\nn)$, we have $\sansC(f)g \in V$.
+  \item
+    Suppose $\sansM$ is a translation-invariant linear operator 
+    on $\sL(\nn)$.
+    Prove that $\sansM$ is also ``convolution-invariant.''  That is,
+    for $f\in \sL(\nn)$, we have $\sansC(f)\,\sansM = \sansM \,\sansC(f)$.
+  \item Suppose $\lambda$ is an eigenvalue of the translation operator $\sansT(y)$.
+    Say precisely what this means and then describe the eigenspace
+    $\vE(\lambda)$ of $\sansT(y)$ associated with $\lambda$.  Is 
+    $\vE(\lambda)$ a translation-invariant subspace of $\sL(\nn)$?
+  \end{enumerate}
+\end{exercise}
+
+\medskip
+
+\part{Fourier Analysis (Tuesday)}
+\label{part:four-analys-tuesd}
+Before proceeding, students who are not already familiar with complex numbers should take a moment
+to familiarize themselves with the basic definitions and facts.\footnote{In lecture last week
+we covered almost everything we need to know about complex numbers except for Euler's forumula and
+roots of unity.  Appendix Section~\ref{sec:very-brief-intr} covers these topics.}
+Please consult either the breif appendix section below, or read
+\href{https://en.wikipedia.org/wiki/Complex_number}{Wikipedia: Complex number} 
+or type something like ``complex numbers primer'' into google.
+
+Fourier analysis provides the tools for the construction and analysis of 
+translation-invariant subspaces and operators of $\sL(\nn)$.  
+These tools begin
+with the construction of a special basis of $\sL(\nn)$ as follows:
+For $y\in \nn$, let $\varepsilon_y \in \sL(\nn)$ to be the complex-valued function
+whose value at $x$ is $e^{2\pi i \frac{yx}{n}}$, where $yx$ is the product
+modulo $n$. Thus, for each $x\in \nn$,
+\[
+\varepsilon_y(x) = e^{2\pi i \frac{yx}{n}}.
+\]
+The collection $\{\varepsilon_y : y \in \nn\}$ is a basis for $\sL(\nn)$ called the
+\defn{exponential basis}.  To prove that this set really does form a basis, we
+need the following important lemma (which is proved in Appendix Section~\ref{sec:very-brief-intr}):
+\begin{lemma}
+\label{lem:sum-roots-of-unity}
+\begin{equation}
+  \label{eq:10}
+\sum_{j\in \nn} e^{2\pi i \frac{kj}{n}} = 
+\begin{cases}
+  n, & k \equiv 0 \mod n,\\
+  0, & \mathrm{ otherwise}.
+\end{cases}
+\end{equation}
+\end{lemma}
+The formula (\ref{eq:10}) is at the heart of some of the most 
+important \dsp theorems and algorithms, including the Fast Fourier Transform and Shannon sampling.
+
+\subsection{Translation eigenvector basis}
+Let $T:V \to V$ be a linear transformation. Recall that an \emph{eigenvalue} of $T$ 
+is a scalar $\lambda$ for which there exists a nonzero vector $v\in V$ 
+satisfying $Tv = \lambda v$.  Let us call such a vector $v$ a \emph{$T$-eigenvector}.
+%% (without necessarily referencing the corresponding $\lambda$).
+Now suppose that $\sT$ is a collection of linear transformations on $V$ 
+and suppose there is a single vector $v$ that is a $T$-eigenvector for every $T \in \sT$.
+We call such $v$ a $\sT$-eigenvector.  
+Of course, the eigenvalue associated with each $T$ may vary, but we can define 
+a function $\lambda: \sT \to \C$ that denotes the corresponding eigenvalue; that is,
+for each $T\in \sT$, we have
+\[
+T v = \lambda(T) v.
+\]
+For example, above we considered the set 
+$\sT(\nn) = \{\sansT(y) : y \in \nn\}$ of translations defined on $\sL(\nn)$.
+In this section, we will prove that every exponential function $\varepsilon_y$
+%$\varepsilon_y(x) = e^{2\pi i \frac{yx}{n}}. 
+is a $\sT(\nn)$-eigenvector, and that
+the so called ``exponential basis,'' defined above 
+by $\{\varepsilon_y : y \in \nn\}$, 
+really is a basis for $\sL(\nn)$.
+The first of these facts is easy to prove, so we dispense with it immediately.
+\begin{theorem}
+Each exponential function 
+$\varepsilon_z(x) = e^{2\pi i \frac{zx}{n}}$ is a $\sT(\nn)$-eigenvector with eigenvalues
+$\lambda(\sansT(y)) = \varepsilon_z(-y)$.  That is,
+\[
+\sansT(y)\varepsilon_z = \varepsilon_z(-y)\varepsilon_z.
+\]
+\end{theorem}
+\begin{proof}
+Fix $x\in \nn$.  Then,  
+\[
+\sansT(y)\varepsilon_z(x) = \varepsilon_z(x-y) =e^{2\pi i \frac{z(x-y)}{n}}
+=e^{2\pi i \frac{z(-y)}{n}}e^{2\pi i \frac{zx}{n}}=
+\varepsilon_z(-y)\varepsilon_z(x).
+\]
+In other terms,
+$\sansT(y)\varepsilon_z = \varepsilon_z(-y)\varepsilon_z$, as desired.
+\end{proof}
+The other main result we want to prove in this section is
+\begin{theorem}
+The set $\{\varepsilon_y : y\in \nn\}$ is a basis for $\sL(\nn)$.  
+\end{theorem}
+
+This takes more work...
+
+\medskip
+
+(to be continued)
+
+\medskip
+
+\appendix
+
+\section{Brief introduction to complex numbers}
+\label{sec:very-brief-intr}
+We will review just a couple of basic facts about complex numbers 
+and complex exponential functions that we use repeatedly 
+in these lectures.
+
+Hopefully we all learned in high school that there is no real number whose 
+square is $-1$.  In other words, the field of real numbers contains no element 
+$x$ such that $x^2 = -1$.
+Nonetheless, it can be very helpful to have a mathematical formalism that 
+can deal with the object $\sqrt{-1}$ and even put it to work for us.
+This is where ``complex numbers'' come from.
+We extend the real numbers and give a special name to 
+the object $\sqrt{-1}$.  Most authors use $i$ to refer to $\sqrt{-1}$, but some 
+authors (expecially engineers and physicists) like to use $j$. 
+We will adopt the convention  $i = \sqrt{-1}$.  So, for example, we have
+$i^2 = -1$ and $\sqrt{-9} = \sqrt{(-1)(9)} = \sqrt{-1}\sqrt{9} = i3$ 
+and $\sqrt{-2} = i\sqrt{2}$.
+
+More generally, a \defn{complex number} is a number of the form 
+$z = a + ib$ for some real numbers $a$ and $b$. 
+The first component $a = \Re(z)$ is called the \defn{real part} of $z$, 
+and the second component $b = \Im(z)$ is called the imaginary part.
+The set of all complex numbers is denoted by $\C$.  That is,
+\[
+\C = \{a + i b : a, b \in \R\}.
+\]
+Note that the complex numbers include the real numbers 
+(as complex numbers having imaginary part 0).
+It is sometimes helpful to view the complex number $z = a + ib$ 
+as an ordered pair $(a,b)$ and in that sense we see
+$z$ as an element of the so called \defn{complex plane} (also denoted by $\C$),
+which looks a lot like $\R^2$ (the real plane), with one major difference:
+in the complex plane, the pair $(a,b)\in \C$ gives
+the coordinates of a point with respect to the basis $\{1, i\}$ (instead of the 
+basis $\{(1,0), (0,1)\}$).
+
+Thus, we can depict the complex number $z = a+ib$
+as the point in the complex plane with coordinates 
+$(a,b)$, where numbers on the vertical axis 
+are scalar multiples of $i$.
+In the complex plane,
+the vertical axis is sometimes called the \defn{imaginary axis}, 
+which the horizontal axis is sometimes called the \defn{real axis}.
+
+%% ``Complex conjugate picture'' by Oleg Alexandrov - Vectorized version of http://ja.wikipedia.org/wiki/%E7%94%BB%E5%83%8F:Complex.png with some tweaks. Licensed under CC BY-SA 3.0 via Commons - https://commons.wikimedia.org/wiki/File:Complex_conjugate_picture.svg#/media/File:Complex_conjugate_picture.svg
+
+The \defn{complex conjugate} of $z = a+ib$ is 
+$\bar{z} = a-ib$. The \defn{modulus} of 
+$z = a+ib$ is $|z| = \sqrt{z \bar{z}} = \sqrt{a^2 + b^2}$.  By plotting
+the complex number $a+ib$ in the plane with horizontal coordinate $a$
+and vertical coordinate $b$, one can easily see by the Pythagorean Theorem
+that the modulus of $a+ib$ is the length of the line extending from $(0,0)$
+to $(a,b)$.
+
+For our purposes, probably the most important fact about complex numbers 
+is that they can be represented in polar coordinates and using
+``complex exponentials.'' Indeed, a complex number 
+$z = (a,b)$ can be specified by giving, instead of $a$ and $b$, 
+the modulus $|z|$ and the angle $\theta$
+between the positive real axis and the line extending from $(0,0)$ to 
+$(a,b)$ in the plane.  It follows from basic trigonometry\footnote{Recall the
+``SOH-CAH-TOA'' identities from high school.}
+that $a = |z|\cos \theta$ and $b = |z|\sin \theta$, so we see that a
+complex number can be written using the following ``trigonometric representation:''
+\begin{equation}
+  \label{eq:9}
+z = a + i b = |z|\cos \theta + i|z|\sin \theta
+= |z|(\cos \theta + i\sin \theta).
+\end{equation}
+An important identity related to the trigonometric representation~(\ref{eq:9})
+is
+%Euler's formula that we will use frequently to represent complex numbers. 
+%% \footnote{\protect{For a proof, see 
+%% \href{https://en.wikipedia.org/wiki/Euler%27s_formula}{Wikipedia: Euler's formula}.}}
+\defn{Euler's Formula}: 
+\[
+e^{i\theta} = \cos \theta + i\sin \theta.
+\] 
+This provides yet another way to represent the complex number $z$, namely,
+\[
+z = a + i b  = |z|(\cos \theta + i\sin \theta) =  |z|e^{i\theta}.
+\]
+Notice in particular that %for all integers $k \in \Z$ we have
+\[
+e^{2\pi i 0} = e^{2\pi i } = 1, \quad  %= e^{-i\pi k}, \quad 
+e^{2\pi i\frac{1}{4}} = i, \quad e^{2\pi i\frac{1}{2}}= -1,  \quad e^{-2 \pi i\frac{1}{4}} = -i.
+\]
+
+If $z = a+ib$ and if $|z| = a^2 + b^2 = 1$, then $z$ lies on the unit circle.
+A particularly important sets of complex numbers is $\{e^{2\pi i\frac{k}{n}} : k = 0, 1, \dots, n-1\}$,
+which consists of $n$ points evenly spaced around the unit circle.
+This is called the set of \emph{$n$-th roots of unity}.  
+For example, there are six $6$-th roots of unity.  They are
+\[
+\{1, e^{2\pi i\frac{1}{6}}, e^{2\pi i\frac{2}{6}}, e^{2\pi i\frac{3}{6}}, e^{2\pi i\frac{4}{6}}, e^{2\pi i\frac{5}{6}}\} = 
+\{1, \omega, \omega^2, \omega^3, \omega^4, \omega^5\}, 
+\quad \text{ where $\omega = e^{2\pi i\frac{1}{6}}$.}
+\]
+We conclude this brief introduction to complex numbers with an important formula
+for the sum of all the complex roots of unity.
+\begin{lemma}
+  \begin{equation}
+\label{eq:sum-roots-unity}
+\sum_{j\in \nn} e^{2\pi i \frac{kj}{n}} = 
+\begin{cases}
+  n, & k \equiv 0 \mod n,\\
+  0, & \mathrm{ otherwise}.
+\end{cases}
+  \end{equation}
+\end{lemma}
+\begin{proof}
+  Suppose $k\equiv 0 \mod n$.\footnote{Recall that $k \equiv j \mod n$ 
+means $k-j$ is a multiple of $n$, that is, $k-j \in \{nd: d\in \Z\}$. 
+Therefore, $k\equiv 0 \mod n$ simply means that $k$ is a multiple of 
+$n$, say, $dn$, so $e^{2\pi i \frac{kj}{n}} = e^{2\pi i \frac{dnj}{n}} = e^{2\pi i dj} = e^{2\pi i}
+= 1$. See appendix Section~\ref{sec:very-brief-intr}.} 
+Then $e^{2\pi i \frac{kj}{n}} = e^0 = 1$ for all $j\in \nn$, so 
+$\sum_{j\in \nn} e^{2\pi i \frac{kj}{n}} = \sum_{j\in \nn} 1 = n$.
+Suppose, on the other hand, that $k$ is not congruent to $0$ modulo $n$, 
+and consider the following derivation: 
+\begin{align}
+\label{eq:5}
+  \sum_{j\in \nn} e^{2\pi i \frac{kj}{n}} &= \sum_{j\in \nn} e^{2\pi i \frac{k(j-1 + 1)}{n}} \\
+\label{eq:6}
+ &= \sum_{j\in \nn} e^{2\pi i \frac{k}{n}} \,e^{2\pi i \frac{k(j-1)}{n}}\\
+\label{eq:7}
+ &= e^{2\pi i \frac{k}{n}} \sum_{j\in \nn}  \,e^{2\pi i \frac{k(j-1)}{n}}\\
+\label{eq:8}
+ &= e^{2\pi i \frac{k}{n}} \sum_{\ell \in \nn}  \,e^{2\pi i \frac{k\ell}{n}}
+\end{align}
+Equality~(\ref{eq:5}) holds since adding and subtracting 1 changes nothing.
+Equality~(\ref{eq:6}) holds by laws of exponents.
+Equality~(\ref{eq:7}) holds because the factor $e^{2\pi i \frac{k}{n}}$ does not 
+depend on the index of summation $j$. 
+The last equality holds by the change of variable $\ell = j-1$. 
+(Notice that summing over all $j$ in $\nn$ is the same as summing over all
+$\ell = j-1$ for which $j \in \nn$.)
+Finally, since we assumed $k$ is not congruent to $0$ modulo $n$, 
+we have $e^{2\pi i \frac{k}{n}} \neq 1$, so the equality
+\[
+  \sum_{j\in \nn} e^{2\pi i \frac{kj}{n}} 
+= e^{2\pi i \frac{k}{n}} \sum_{\ell \in \nn}  \,e^{2\pi i \frac{k\ell}{n}}
+\]
+holds if and only if  $ \sum_{j\in \nn} e^{2\pi i \frac{kj}{n}} =0$.
+\end{proof}
+The proof reveals the important role played by the group structure of the index set $\nn$.
+Evidently, the formula~(\ref{eq:sum-roots-unity}) is true because of the way modular 
+arithmetic works. More generally, the formula holds when we replace $\nn$ with any group $G$, 
+since the set $\{x : x \in G\}$ of all elements of the group is no different from the set
+$\{x-y : x \in G\}$ of all ``translated'' group elements. 
+Therefore, summing over all elements $x\in G$ is the same as summing over all elements 
+$x-y$ for $x, y\in G$. (To take a concrete example, the set $\Z$ is the same as 
+the set $\{n-1 : n \in \Z\}$.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\printbibliography
+
+\printindex
+\end{document}
+
+
+%% ------------- Fig 1 ---------------
+\begin{figure}[!ht]
+  %% Fig 1 (left)
+  \begin{tikzpicture}[node distance=2cm, auto, scale=1]
+    \node (0) at (0,-1)  {$D$};
+    \node (1) at (0,0)  {$1$};
+    \node (2) at (0,1)  {$2$};
+    \node (3) at (0,2)  {$3$};
+    \node (4) at (0,3)  {$4$};
+    \node (5) at (0,3.75)  {$\vdots$};
+    \draw (1) -- (2) -- (3) -- (4);
+  \end{tikzpicture}
+  \hskip2cm
+  \begin{tikzpicture}[node distance=2cm, auto, scale=1]
+    \node (0) at (0,-1)  {$A$};
+    \node (1) at (0,0)  {$1$};
+    \node (2) at (0,1)  {$2$};
+    \node (3) at (0,2)  {$3$};
+    \node (4) at (0,3)  {$4$};
+    \node (5) at (0,3.75)  {$\vdots$};
+    \node (6) at (0,5)  {$\top$};
+    \draw (1) -- (2) -- (3) -- (4);
+  \end{tikzpicture}
+  \hskip2cm
+  \begin{tikzpicture}[node distance=2cm, auto, scale=1]
+    \node (0) at (0,-1)  {$X$};
+    \node (1) at (0,0)  {$1$};
+    \node (2) at (0,1)  {$2$};
+    \node (3) at (0,2)  {$3$};
+    \node (4) at (0,3)  {$4$};
+    \node (5) at (0,3.75)  {$\vdots$};
+    \node (6) at (0,4.25)  {$\infty$};
+    \node (7) at (0,5)  {$\top$};
+    \draw (1) -- (2) -- (3) -- (4);
+    \draw (6) -- (7);
+  \end{tikzpicture}
+  \caption{The set $A$ is not an inductive subset of $X$.}
+\label{fig:noninductive}
+\end{figure}
+
+
+\end{example}
+
+
