@@ -370,7 +370,7 @@ T = linear_transformation ...
     %% TB = linear_transformation(VB, VB, Tsymb)
   Finally, check that the two methods give the same result:
   \begin{sageblock}
-    TB1 == TB.matrix(side="right")      # (this should return True)
+    TB1 == TB2.matrix(side="right")      # (this should return True)
   \end{sageblock}
 
   
